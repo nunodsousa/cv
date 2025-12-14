@@ -1,20 +1,60 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Nuno de Sousa - CV Portfolio
 
-# Run and deploy your AI Studio app
+A modern, interactive CV portfolio built with React, TypeScript, and Vite.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1nBrrTAq-PDQ1fij1AzANSjli1GSAsHau
+- 🎨 Modern, responsive design
+- 💬 AI-powered chat interface
+- ✨ Interactive animations with Framer Motion
+- 📱 Mobile-friendly layout
+- 🎯 Professional presentation of experience, education, and achievements
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+   ```bash
+   npm install
+   ```
+
+2. Set the `GEMINI_API_KEY` in `.env.local` to your Gemini API key (optional, for AI chat feature)
+
 3. Run the app:
-   `npm run dev`
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## GitHub Pages Deployment
+
+This project is configured for GitHub Pages deployment:
+
+1. **Enable GitHub Pages** in your repository settings:
+   - Go to Settings → Pages
+   - Source: Select "GitHub Actions"
+
+2. **Set up the API key** (if using AI chat):
+   - Go to Settings → Secrets and variables → Actions
+   - Add a secret named `GEMINI_API_KEY` with your API key
+
+3. **Deploy automatically**:
+   - The site will automatically deploy on every push to the `main` branch
+   - Or manually trigger via Actions → "Deploy to GitHub Pages" → Run workflow
+
+The site will be available at: `https://nunodsousa.github.io/cv/`
+
+## Technologies
+
+- React 19
+- TypeScript
+- Vite
+- Framer Motion
+- Three.js
+- Tailwind CSS
+- Lucide React Icons
