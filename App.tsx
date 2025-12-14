@@ -70,7 +70,7 @@ const PUBLICATIONS = [
   {
     id: 13,
     text: 'M.I. Marqués, J. Luis-Hita, V.J.L. Pastor, N. de Sousa, L.S. Froufe-Pérez, F. Scheffold, and J.J. Sáenz, "Analysis of the dynamics of electric dipoles in fluctuating electromagnetic fields", Optical Trapping and Optical Micromanipulation XV 10723, 107230Y (2018).',
-    impact: null
+    impact: 'Conference proceeding'
   },
   {
     id: 12,
