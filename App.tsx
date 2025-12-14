@@ -27,7 +27,6 @@ import {
   Mic,
   Briefcase
 } from 'lucide-react';
-import AIChat from './components/AIChat';
 import ParticleBanner from './components/ParticleBanner';
 import { Job, Education, SkillCategory } from './types';
 
