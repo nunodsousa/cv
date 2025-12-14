@@ -685,7 +685,7 @@ const App: React.FC = () => {
           <div className="flex items-center gap-3">
              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-700 bg-slate-800">
                 <img 
-                  src="/photos/Nuno_2023.jpg" 
+                  src={`${import.meta.env.BASE_URL}photos/Nuno_2023.jpg`}
                   alt={CV_DATA.personal.shortName} 
                   className="w-full h-full object-cover grayscale"
                 />
@@ -722,7 +722,7 @@ const App: React.FC = () => {
               <div className="mb-10 text-center md:text-left">
                   <div className="w-32 h-32 mx-auto md:mx-0 bg-gradient-to-br from-slate-700 to-slate-800 rounded-full border-4 border-slate-800 shadow-xl mb-6 overflow-hidden relative">
                     <img 
-                      src="/photos/Nuno_2023.jpg" 
+                      src={`${import.meta.env.BASE_URL}photos/Nuno_2023.jpg`}
                       alt={CV_DATA.personal.name} 
                       className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                     />
