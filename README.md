@@ -1,5 +1,7 @@
 # Nuno de Sousa - CV Portfolio
 
+https://nunodsousa.github.io/cv/
+
 A modern, interactive CV portfolio built with React, TypeScript, and Vite.
 
 ## Features
