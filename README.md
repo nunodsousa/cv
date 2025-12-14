@@ -37,7 +37,7 @@ A modern, interactive CV portfolio built with React, TypeScript, and Vite.
 
 This project is configured for GitHub Pages deployment:
 
-1. **Enable GitHub Pages** in your repository settings:
+1. **Enable GitHub PagesOn** in your repository settings:
    - Go to Settings → Pages
    - Source: Select "GitHub Actions"
 

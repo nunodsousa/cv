@@ -289,7 +289,7 @@ const CV_DATA = {
     summary: "Expert in Data Science and AI with over 10 years of experience and a Ph.D. in Theoretical Physics, specializing in Python-based development of advanced pricing models, business analytics, technology-driven financial systems, and machine learning algorithms. MBA candidate at CPBS.",
     emails: ["hidden for safety reasons"],
     phones: ["hidden for safety reasons"],
-    location: "hidden for safety reasons",
+    location: "Oporto, Portugal",
     nationality: "Portuguese",
     birthdate: "July 28th 1982",
     gender: "Male",
