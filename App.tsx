@@ -35,7 +35,8 @@ const PUBLICATIONS = [
   {
     id: 20,
     text: 'Diego R Abujetas, N de Sousa, A García-Martín, JM Llorens, JA Sánchez-Gil, "Active angular tuning and switching of Brewster quasi bound states in the continuum in magneto-optic metasurfaces", Active Photonic Platforms, PC121961Q (2022).',
-    impact: '8.449'
+    impact: '8.449',
+    url: 'https://doi.org/10.1117/12.2632711'
   },
   {
     id: 19,
@@ -45,92 +46,110 @@ const PUBLICATIONS = [
   {
     id: 18,
     text: 'DR Abujetas, N de Sousa, A García-Martín, JM Llorens, JA Sánchez-Gil, "Active angular tuning and switching of Brewster quasi bound states in the continuum in magneto-optic metasurfaces", Nanophotonics 10 (17), 4223-4232 (2021).',
-    impact: '8.449'
+    impact: '8.449',
+    url: 'https://doi.org/10.1515/nanoph-2021-0412'
   },
   {
     id: 17,
     text: 'Jorge Olmos-Trigo, Diego R Abujetas, Cristina Sanz-Fernández, Xavier Zambrana-Puyalto, Nuno de Sousa, José A Sánchez-Gil, Juan José Sáenz, "Multiple Kerker anapoles in dielectric microspheres", Laser and Photonics Reviews 2100035 (2021).',
-    impact: '10.655'
+    impact: '10.655',
+    url: 'https://doi.org/10.1002/lpor.202100035'
   },
   {
     id: 16,
     text: 'Jorge Olmos-Trigo, Diego R Abujetas, Cristina Sanz-Fernández, Xavier Zambrana-Puyalto, Nuno de Sousa, José A Sánchez-Gil, Juan José Sáenz, "Unveiling dipolar spectral regimes of large dielectric Mie spheres from helicity conservation", Phys. Rev. Research 2 043021 (2020).',
-    impact: '6.8'
+    impact: '6.8',
+    url: 'https://doi.org/10.1103/PhysRevResearch.2.043021'
   },
   {
     id: 15,
     text: 'Jorge Olmos-Trigo, Cristina Sanz-Fernández, Diego R Abujetas, Jon Lasa-Alonso, Nuno de Sousa, Aitzol García-Etxarri, José A Sánchez-Gil, Gabriel Molina-Terriza, Juan José Sáenz, "Kerker conditions upon lossless, absorption, and optical gain regimes", Phys. Rev. Lett. 125 073205 (2020).',
-    impact: '9.161'
+    impact: '9.161',
+    url: 'https://doi.org/10.1103/PhysRevLett.125.073205'
   },
   {
     id: 14,
     text: 'J. Luis-Hita, M.I. Marqués, R. Delgado-Buscalioni, N. de Sousa, L.S. Froufe-Pérez, F. Scheffold, and J.J. Sáenz, "Light Induced Inverse-Square Law Interactions between Nanoparticles: Mock Gravity at the Nanoscale", Phys. Rev. Lett. 123 143201 (2019).',
-    impact: '9.227'
+    impact: '9.227',
+    url: 'https://doi.org/10.1103/PhysRevLett.123.143201'
   },
   {
     id: 13,
     text: 'M.I. Marqués, J. Luis-Hita, V.J.L. Pastor, N. de Sousa, L.S. Froufe-Pérez, F. Scheffold, and J.J. Sáenz, "Analysis of the dynamics of electric dipoles in fluctuating electromagnetic fields", Optical Trapping and Optical Micromanipulation XV 10723, 107230Y (2018).',
-    impact: 'Conference proceeding'
+    impact: 'Conference proceeding',
+    url: 'https://doi.org/10.1117/12.2320575'
   },
   {
     id: 12,
     text: 'P. Rodríguez-Sevilla, Y. Zhang, N. de Sousa, M.I. Marqués; F. Sanz-Rodríguez, D. Jaque, X. Liu, P. Haro-González, "Microrheometric upconversion-based techniques for intracellular viscosity measurements", Optical Trapping and Optical Micromanipulation XIV 10347, 103471S (2017).',
-    impact: 'Conference proceeding'
+    impact: 'Conference proceeding',
+    url: 'https://doi.org/10.1117/12.2275944'
   },
   {
     id: 11,
     text: '"Optical torques on upconverting nanoparticles", P. Rodríguez-Sevilla, Y. Zhang, N. de Sousa, M.I. Marqués; F. Sanz-Rodríguez, D. Jaque, X. Liu, P. Haro-González, Nanoletters 16, 8005 (2016).',
-    impact: '13.779'
+    impact: '13.779',
+    url: 'https://doi.org/10.1021/acs.nanolett.6b04583'
   },
   {
     id: 10,
     text: 'N. de Sousa, L.S. Froufe-Pérez, J.J. Sáenz and A. García-Martín, "Magneto-Optical Activity in High Index Dielectric Nanoantennas", Sci. Rep. 6, 30803 (2016).',
-    impact: '5.228'
+    impact: '5.228',
+    url: 'https://doi.org/10.1038/srep30803'
   },
   {
     id: 9,
     text: 'G. Armelles, A. Cebollada, A. García-Martín, F. García, and N. de Sousa, "Far and near field broad-band magneto-optical functionalities using magnetoplasmonic nanorods", ACS Photonics 3, 2427.',
-    impact: '5.404'
+    impact: '5.404',
+    url: 'https://doi.org/10.1021/acsphotonics.6b00670'
   },
   {
     id: 8,
     text: 'M. Castro-Lopez, N. de Sousa, A. García-Martín, F.Y. Gardes, R. Sapienza, "Scattering of a plasmonic nanoantenna embedded in a silicon waveguide", Optics express 23, 28108 (2015).',
-    impact: '3.148'
+    impact: '3.148',
+    url: 'https://doi.org/10.1364/OE.23.028108'
   },
   {
     id: 7,
     text: 'N. de Sousa, J.J. Sáenz, F. Scheffold, A. García-Martín, and L.S. Froufe-Pérez, "Fluctuations of the Electromagnetic Local Density of States as a Probe for Structural Phase Switching", Phys. Rev. A 94, 043832.',
-    impact: '2.765'
+    impact: '2.765',
+    url: 'https://doi.org/10.1103/PhysRevA.94.043832'
   },
   {
     id: 6,
     text: 'N. de Sousa, J.J. Sáenz, F. Scheffold, A. García-Martín, and L. S. Froufe-Pérez, "Self-diffusion and dynamic coexistence in confined fluids", Journal of Physics: Condensed Matter 28, 135101 (2016).',
-    impact: '2.209'
+    impact: '2.209',
+    url: 'https://doi.org/10.1088/0953-8984/28/13/135101'
   },
   {
     id: 5,
     text: 'N. de Sousa, J.J. Sáenz, A. García-Martín, L.S. Froufe-Pérez and M. I. Marqués, "Light emission statistics in a 2D Ising lattice", Phys. Rev. A 89, 063830 (2014).',
-    impact: '3.042'
+    impact: '3.042',
+    url: 'https://doi.org/10.1103/PhysRevA.89.063830'
   },
   {
     id: 4,
     text: 'N. de Sousa, G. Armelles, A. Cebollada, M.U. González, F. García, D. Meneses-Rodríguez, L.S. Froufe-Pérez and A. García-Martín, "Interaction Effects on the Magneto-optical Response of Magnetoplasmonic Dimers", Phys. Rev. B 89, 205419 (2014).',
-    impact: '3.767'
+    impact: '3.767',
+    url: 'https://doi.org/10.1103/PhysRevB.89.205419'
   },
   {
     id: 3,
     text: 'G. Armelles, A. Cebollada, A. García-Martín, M.U. González, F. García, D. Meneses-Rodríguez, N. de Sousa, L.S. Froufe-Pérez, "Mimicking electromagnetically induced transparency in the magneto-optical activity of magnetoplasmonic nanoresonators", Optics Express 21, 27356 (2013).',
-    impact: '3.587'
+    impact: '3.587',
+    url: 'https://doi.org/10.1364/OE.21.027356'
   },
   {
     id: 2,
     text: 'D.S. Schmool, F. Gonçalves, N. de Sousa, A. Apolinário, N.A. Sobolev , F. Casoli, F. Albertini, R.L. Stamps and C. Hu, "Modelling exchange-spring layered systems with perpendicular anisotropy using ferromagnetic resonance measurements", IEEE Transactions on Magnetics, IEEE Transactions on 48 11, 4081 (2012).',
-    impact: '1.363'
+    impact: '1.363',
+    url: 'https://doi.org/10.1109/TMAG.2012.2195645'
   },
   {
     id: 1,
     text: 'N. de Sousa, A. Apolinário, P.M.S. Monteiro, D.S. Schmool, F.Vernay, H. Kachkachi, F. Casoli, F. Albertini, "Determination of the equilibrium state of an exchange spring system with perpendicular anisotropy", Phys. Rev. B 82, 104433 (2010).',
-    impact: '3.772'
+    impact: '3.772',
+    url: 'https://doi.org/10.1103/PhysRevB.82.104433'
   }
 ];
 
@@ -219,8 +238,9 @@ const SCIENCE_PROJECTS = [
 const AI_PROJECTS = [
   { 
     id: 1, 
-    title: "Dress recommendation system", 
+    title: "Dress Recommendation System", 
     period: "2017",
+    details: "Led the Dress Recommendation System project, which was recognized by Google for its exemplary application of TensorFlow and computer vision technologies in recommendation systems.",
     links: [
       { url: "https://www.elbierzodigital.com/una-empresa-ponferradina-seleccionada-google-referencia-internacional-inteligencia-artificial/", text: "El Bierzo Digital" },
       { url: "https://www.eleconomista.es/emprendedores-innova/noticias/8728738/11/17/Datajuicers-el-robot-que-lo-mismo-ayuda-a-comprar-ropa-que-a-ganar-dinero-con-bitcoins.html", text: "El Economista" }
@@ -286,8 +306,8 @@ const CV_DATA = {
     shortName: "Nuno de Sousa",
     title: "Expert in Data Science & AI",
     summary: "Expert in Data Science and AI with over 10 years of experience and a Ph.D. in Theoretical Physics, specializing in Python-based development of advanced pricing models, business analytics, technology-driven financial systems, and machine learning algorithms. MBA candidate at CPBS.",
-    emails: ["hidden for safety reasons"],
-    phones: ["hidden for safety reasons"],
+    emails: ["(hidden)"],
+    phones: ["(hidden)"],
     location: "Oporto, Portugal",
     nationality: "Portuguese",
     birthdate: "July 28th 1982",
@@ -317,6 +337,7 @@ const CV_DATA = {
       id: "1",
       role: "Expert in Data Science & AI",
       company: "DataJuicers (Remote)",
+      companyUrl: "https://www.datajuicers.com",
       period: "NOVEMBER 2019 — PRESENT",
       description: "Led the design, delivery, and scaling of end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as technical lead and strategic advisor, driving data-driven transformation across utilities, healthcare, chemicals, and energy-related domains, while supporting pre-sales, solution architecture, and executive decision-making.",
       highlights: [
@@ -337,13 +358,14 @@ const CV_DATA = {
         </span>,
         <span>
           <b>Key Expertise:</b> Data Science (<b>pricing</b>, <b>demand & inventory forecasting</b>, <b>market analytics</b>), <b>AI/ML systems design</b>, and <b>Business Analytics for executive decision support</b>.
-        </span>
+        </span>,
       ]
     },
     {
       id: "2",
       role: "Quantitative Analyst",
       company: "Arfima Trading (Madrid)",
+      companyUrl: "https://www.arfima.com",
       period: "APRIL 2019 — OCTOBER 2019",
       description: "Designed and deployed automated trading strategies with a focus on financial analysis and the development of robust risk management frameworks.",
       highlights: [
@@ -358,12 +380,13 @@ const CV_DATA = {
       id: "3",
       role: "Data Scientist",
       company: "DataJuicers (Madrid)",
+      companyUrl: "https://www.datajuicers.com",
       period: "JUNE 2017 — MARCH 2019",
       description: "Specialized in Business Solutions, Time Series Forecasting, and Machine Learning.",
       highlights: [
         "Designed and delivered business and industry solutions using big data, time series forecasting, and machine learning methods.",
         "Applied advanced analytics to sectors including luxury, retail, services, and industry.",
-        "Directed the 'Dress Recommendation System' project, recognized by Google for exemplary application of TensorFlow and computer vision in recommendation systems.",
+        "Led the Dress Recommendation System project, which was recognized by Google for its exemplary application of TensorFlow and computer vision technologies in recommendation systems.",
         "Contributed to hedge fund projects through co-location, providing financial analysis and quantitative modeling services."
       ]
     },
@@ -385,6 +408,7 @@ const CV_DATA = {
       id: "mba",
       degree: "Executive MBA",
       institution: "Católica Porto Business School - CPBS",
+      institutionUrl: "https://catolicabs.porto.ucp.pt",
       period: "OCTOBER 2024 — ON GOING (JULY 2026)",
       details: ["Ongoing, with in-person sessions held three consecutive working days per month."]
     },
@@ -392,6 +416,7 @@ const CV_DATA = {
       id: "phd",
       degree: "PhD in Theoretical Physics",
       institution: "Universidad Autónoma de Madrid",
+      institutionUrl: "https://www.uam.es/uam/inicio",
       period: "SEPTEMBER 2010 — OCTOBER 2014",
       link: "https://sirena.csic.es/wp-content/uploads/2024/07/Tesis-Nuno.pdf",
       details: [
@@ -404,6 +429,7 @@ const CV_DATA = {
       id: "master",
       degree: "Master in Photonics",
       institution: "Universidad Autónoma de Madrid",
+      institutionUrl: "https://www.uam.es/uam/inicio",
       period: "SEPTEMBER 2009 — JUNE 2010",
       details: [
         "GPA of 8.8 on a linear scale from 0 to 10.",
@@ -414,6 +440,7 @@ const CV_DATA = {
       id: "licenciate",
       degree: "Licenciate in Physics",
       institution: "Universidade do Porto",
+      institutionUrl: "https://www.up.pt/portal/en/",
       period: "",
       details: []
     }
@@ -469,11 +496,24 @@ const App: React.FC = () => {
                     <p className="text-slate-700 text-sm leading-relaxed mb-2">
                       {pub.text}
                     </p>
-                    {pub.impact && (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-green-50 text-green-700 text-xs font-bold border border-green-200">
-                         Impact Factor: {pub.impact}
-                      </span>
-                    )}
+                    <div className="flex items-center gap-3 flex-wrap">
+                      {pub.impact && (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-green-50 text-green-700 text-xs font-bold border border-green-200">
+                           Impact Factor: {pub.impact}
+                        </span>
+                      )}
+                      {pub.url && (
+                        <a 
+                          href={pub.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium border border-blue-200 hover:bg-blue-100 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          View Paper
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -598,9 +638,14 @@ const App: React.FC = () => {
                         <p className="text-slate-700 text-sm leading-relaxed font-medium mb-1">
                           {project.title}
                         </p>
-                        <p className="text-slate-600 text-xs mb-2">
+                        <p className="text-slate-600 text-xs mb-1">
                           <span className="font-semibold">{project.period}</span>
                         </p>
+                        {project.details && (
+                          <p className="text-slate-600 text-xs italic mt-1 mb-2">
+                            {project.details}
+                          </p>
+                        )}
                         {project.links && project.links.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-2">
                             {project.links.map((link, idx) => (
@@ -854,18 +899,20 @@ const App: React.FC = () => {
           >
             {/* Profile Summary */}
             <section className="mb-16">
-              <motion.h2 
-                className="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-wider flex items-center gap-3 cursor-default group"
-                initial="rest" whileHover="hover" animate="rest"
-              >
-                <motion.div variants={iconAnim}>
-                  <BrainCircuit className="w-6 h-6 text-slate-400 group-hover:text-blue-600 transition-colors" />
-                </motion.div>
-                Profile
-              </motion.h2>
-              <p className="text-lg text-slate-700 leading-relaxed font-serif">
-                <strong>Expert in Data Science and AI</strong> with over <strong>10 years of experience</strong> and a <strong>Ph.D. in Theoretical Physics</strong>, specializing in <strong>Python</strong>-based development of advanced <strong>pricing models</strong>, <strong>business analytics</strong>, technology-driven <strong>financial systems</strong>, and <strong>machine learning algorithms</strong>. <strong>MBA candidate</strong> at <strong>CPBS</strong>.
-              </p>
+              <div className="bg-slate-900 p-8 rounded-xl border-l-4 border-blue-600 shadow-md hover:shadow-lg transition-shadow">
+                <motion.h2 
+                  className="text-2xl font-bold text-white mb-6 uppercase tracking-wider flex items-center gap-3 cursor-default group"
+                  initial="rest" whileHover="hover" animate="rest"
+                >
+                  <motion.div variants={iconAnim}>
+                    <BrainCircuit className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                  </motion.div>
+                  Profile
+                </motion.h2>
+                <p className="text-lg text-slate-300 leading-relaxed font-serif">
+                  <strong className="text-white">Expert in Data Science and AI</strong> with over <strong className="text-white">10 years of experience</strong> and a <strong className="text-white">Ph.D. in Theoretical Physics</strong>, specializing in <strong className="text-white">Python</strong>-based development of advanced <strong className="text-white">pricing models</strong>, <strong className="text-white">business analytics</strong>, technology-driven <strong className="text-white">financial systems</strong>, and <strong className="text-white">machine learning algorithms</strong>. <strong className="text-white">MBA candidate</strong> at <strong className="text-white">CPBS</strong>.
+                </p>
+              </div>
             </section>
 
             {/* Employment History */}
@@ -897,8 +944,39 @@ const App: React.FC = () => {
                       <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2 py-1 rounded">{job.period}</span>
                     </div>
                     
-                    <p className="text-base font-semibold text-slate-600 mb-4 flex items-center gap-2">
-                      {job.company} 
+                    <p className="text-base font-semibold text-slate-600 mb-4 flex items-center gap-2 flex-wrap">
+                      {job.company === "Universidad Autónoma de Madrid & Donostia International Physics Center" ? (
+                        <>
+                          <a 
+                            href="https://www.uam.es/uam/inicio" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-600 transition-colors"
+                          >
+                            Universidad Autónoma de Madrid
+                          </a>
+                          <span> & </span>
+                          <a 
+                            href="https://dipc.ehu.eus/en" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-600 transition-colors"
+                          >
+                            Donostia International Physics Center
+                          </a>
+                        </>
+                      ) : job.companyUrl ? (
+                        <a 
+                          href={job.companyUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:text-blue-600 transition-colors"
+                        >
+                          {job.company}
+                        </a>
+                      ) : (
+                        job.company
+                      )}
                       {job.location && <span className="text-xs font-normal text-slate-400">• {job.location}</span>}
                     </p>
                     
@@ -935,7 +1013,20 @@ const App: React.FC = () => {
                   {CV_DATA.education.map((edu, idx) => (
                     <div key={idx} className="group">
                       <h3 className="text-lg font-bold text-slate-800 group-hover:text-blue-700 transition-colors">{edu.degree}</h3>
-                      <p className="text-sm font-medium text-slate-600 mb-1">{edu.institution}</p>
+                      <p className="text-sm font-medium text-slate-600 mb-1">
+                        {edu.institutionUrl ? (
+                          <a 
+                            href={edu.institutionUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-600 transition-colors"
+                          >
+                            {edu.institution}
+                          </a>
+                        ) : (
+                          edu.institution
+                        )}
+                      </p>
                       {edu.period && <p className="text-xs text-slate-400 mb-2 uppercase tracking-wide">{edu.period}</p>}
                       {edu.details.length > 0 && (
                         <ul className="space-y-1 mt-2">
@@ -991,14 +1082,6 @@ const App: React.FC = () => {
 
             <div className="mt-20 pt-10 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm">
               <p>© {new Date().getFullYear()} Nuno de Sousa. All rights reserved.</p>
-              <div className="flex gap-4 mt-6 md:mt-0">
-                <button 
-                  onClick={() => window.print()} 
-                  className="bg-slate-900 text-white hover:bg-blue-600 px-6 py-2.5 rounded-lg flex items-center gap-2 transition-all shadow-md font-medium"
-                >
-                  <Download className="w-4 h-4" /> Download PDF
-                </button>
-              </div>
             </div>
 
           </motion.div>
