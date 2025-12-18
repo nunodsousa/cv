@@ -60,3 +60,4 @@ The site will be available at: `https://nunodsousa.github.io/cv/`
 - Three.js
 - Tailwind CSS
 - Lucide React Icons
+# GitHub Pages deployment
