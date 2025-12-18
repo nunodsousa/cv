@@ -7,6 +7,7 @@ export interface Job {
   id: string;
   role: string;
   company: string;
+  companyUrl?: string;
   location?: string;
   period: string;
   description?: string;
@@ -17,6 +18,7 @@ export interface Education {
   id: string;
   degree: string;
   institution: string;
+  institutionUrl?: string;
   period: string;
   details: string[];
   link?: string;
