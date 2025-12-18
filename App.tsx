@@ -720,7 +720,7 @@ const App: React.FC = () => {
       {/* Top Animation Banner */}
       <ParticleBanner />
 
-      <div className="flex flex-col md:flex-row flex-1">
+      <div className="flex flex-col md:flex-row flex-1 relative">
         
         {/* Mobile Header / Navigation Bar */}
         <div className="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-40 shadow-md border-b border-slate-800">
@@ -890,8 +890,9 @@ const App: React.FC = () => {
           </div>
         </aside>
 
-        {/* Main Content - Right Column */}
-        <main className="flex-1 p-6 md:p-12 lg:p-20 max-w-5xl">
+        {/* Main Content - Center Column */}
+        <div className="flex-1 flex justify-center shrink-0">
+          <main className="w-full p-6 md:p-12 lg:p-20 max-w-5xl shrink-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1085,7 +1086,8 @@ const App: React.FC = () => {
             </div>
 
           </motion.div>
-        </main>
+          </main>
+        </div>
       </div>
 
       {/* Dynamic Modal */}
