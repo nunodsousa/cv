@@ -41,7 +41,8 @@ const PUBLICATIONS = [
   {
     id: 19,
     text: 'Alexey Kimel, Anatoly Zvezdin, Sangeeta Sharma, Samuel Shallcross, Nuno De Sousa, Antonio García-Martín, Georgeta Salvan, Jaroslav Hamrle, Ondřej Stejskal, Jeffrey McCord, Silvia Tacchi, Giovanni Carlotti, Pietro Gambardella, Gian Salis, Markus Münzenberg, Martin Schultze, Vasily Temnov, Igor V Bychkov, Leonid N Kotov, Nicolò Maccaferri, Daria Ignatyeva, Vladimir Belotelov, Claire Donnelly, Aurelio Hierro Rodriguez, Iwao Matsuda, Thierry Ruchon, Mauro Fanciulli, Maurizio Sacchi, Chunhui Rita Du, Hailong Wang, N Peter Armitage, Mathias Schubert, Vanya Darakchieva, Bilu Liu, Ziyang Huang, Baofu Ding, Andreas Berger, Paolo Vavassori, "The 2022 magneto-optics roadmap", Journal of Physics D: Applied Physics 55 (46), 463003 (2022).',
-    impact: '3.1'
+    impact: '3.1',
+    url: 'https://iopscience.iop.org/article/10.1088/1361-6463/ac8da0'
   },
   {
     id: 18,
@@ -358,7 +359,7 @@ const CV_DATA = {
         </span>,
         <span>
           <b>Key Expertise:</b> Data Science (<b>pricing</b>, <b>demand & inventory forecasting</b>, <b>market analytics</b>), <b>AI/ML systems design</b>, and <b>Business Analytics for executive decision support</b>.
-        </span>,
+        </span>
       ]
     },
     {
