@@ -329,7 +329,7 @@ const CV_DATA = {
   skills: [
     { category: "Programming", skills: "Python (pandas, scikit-learn, statsmodels, NumPy), SQL (PostgreSQL, SQLAlchemy), C" },
     { category: "Modeling", skills: "Monte Carlo methods, GLM/GAM, Bayesian modeling, Survival analysis, Customer Lifetime Value (CLV)" },
-    { category: "AI & Cloud", skills: "OpenAI, LangChain, Azure" },
+    { category: "AI & Cloud", skills: "OpenAI, LangChain, Azure (cert. 01/2026)" },
     { category: "DevOps", skills: "Git, Docker" },
     { category: "Techniques", skills: "Deep Learning (Keras, TensorFlow), Random Forest, XGBoost, SVM, KNN, Naïve Bayes, k-Means, Hierarchical Clustering" },
     { category: "Time Series", skills: "Prophet, ARIMA, ETS, State Space, Structural Models" },
