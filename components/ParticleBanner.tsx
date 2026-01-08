@@ -5,17 +5,15 @@
 
 import React, { useEffect, useRef } from 'react';
 
-// Simulation Parameters
 const PARAMS = {
   particleCount: 50,
   sigma: 38.0,
   epsilon: 1.2,
-  dt: 0.12,
+  baseDt: 0.12,        // Base time step for 60fps
   maxForce: 45.0,
   cutoff: 38.0 * 2.5,
-  // Thermostat Settings
-  targetTemp: 1.5,     // Target kinetic energy per particle
-  tau: 0.5,            // Coupling time (lower is stronger correction)
+  targetTemp: 1.5,
+  tau: 0.5,
 };
 
 interface Particle {
@@ -40,6 +38,9 @@ const LJParticleBanner: React.FC = () => {
     let height = 0;
     let animationFrameId: number;
     let particles: Particle[] = [];
+    
+    // Timing variables for delta calculation
+    let lastTime = performance.now();
 
     const resize = () => {
       if (!canvas.parentElement) return;
@@ -61,13 +62,13 @@ const LJParticleBanner: React.FC = () => {
       }));
     };
 
-    const computeAccelerations = (parts: Particle[]) => {
-      parts.forEach(p => { p.ax = 0; p.ay = 0; });
+    const computeAccelerations = () => {
+      particles.forEach(p => { p.ax = 0; p.ay = 0; });
 
-      for (let i = 0; i < parts.length; i++) {
-        for (let j = i + 1; j < parts.length; j++) {
-          const p1 = parts[i];
-          const p2 = parts[j];
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const p1 = particles[i];
+          const p2 = particles[j];
 
           let dx = p2.x - p1.x;
           let dy = p2.y - p1.y;
@@ -96,11 +97,14 @@ const LJParticleBanner: React.FC = () => {
       }
     };
 
-    const update = () => {
-      // 1. Position update (Verlet 1st half)
+    const update = (dtScale: number) => {
+      // Adjust standard dt by the delta scale
+      const dt = PARAMS.baseDt * dtScale;
+
+      // 1. Verlet 1st half
       particles.forEach(p => {
-        p.x += p.vx * PARAMS.dt + 0.5 * p.ax * (PARAMS.dt ** 2);
-        p.y += p.vy * PARAMS.dt + 0.5 * p.ay * (PARAMS.dt ** 2);
+        p.x += p.vx * dt + 0.5 * p.ax * (dt ** 2);
+        p.y += p.vy * dt + 0.5 * p.ay * (dt ** 2);
 
         if (p.x < 0) p.x += width;
         if (p.x > width) p.x -= width;
@@ -111,23 +115,20 @@ const LJParticleBanner: React.FC = () => {
       const oldAx = particles.map(p => p.ax);
       const oldAy = particles.map(p => p.ay);
 
-      // 2. Compute new accelerations
-      computeAccelerations(particles);
+      // 2. Accelerations
+      computeAccelerations();
 
-      // 3. Velocity update (Verlet 2nd half)
+      // 3. Verlet 2nd half & Kinetic Energy
       let currentKineticEnergy = 0;
       particles.forEach((p, i) => {
-        p.vx += 0.5 * (oldAx[i] + p.ax) * PARAMS.dt;
-        p.vy += 0.5 * (oldAy[i] + p.ay) * PARAMS.dt;
+        p.vx += 0.5 * (oldAx[i] + p.ax) * dt;
+        p.vy += 0.5 * (oldAy[i] + p.ay) * dt;
         currentKineticEnergy += (p.vx ** 2 + p.vy ** 2);
       });
 
-      // 4. Berendsen Thermostat Scaling
-      // T_curr is avg kinetic energy per particle
+      // 4. Thermostat
       const currentTemp = currentKineticEnergy / PARAMS.particleCount;
-      const lambda = Math.sqrt(1 + (PARAMS.dt / PARAMS.tau) * (PARAMS.targetTemp / currentTemp - 1));
-
-      // Limit scaling to avoid instability
+      const lambda = Math.sqrt(1 + (dt / PARAMS.tau) * (PARAMS.targetTemp / currentTemp - 1));
       const safeLambda = Math.max(0.8, Math.min(1.2, lambda));
 
       particles.forEach(p => {
@@ -141,48 +142,50 @@ const LJParticleBanner: React.FC = () => {
       ctx.fillStyle = '#020617';
       ctx.fillRect(0, 0, width, height);
 
-      // Draw Connections
+      // Connections
       ctx.beginPath();
-      ctx.strokeStyle = 'rgba(59, 130, 246, 0.2)';
+      ctx.strokeStyle = 'rgba(59, 130, 246, 0.15)';
       ctx.lineWidth = 1;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
-            const p1 = particles[i];
-            const p2 = particles[j];
-            const dx = p1.x - p2.x;
-            const dy = p1.y - p2.y;
-            const d2 = dx*dx + dy*dy;
-            // Visual connections within sigma range
-            if (d2 < (PARAMS.sigma * 1.5)**2) {
-                ctx.moveTo(p1.x, p1.y);
-                ctx.lineTo(p2.x, p2.y);
-            }
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          if (dx*dx + dy*dy < (PARAMS.sigma * 1.5)**2) {
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+          }
         }
       }
       ctx.stroke();
 
-      // Draw Particles
+      // Particles
       particles.forEach(p => {
-        const speed = Math.sqrt(p.vx**2 + p.vy**2);
         ctx.beginPath();
         ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
-        // Color based on speed (kinetic energy)
-        ctx.fillStyle = speed > 1.5 ? '#93c5fd' : '#3b82f6';
-        ctx.fill();
-        
+        ctx.fillStyle = '#3b82f6';
         ctx.shadowBlur = 8;
         ctx.shadowColor = '#3b82f6';
+        ctx.fill();
       });
     };
 
-    const loop = () => {
-      update();
+    const loop = (currentTime: number) => {
+      // Calculate delta time
+      const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
+
+      // dtScale is 1.0 when running at 60fps (16.67ms per frame)
+      // On 120Hz, deltaTime is ~8.33ms, so dtScale will be ~0.5
+      const dtScale = Math.min(deltaTime / (1000 / 60), 2.0); // Cap to 2.0 to avoid huge jumps if tab backgrounded
+
+      update(dtScale);
       draw();
       animationFrameId = requestAnimationFrame(loop);
     };
 
     init();
-    loop();
+    // Start loop with first timestamp
+    animationFrameId = requestAnimationFrame(loop);
 
     window.addEventListener('resize', init);
     return () => {
@@ -200,7 +203,7 @@ const LJParticleBanner: React.FC = () => {
             Data Science Lead
           </h2>
           <p className="text-blue-400 text-sm md:text-base uppercase tracking-[0.4em] font-bold">
-            Applied AI & Decision Systems
+            Thermodynamics & AI Systems
           </p>
         </div>
       </div>
