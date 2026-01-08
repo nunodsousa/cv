@@ -64,16 +64,16 @@ body {
 }
 
 .header-photo {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .header-photo img {
-    width: 180px;
-    height: 180px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    border: 6px solid var(--accent-blue);
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+    border: 3px solid var(--accent-blue);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
 }
 
 .main-header h1 {
