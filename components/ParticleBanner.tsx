@@ -39,26 +39,26 @@ const ParticleBanner: React.FC = () => {
       trail: Array<{ x: number; y: number; opacity: number }>;
     }
 
-    const G = 0.1; // Gravitational constant (scaled for animation)
-    const dt = 0.1; // Time step
+    const G = 0.5; // Gravitational constant (increased for more visible dynamics)
+    const dt = 0.15; // Time step
 
-    // Initialize three bodies in a stable configuration
+    // Initialize three bodies with more dynamic initial velocities
     const bodies: Body[] = [
       {
-        x: width * 0.4,
+        x: width * 0.3,
         y: height * 0.5,
-        vx: 0.3,
-        vy: 0.2,
+        vx: 1.5,
+        vy: 0.8,
         mass: 50,
         radius: 8,
         color: 'rgba(59, 130, 246, 0.9)',
         trail: [],
       },
       {
-        x: width * 0.6,
+        x: width * 0.7,
         y: height * 0.4,
-        vx: -0.2,
-        vy: 0.3,
+        vx: -1.2,
+        vy: 1.0,
         mass: 40,
         radius: 7,
         color: 'rgba(96, 165, 250, 0.9)',
@@ -66,9 +66,9 @@ const ParticleBanner: React.FC = () => {
       },
       {
         x: width * 0.5,
-        y: height * 0.6,
-        vx: -0.1,
-        vy: -0.5,
+        y: height * 0.7,
+        vx: -0.3,
+        vy: -1.8,
         mass: 30,
         radius: 6,
         color: 'rgba(147, 197, 253, 0.9)',
@@ -129,14 +129,23 @@ const ParticleBanner: React.FC = () => {
           point.opacity *= 0.98;
         });
 
-        // Wrap around edges (or bounce)
-        if (body.x < 0 || body.x > width) {
-          body.vx *= -0.5;
-          body.x = Math.max(0, Math.min(width, body.x));
+        // Confine to banner with elastic collision
+        const margin = body.radius;
+        if (body.x < margin) {
+          body.vx *= -0.7;
+          body.x = margin;
         }
-        if (body.y < 0 || body.y > height) {
-          body.vy *= -0.5;
-          body.y = Math.max(0, Math.min(height, body.y));
+        if (body.x > width - margin) {
+          body.vx *= -0.7;
+          body.x = width - margin;
+        }
+        if (body.y < margin) {
+          body.vy *= -0.7;
+          body.y = margin;
+        }
+        if (body.y > height - margin) {
+          body.vy *= -0.7;
+          body.y = height - margin;
         }
       });
     };
@@ -246,13 +255,25 @@ const ParticleBanner: React.FC = () => {
     const init = () => {
       resize();
       if (width > 0 && height > 0) {
-        // Reset bodies to initial positions
-        bodies[0].x = width * 0.4;
+        // Reset bodies to initial positions with velocities
+        bodies[0].x = width * 0.3;
         bodies[0].y = height * 0.5;
-        bodies[1].x = width * 0.6;
+        bodies[0].vx = 1.5;
+        bodies[0].vy = 0.8;
+        bodies[0].trail = [];
+        
+        bodies[1].x = width * 0.7;
         bodies[1].y = height * 0.4;
+        bodies[1].vx = -1.2;
+        bodies[1].vy = 1.0;
+        bodies[1].trail = [];
+        
         bodies[2].x = width * 0.5;
-        bodies[2].y = height * 0.6;
+        bodies[2].y = height * 0.7;
+        bodies[2].vx = -0.3;
+        bodies[2].vy = -1.8;
+        bodies[2].trail = [];
+        
         animate();
       } else {
         setTimeout(init, 100);
