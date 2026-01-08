@@ -852,7 +852,7 @@ const App: React.FC = () => {
 
               {/* TLTR Button (below Download CV) */}
               <a
-                href={`${import.meta.env.BASE_URL}tldr/`}
+                href={`${import.meta.env.BASE_URL}infographic/`}
                 className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/20 mb-10"
               >
                 TLTR
