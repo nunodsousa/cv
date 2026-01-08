@@ -850,6 +850,14 @@ const App: React.FC = () => {
                 <span>Download CV</span>
               </button>
 
+              {/* TLTR Button (below Download CV) */}
+              <a
+                href={`${import.meta.env.BASE_URL}tldr/`}
+                className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/20 mb-10"
+              >
+                TLTR
+              </a>
+
               <div className="w-full h-px bg-slate-800 mb-10" />
 
               {/* Personal Details */}
@@ -929,16 +937,6 @@ const App: React.FC = () => {
                   <strong className="text-white">Expert in Data Science and AI</strong> with over <strong className="text-white">10 years of experience</strong> and a <strong className="text-white">Ph.D. in Theoretical Physics</strong>, specializing in <strong className="text-white">Python</strong>-based development of advanced <strong className="text-white">pricing models</strong>, <strong className="text-white">business analytics</strong>, technology-driven <strong className="text-white">financial systems</strong>, and <strong className="text-white">machine learning algorithms</strong>. <strong className="text-white">MBA candidate</strong> at <strong className="text-white">CPBS</strong>.
                 </p>
               </div>
-            </section>
-
-            {/* TLTR Shortcut */}
-            <section className="mb-16 flex justify-start">
-              <a
-                href={`${import.meta.env.BASE_URL}tldr/`}
-                className="inline-flex items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 shadow-lg shadow-blue-900/20 transition-colors"
-              >
-                TLTR
-              </a>
             </section>
 
             {/* Employment History */}
