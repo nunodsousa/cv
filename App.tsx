@@ -733,7 +733,9 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       {/* Top Animation Banner */}
-      <ParticleBanner />
+      <div className="print:hidden">
+        <ParticleBanner />
+      </div>
 
       <div className="flex flex-col md:flex-row flex-1 relative">
         
@@ -844,7 +846,7 @@ const App: React.FC = () => {
               {/* Download Button Sidebar */}
               <button 
                 onClick={() => window.print()}
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/20 mb-10 group"
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/20 mb-10 group print:hidden"
               >
                 <Download className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
                 <span>Download CV</span>
@@ -853,12 +855,12 @@ const App: React.FC = () => {
               {/* TLTR Button (below Download CV) */}
               <a
                 href={`${import.meta.env.BASE_URL}infographic/infographic.html`}
-                className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/20 mb-10"
+                className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/20 mb-10 print:hidden"
               >
                 TLTR
               </a>
 
-              <div className="w-full h-px bg-slate-800 mb-10" />
+              <div className="w-full h-px bg-slate-800 mb-10 print:hidden" />
 
               {/* Personal Details */}
               <div className="mb-10">
@@ -869,7 +871,7 @@ const App: React.FC = () => {
               </div>
 
               {/* Skills Section */}
-              <div className="mb-10">
+              <div className="mb-10 print:hidden">
                 <motion.h3 
                   className="text-lg font-bold mb-6 flex items-center gap-2 cursor-default group"
                   initial="rest" whileHover="hover" animate="rest"
@@ -890,7 +892,7 @@ const App: React.FC = () => {
               </div>
 
               {/* Languages */}
-              <div>
+              <div className="print:hidden">
                 <motion.h3 
                   className="text-lg font-bold mb-6 flex items-center gap-2 cursor-default group"
                   initial="rest" whileHover="hover" animate="rest"

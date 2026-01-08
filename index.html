@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nuno de Sousa - CV</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
@@ -19,6 +26,244 @@
       }
       .font-serif {
         font-family: 'Merriweather', serif;
+      }
+
+      /* ========== PRINT STYLES ========== */
+      @media print {
+        @page {
+          size: A4;
+          margin: 12mm 15mm;
+        }
+
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        html, body {
+          font-size: 10pt !important;
+          line-height: 1.4 !important;
+          background: white !important;
+          color: #1e293b !important;
+        }
+
+        /* Hide non-essential elements */
+        .print\\:hidden,
+        [class*="ParticleBanner"],
+        canvas,
+        button,
+        .md\\:hidden,
+        [aria-label="Toggle menu"] {
+          display: none !important;
+        }
+
+        /* Root container */
+        #root > div {
+          display: block !important;
+          min-height: auto !important;
+        }
+
+        /* Sidebar becomes print header */
+        aside {
+          position: relative !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          background: #0f172a !important;
+          color: white !important;
+          padding: 20px 25px !important;
+          margin-bottom: 15px !important;
+          page-break-inside: avoid !important;
+          border-radius: 8px !important;
+        }
+
+        aside > div {
+          max-height: none !important;
+          opacity: 1 !important;
+          overflow: visible !important;
+        }
+
+        aside .p-8, aside .md\\:p-10 {
+          padding: 0 !important;
+          display: grid !important;
+          grid-template-columns: auto 1fr 1fr !important;
+          gap: 20px !important;
+          align-items: start !important;
+        }
+
+        /* Profile photo in print */
+        aside .w-32 {
+          width: 70px !important;
+          height: 70px !important;
+          margin: 0 !important;
+          grid-row: span 2;
+        }
+
+        aside .mb-10.text-center {
+          margin-bottom: 0 !important;
+          text-align: left !important;
+        }
+
+        aside h1 {
+          font-size: 16pt !important;
+          margin-bottom: 2px !important;
+        }
+
+        aside .text-blue-400 {
+          color: #60a5fa !important;
+          font-size: 8pt !important;
+        }
+
+        /* Contact info compact */
+        aside .mb-8.space-y-4 {
+          margin-bottom: 0 !important;
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 8px 20px !important;
+        }
+
+        aside .mb-8.space-y-4 > div {
+          flex-direction: row !important;
+          gap: 5px !important;
+        }
+
+        aside .mb-8.space-y-4 .text-sm {
+          font-size: 8pt !important;
+        }
+
+        /* Hide skills section in sidebar for print (will show in main) */
+        aside .mb-10:has(h3),
+        aside .w-full.h-px,
+        aside > div > div > div:nth-child(n+4) {
+          display: none !important;
+        }
+
+        /* Main content */
+        main {
+          padding: 0 !important;
+          max-width: 100% !important;
+          width: 100% !important;
+        }
+
+        /* Section spacing */
+        section {
+          margin-bottom: 12px !important;
+          page-break-inside: avoid !important;
+        }
+
+        section h2 {
+          font-size: 12pt !important;
+          margin-bottom: 8px !important;
+          color: #0f172a !important;
+          border-bottom: 1px solid #e2e8f0;
+          padding-bottom: 4px;
+        }
+
+        /* Profile summary box */
+        .bg-slate-900 {
+          background: #f8fafc !important;
+          border-left: 3px solid #2563eb !important;
+          padding: 10px 12px !important;
+          border-radius: 4px !important;
+        }
+
+        .bg-slate-900 h2 {
+          color: #0f172a !important;
+          font-size: 11pt !important;
+          border: none !important;
+        }
+
+        .bg-slate-900 p {
+          color: #334155 !important;
+          font-size: 9pt !important;
+        }
+
+        .bg-slate-900 strong {
+          color: #0f172a !important;
+        }
+
+        /* Experience items */
+        .space-y-12 {
+          gap: 10px !important;
+        }
+
+        .space-y-12 > div {
+          margin-bottom: 10px !important;
+          page-break-inside: avoid !important;
+        }
+
+        /* Job titles */
+        .text-xl {
+          font-size: 10pt !important;
+          font-weight: 700 !important;
+        }
+
+        .text-base {
+          font-size: 9pt !important;
+        }
+
+        /* Lists */
+        ul {
+          margin: 4px 0 !important;
+          padding-left: 15px !important;
+        }
+
+        li {
+          font-size: 8.5pt !important;
+          margin-bottom: 2px !important;
+          line-height: 1.35 !important;
+        }
+
+        /* Education grid */
+        .grid {
+          gap: 10px !important;
+        }
+
+        /* Timeline dot - hide */
+        .absolute.md\\:-left-\\[39px\\] {
+          display: none !important;
+        }
+
+        /* Timeline line - hide */
+        .absolute.left-0.md\\:-left-8 {
+          display: none !important;
+        }
+
+        /* Date badges */
+        .bg-blue-50 {
+          background: transparent !important;
+          padding: 0 !important;
+          font-size: 8pt !important;
+        }
+
+        /* Additional accomplishments - compact */
+        .cursor-pointer {
+          padding: 6px 8px !important;
+        }
+
+        /* Links */
+        a {
+          color: #2563eb !important;
+          text-decoration: none !important;
+        }
+
+        /* Force page break before education if needed */
+        section:has(h2:contains("Education")) {
+          page-break-before: auto;
+        }
+
+        /* Hide modal */
+        [class*="fixed"][class*="inset-0"] {
+          display: none !important;
+        }
+
+        /* Flex containers to block */
+        .flex-1.flex.justify-center {
+          display: block !important;
+        }
+
+        .flex.flex-col.md\\:flex-row {
+          display: block !important;
+        }
       }
     </style>
 </head>
