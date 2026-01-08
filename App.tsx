@@ -252,7 +252,7 @@ const AI_PROJECTS = [
 const CERTIFICATIONS = [
   {
     id: 8,
-    date: "01/2026",
+    date: "02/2026",
     title: "Azure (Cloud Certification)",
     organization: "Microsoft Azure",
     topics: "Cloud computing, Azure services"
@@ -327,9 +327,9 @@ const CV_DATA = {
     }
   },
   skills: [
-    { category: "Programming", skills: "Python (pandas, scikit-learn, statsmodels, NumPy), SQL (PostgreSQL, SQLAlchemy), C" },
+    { category: "Programming", skills: "Python (pandas, scikit-learn, statsmodels, NumPy), SQL (PostgreSQL, SQLAlchemy), C, n8n" },
     { category: "Modeling", skills: "Monte Carlo methods, GLM/GAM, Bayesian modeling, Survival analysis, Customer Lifetime Value (CLV)" },
-    { category: "AI & Cloud", skills: "OpenAI, LangChain, Azure (cert. 01/2026)" },
+    { category: "AI & Cloud", skills: "OpenAI, LangChain, Azure (cert. 02/2026)" },
     { category: "DevOps", skills: "Git, Docker" },
     { category: "Techniques", skills: "Deep Learning (Keras, TensorFlow), Random Forest, XGBoost, SVM, KNN, Naïve Bayes, k-Means, Hierarchical Clustering" },
     { category: "Time Series", skills: "Prophet, ARIMA, ETS, State Space, Structural Models" },
@@ -337,7 +337,7 @@ const CV_DATA = {
   ] as SkillCategory[],
   languages: [
     { name: "Portuguese", level: "Native" },
-    { name: "English", level: "Certified C1+" },
+    { name: "English", level: "Certified C1+ (cert. 08/2024)" },
     { name: "Spanish", level: "Lived in Spain for 12 years" },
   ],
   experience: [
@@ -418,7 +418,13 @@ const CV_DATA = {
       institution: "Católica Porto Business School - CPBS",
       institutionUrl: "https://catolicabs.porto.ucp.pt",
       period: "OCTOBER 2024 — ON GOING (JULY 2026)",
-      details: ["Ongoing, with in-person sessions held three consecutive working days per month."]
+      details: [
+        "Ongoing, with in-person sessions held three consecutive working days per month.",
+        "Strategic Leadership and Decision-Making: Executive decision-making, competitive strategy formulation, and business model innovation in complex environments.",
+        "Corporate Finance and Risk Management: Financial analysis, valuation, capital allocation, and enterprise risk management.",
+        "Operations and Organizational Performance: Operational excellence, performance management, and large-scale change and transformation initiatives.",
+        "Executive Communication and Governance: High-level communication, negotiation, stakeholder management, and corporate governance frameworks."
+      ]
     },
     {
       id: "phd",
@@ -458,7 +464,8 @@ const CV_DATA = {
     { text: "Delivered approx. 50 oral presentations at international conferences.", type: 'presentations', icon: Mic },
     { text: "Supervision of 3 master's theses and 2 degree's Dissertations.", type: 'supervision', icon: Users },
     { text: "Research projects in Science and Artificial Intelligence.", type: 'projects', icon: Briefcase },
-    { text: "Courses and Certifications.", type: 'certifications', icon: GraduationCap }
+    { text: "Courses and Certifications.", type: 'certifications', icon: GraduationCap },
+    { text: <span>Director of the program <em>AI for Marketing</em> at Católica Porto Business School.</span>, type: null, icon: GraduationCap, url: 'https://catolicabs.porto.ucp.pt/executive-immersive-weeks/ai-marketing' }
   ]
 };
 
@@ -777,7 +784,7 @@ const App: React.FC = () => {
                       className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
-                  <h1 className="text-3xl font-serif font-bold mb-2 leading-tight">Nuno <br/> de Sousa</h1>
+                  <h1 className="text-3xl font-serif font-bold mb-2 leading-tight">Nuno de Sousa, Ph.D.</h1>
                   <p className="text-blue-400 font-medium text-sm tracking-wide uppercase">Expert in Data Scientist & AI</p>
               </div>
 
@@ -1055,7 +1062,7 @@ const App: React.FC = () => {
                 </div>
               </section>
 
-              {/* Achievements */}
+              {/* Additional Accomplishments */}
               <section>
                 <motion.h2 
                   className="text-2xl font-bold text-slate-900 mb-8 uppercase tracking-wider flex items-center gap-3 cursor-default group"
@@ -1064,14 +1071,20 @@ const App: React.FC = () => {
                   <motion.div variants={iconAnim}>
                     <Database className="w-6 h-6 text-slate-400 group-hover:text-blue-600 transition-colors" />
                   </motion.div>
-                  Achievements
+                  Additional Accomplishments
                 </motion.h2>
                 <ul className="space-y-4">
                   {CV_DATA.achievements.map((achievement, idx) => (
                     <li 
                       key={idx} 
                       className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-sm text-slate-700 flex gap-3 cursor-pointer hover:border-blue-300 hover:shadow-md transition-all group"
-                      onClick={() => setActiveModal(achievement.type as ModalType)}
+                      onClick={() => {
+                        if ((achievement as any).url) {
+                          window.open((achievement as any).url, '_blank', 'noopener,noreferrer');
+                        } else {
+                          setActiveModal(achievement.type as ModalType);
+                        }
+                      }}
                     >
                       <div className="flex items-center gap-2 shrink-0">
                         <achievement.icon className="w-5 h-5 text-blue-500 group-hover:text-blue-600 transition-colors" />
@@ -1080,7 +1093,7 @@ const App: React.FC = () => {
                         {achievement.text}
                         <div className="mt-2 text-xs text-blue-600 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                            <achievement.icon className="w-3 h-3" />
-                           Click to view full list
+                           {(achievement as any).url ? 'Click to visit program page' : 'Click to view full list'}
                         </div>
                       </div>
                     </li>
