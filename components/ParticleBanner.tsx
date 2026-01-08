@@ -39,8 +39,9 @@ const ParticleBanner: React.FC = () => {
       trail: Array<{ x: number; y: number; opacity: number }>;
     }
 
-    const G = 0.5; // Gravitational constant (increased for more visible dynamics)
+    const G = 0.5; // Gravitational constant (scaled for animation)
     const dt = 0.15; // Time step
+    const softening = 120; // soften gravity to keep trajectories stable & visible
 
     // Initialize three bodies with more dynamic initial velocities
     const bodies: Body[] = [
@@ -76,6 +77,53 @@ const ParticleBanner: React.FC = () => {
       },
     ];
 
+    // Massless tracer particles accelerated by the 3-body gravity field (this makes the dynamics obvious)
+    interface Tracer {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      life: number;
+      trail: Array<{ x: number; y: number; opacity: number }>;
+    }
+
+    const tracerCount = 220;
+    const tracers: Tracer[] = [];
+
+    const resetTracer = (t: Tracer) => {
+      // Spawn mostly around the banner edges so you can see flow around the title card
+      const side = Math.floor(Math.random() * 4);
+      const pad = 8;
+      if (side === 0) { // top
+        t.x = Math.random() * width;
+        t.y = pad;
+      } else if (side === 1) { // right
+        t.x = width - pad;
+        t.y = Math.random() * height;
+      } else if (side === 2) { // bottom
+        t.x = Math.random() * width;
+        t.y = height - pad;
+      } else { // left
+        t.x = pad;
+        t.y = Math.random() * height;
+      }
+      t.vx = (Math.random() - 0.5) * 0.4;
+      t.vy = (Math.random() - 0.5) * 0.4;
+      t.life = 1;
+      t.trail = [];
+    };
+
+    const initTracers = () => {
+      tracers.length = 0;
+      for (let i = 0; i < tracerCount; i++) {
+        const t: Tracer = { x: 0, y: 0, vx: 0, vy: 0, life: 1, trail: [] };
+        resetTracer(t);
+        // Stagger lifetime so not all reset at once
+        t.life = 0.3 + Math.random() * 0.7;
+        tracers.push(t);
+      }
+    };
+
     const calculateForces = () => {
       const forces: Array<{ fx: number; fy: number }> = [];
 
@@ -104,6 +152,22 @@ const ParticleBanner: React.FC = () => {
       return forces;
     };
 
+    const accelerationAt = (x: number, y: number) => {
+      // Acceleration produced by the 3 masses at a point (x,y)
+      let ax = 0;
+      let ay = 0;
+      for (const b of bodies) {
+        const dx = b.x - x;
+        const dy = b.y - y;
+        const r2 = dx * dx + dy * dy + softening * softening;
+        const r = Math.sqrt(r2);
+        const a = (G * b.mass) / r2; // magnitude
+        ax += (a * dx) / r;
+        ay += (a * dy) / r;
+      }
+      return { ax, ay };
+    };
+
     const updateBodies = () => {
       const forces = calculateForces();
 
@@ -120,7 +184,7 @@ const ParticleBanner: React.FC = () => {
 
         // Add to trail
         body.trail.push({ x: body.x, y: body.y, opacity: 1 });
-        if (body.trail.length > 100) {
+        if (body.trail.length > 70) {
           body.trail.shift();
         }
 
@@ -150,6 +214,37 @@ const ParticleBanner: React.FC = () => {
       });
     };
 
+    const updateTracers = () => {
+      const margin = 2;
+      for (const t of tracers) {
+        const { ax, ay } = accelerationAt(t.x, t.y);
+        // Stronger response for visuals; still stable due to softening
+        t.vx += ax * dt * 2.2;
+        t.vy += ay * dt * 2.2;
+
+        // mild damping (fluid-like)
+        t.vx *= 0.995;
+        t.vy *= 0.995;
+
+        t.x += t.vx * dt * 2.5;
+        t.y += t.vy * dt * 2.5;
+
+        // keep inside banner
+        if (t.x < margin) { t.x = margin; t.vx *= -0.4; }
+        if (t.x > width - margin) { t.x = width - margin; t.vx *= -0.4; }
+        if (t.y < margin) { t.y = margin; t.vy *= -0.4; }
+        if (t.y > height - margin) { t.y = height - margin; t.vy *= -0.4; }
+
+        t.trail.push({ x: t.x, y: t.y, opacity: 0.9 });
+        if (t.trail.length > 18) t.trail.shift();
+        t.trail.forEach(p => { p.opacity *= 0.92; });
+
+        // Slowly recycle particles to keep motion lively
+        t.life -= 0.0015;
+        if (t.life <= 0) resetTracer(t);
+      }
+    };
+
     const drawTrail = (body: Body) => {
       for (let i = 0; i < body.trail.length - 1; i++) {
         const point = body.trail[i];
@@ -170,6 +265,25 @@ const ParticleBanner: React.FC = () => {
         ctx.lineTo(nextPoint.x, nextPoint.y);
         ctx.stroke();
       }
+    };
+
+    const drawTracer = (t: Tracer) => {
+      // trail
+      for (let i = 0; i < t.trail.length - 1; i++) {
+        const p = t.trail[i];
+        const q = t.trail[i + 1];
+        ctx.strokeStyle = `rgba(147, 197, 253, ${p.opacity * 0.35})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(q.x, q.y);
+        ctx.stroke();
+      }
+      // head
+      ctx.fillStyle = 'rgba(191, 219, 254, 0.9)'; // blue-200
+      ctx.beginPath();
+      ctx.arc(t.x, t.y, 1.1, 0, Math.PI * 2);
+      ctx.fill();
     };
 
     const drawBody = (body: Body) => {
@@ -242,12 +356,22 @@ const ParticleBanner: React.FC = () => {
       ctx.fillStyle = 'rgba(15, 23, 42, 0.1)';
       ctx.fillRect(0, 0, width, height);
 
+      // Additive blend makes the motion visible even behind the title
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+
+      // Tracers first: show the field flow
+      updateTracers();
+      for (const t of tracers) drawTracer(t);
+
       // Draw force lines
       drawForceLines();
 
       // Update and draw bodies
       updateBodies();
       bodies.forEach((body) => drawBody(body));
+
+      ctx.restore();
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -274,6 +398,8 @@ const ParticleBanner: React.FC = () => {
         bodies[2].vy = -1.8;
         bodies[2].trail = [];
         
+        initTracers();
+
         animate();
       } else {
         setTimeout(init, 100);
@@ -292,7 +418,7 @@ const ParticleBanner: React.FC = () => {
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
       {/* Canvas for three-body problem simulation */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ mixBlendMode: 'screen' }} />
       
       {/* Gradient overlay for depth */}
       <div 
@@ -306,7 +432,7 @@ const ParticleBanner: React.FC = () => {
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 px-4 text-center">
         <div className="relative">
           {/* Simple background box */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-blue-500/20 to-blue-400/20 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-blue-500/10 to-blue-400/10 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl" />
           
           <div className="relative p-6 md:p-8 lg:p-10">
             {/* Main Title */}
