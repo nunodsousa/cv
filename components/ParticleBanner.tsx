@@ -5,27 +5,19 @@
 
 import React, { useEffect, useRef } from 'react';
 
-const PARAMS = {
-  particleCount: 75, // +50%
-  sigma: 38.0,
-  epsilon: 1.2,
-  baseDt: 0.12,        // Base time step for 60fps
-  maxForce: 45.0,
-  cutoff: 38.0 * 2.5,
-  targetTemp: 1.5,
-  tau: 0.5,
-};
-
-interface Particle {
+type Sparkle = {
   x: number;
   y: number;
   vx: number;
   vy: number;
-  ax: number;
-  ay: number;
-}
+  r: number;
+  baseAlpha: number;
+  twinkleSpeed: number;
+  twinklePhase: number;
+  hue: number;
+};
 
-const LJParticleBanner: React.FC = () => {
+const ParticleBanner: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -37,104 +29,55 @@ const LJParticleBanner: React.FC = () => {
     let width = 0;
     let height = 0;
     let animationFrameId: number;
-    let particles: Particle[] = [];
-    
-    // Timing variables for delta calculation
+    let sparkles: Sparkle[] = [];
     let lastTime = performance.now();
 
     const resize = () => {
       if (!canvas.parentElement) return;
       width = canvas.parentElement.offsetWidth;
       height = canvas.parentElement.offsetHeight;
-      canvas.width = width;
-      canvas.height = height;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.max(1, Math.floor(width * dpr));
+      canvas.height = Math.max(1, Math.floor(height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     const init = () => {
       resize();
-      particles = Array.from({ length: PARAMS.particleCount }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 4,
-        vy: (Math.random() - 0.5) * 4,
-        ax: 0,
-        ay: 0,
-      }));
+      const area = width * height;
+      const count = Math.max(80, Math.min(220, Math.floor(area / 3500)));
+      sparkles = Array.from({ length: count }, () => {
+        const hue = 205 + Math.random() * 25; // blue range
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.12,
+          vy: (Math.random() - 0.5) * 0.08,
+          r: 0.8 + Math.random() * 1.9,
+          baseAlpha: 0.15 + Math.random() * 0.45,
+          twinkleSpeed: 0.8 + Math.random() * 1.8,
+          twinklePhase: Math.random() * Math.PI * 2,
+          hue,
+        };
+      });
     };
 
-    const computeAccelerations = () => {
-      particles.forEach(p => { p.ax = 0; p.ay = 0; });
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const p1 = particles[i];
-          const p2 = particles[j];
-
-          let dx = p2.x - p1.x;
-          let dy = p2.y - p1.y;
-
-          if (dx > width / 2) dx -= width;
-          else if (dx < -width / 2) dx += width;
-          if (dy > height / 2) dy -= height;
-          else if (dy < -height / 2) dy += height;
-
-          const r2 = dx * dx + dy * dy;
-
-          if (r2 < PARAMS.cutoff * PARAMS.cutoff && r2 > 1.0) {
-            const s2_r2 = (PARAMS.sigma ** 2) / r2;
-            const s6_r6 = s2_r2 ** 3;
-            const s12_r12 = s6_r6 ** 2;
-
-            let fMag = (24 * PARAMS.epsilon * (2 * s12_r12 - s6_r6)) / r2;
-            fMag = Math.max(Math.min(fMag, PARAMS.maxForce), -PARAMS.maxForce);
-
-            p1.ax -= fMag * dx;
-            p1.ay -= fMag * dy;
-            p2.ax += fMag * dx;
-            p2.ay += fMag * dy;
-          }
-        }
+    const update = (t: number, dtScale: number) => {
+      // Subtle drift + wrap
+      for (const s of sparkles) {
+        s.x += s.vx * dtScale;
+        s.y += s.vy * dtScale;
+        if (s.x < -20) s.x = width + 20;
+        if (s.x > width + 20) s.x = -20;
+        if (s.y < -20) s.y = height + 20;
+        if (s.y > height + 20) s.y = -20;
+        // very slight curl to feel “alive”
+        const curl = Math.sin(t * 0.0006 + s.twinklePhase) * 0.02;
+        s.vx += curl * 0.02;
+        s.vy -= curl * 0.02;
+        s.vx *= 0.999;
+        s.vy *= 0.999;
       }
-    };
-
-    const update = (dtScale: number) => {
-      // Adjust standard dt by the delta scale
-      const dt = PARAMS.baseDt * dtScale;
-
-      // 1. Verlet 1st half
-      particles.forEach(p => {
-        p.x += p.vx * dt + 0.5 * p.ax * (dt ** 2);
-        p.y += p.vy * dt + 0.5 * p.ay * (dt ** 2);
-
-        if (p.x < 0) p.x += width;
-        if (p.x > width) p.x -= width;
-        if (p.y < 0) p.y += height;
-        if (p.y > height) p.y -= height;
-      });
-
-      const oldAx = particles.map(p => p.ax);
-      const oldAy = particles.map(p => p.ay);
-
-      // 2. Accelerations
-      computeAccelerations();
-
-      // 3. Verlet 2nd half & Kinetic Energy
-      let currentKineticEnergy = 0;
-      particles.forEach((p, i) => {
-        p.vx += 0.5 * (oldAx[i] + p.ax) * dt;
-        p.vy += 0.5 * (oldAy[i] + p.ay) * dt;
-        currentKineticEnergy += (p.vx ** 2 + p.vy ** 2);
-      });
-
-      // 4. Thermostat
-      const currentTemp = currentKineticEnergy / PARAMS.particleCount;
-      const lambda = Math.sqrt(1 + (dt / PARAMS.tau) * (PARAMS.targetTemp / currentTemp - 1));
-      const safeLambda = Math.max(0.8, Math.min(1.2, lambda));
-
-      particles.forEach(p => {
-        p.vx *= safeLambda;
-        p.vy *= safeLambda;
-      });
     };
 
     const draw = () => {
@@ -142,31 +85,63 @@ const LJParticleBanner: React.FC = () => {
       ctx.fillStyle = '#020617';
       ctx.fillRect(0, 0, width, height);
 
-      // Connections
+      // vignette / depth
+      const vignette = ctx.createRadialGradient(width * 0.5, height * 0.55, 10, width * 0.5, height * 0.55, Math.max(width, height) * 0.75);
+      vignette.addColorStop(0, 'rgba(59,130,246,0.06)');
+      vignette.addColorStop(0.45, 'rgba(2,6,23,0.0)');
+      vignette.addColorStop(1, 'rgba(2,6,23,0.9)');
+      ctx.fillStyle = vignette;
+      ctx.fillRect(0, 0, width, height);
+
+      // sparkles (additive)
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+
+      sparkles.forEach(s => {
+        const alpha = Math.max(
+          0,
+          Math.min(
+            1,
+            s.baseAlpha * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(performance.now() * 0.0015 * s.twinkleSpeed + s.twinklePhase)))
+          )
+        );
+
+        // soft glow
+        const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 10);
+        g.addColorStop(0, `hsla(${s.hue}, 95%, 75%, ${alpha})`);
+        g.addColorStop(0.35, `hsla(${s.hue}, 95%, 65%, ${alpha * 0.35})`);
+        g.addColorStop(1, `hsla(${s.hue}, 95%, 60%, 0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r * 10, 0, Math.PI * 2);
+        ctx.fill();
+
+        // crisp star point
+        ctx.fillStyle = `rgba(255,255,255,${Math.min(0.9, alpha + 0.2)})`;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, Math.max(0.8, s.r * 0.8), 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // subtle connections like shadcn (only local)
       ctx.beginPath();
-      ctx.strokeStyle = 'rgba(59, 130, 246, 0.15)';
       ctx.lineWidth = 1;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          if (dx*dx + dy*dy < (PARAMS.sigma * 1.5)**2) {
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
+      for (let i = 0; i < sparkles.length; i++) {
+        for (let j = i + 1; j < sparkles.length; j++) {
+          const dx = sparkles[i].x - sparkles[j].x;
+          const dy = sparkles[i].y - sparkles[j].y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 70 * 70) {
+            const a = (1 - Math.sqrt(d2) / 70) * 0.08;
+            ctx.strokeStyle = `rgba(96,165,250,${a})`;
+            ctx.moveTo(sparkles[i].x, sparkles[i].y);
+            ctx.lineTo(sparkles[j].x, sparkles[j].y);
           }
         }
       }
       ctx.stroke();
 
-      // Particles
-      particles.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
-        ctx.fillStyle = '#3b82f6';
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = '#3b82f6';
-        ctx.fill();
-      });
+      ctx.restore();
     };
 
     const loop = (currentTime: number) => {
@@ -178,7 +153,7 @@ const LJParticleBanner: React.FC = () => {
       // On 120Hz, deltaTime is ~8.33ms, so dtScale will be ~0.5
       const dtScale = Math.min(deltaTime / (1000 / 60), 2.0); // Cap to 2.0 to avoid huge jumps if tab backgrounded
 
-      update(dtScale);
+      update(currentTime, dtScale);
       draw();
       animationFrameId = requestAnimationFrame(loop);
     };
@@ -211,4 +186,4 @@ const LJParticleBanner: React.FC = () => {
   );
 };
 
-export default LJParticleBanner;
+export default ParticleBanner;
