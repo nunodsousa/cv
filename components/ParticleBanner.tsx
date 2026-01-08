@@ -3,236 +3,91 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 const ParticleBanner: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
+  // Inject CSS keyframes for wave animations
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let width = 0;
-    let height = 0;
-    let time = 0;
-
-    const resize = () => {
-      if (!canvas.parentElement) return;
-      width = canvas.parentElement.offsetWidth;
-      height = canvas.parentElement.offsetHeight;
-      canvas.width = width;
-      canvas.height = height;
-    };
-
-    // Fluid blob structure
-    interface Blob {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      baseRadius: number;
-      color: string;
-      phase: number;
-    }
-
-    const blobs: Blob[] = [];
-    const blobCount = 5;
-
-    const initBlobs = () => {
-      blobs.length = 0;
-      for (let i = 0; i < blobCount; i++) {
-        blobs.push({
-          x: Math.random() * width,
-          y: height * (0.5 + Math.random() * 0.5),
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.2,
-          radius: height * (0.15 + Math.random() * 0.2),
-          baseRadius: height * (0.15 + Math.random() * 0.2),
-          color: `rgba(${59 + Math.random() * 40}, ${130 + Math.random() * 50}, ${246 - Math.random() * 50}, ${0.15 + Math.random() * 0.15})`,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-    };
-
-    const updateBlobs = () => {
-      blobs.forEach((blob, i) => {
-        // Update position with velocity
-        blob.x += blob.vx;
-        blob.y += blob.vy;
-
-        // Boundary collision with damping
-        if (blob.x < -blob.radius || blob.x > width + blob.radius) {
-          blob.vx *= -0.8;
-          blob.x = Math.max(-blob.radius, Math.min(width + blob.radius, blob.x));
-        }
-        if (blob.y < height * 0.3 || blob.y > height + blob.radius) {
-          blob.vy *= -0.8;
-          blob.y = Math.max(height * 0.3, Math.min(height + blob.radius, blob.y));
-        }
-
-        // Fluid-like radius pulsing
-        blob.radius = blob.baseRadius * (1 + Math.sin(time * 0.01 + blob.phase) * 0.2);
-
-        // Inter-blob interaction (repulsion)
-        blobs.forEach((other, j) => {
-          if (i === j) return;
-          const dx = blob.x - other.x;
-          const dy = blob.y - other.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const minDist = blob.radius + other.radius;
-
-          if (distance < minDist && distance > 0) {
-            const force = (minDist - distance) / minDist;
-            const angle = Math.atan2(dy, dx);
-            blob.vx += Math.cos(angle) * force * 0.05;
-            blob.vy += Math.sin(angle) * force * 0.05;
-          }
-        });
-
-        // Damping for fluid-like behavior
-        blob.vx *= 0.98;
-        blob.vy *= 0.98;
-      });
-    };
-
-    const drawBlob = (blob: Blob) => {
-      // Create gradient for fluid effect
-      const gradient = ctx.createRadialGradient(
-        blob.x, blob.y, 0,
-        blob.x, blob.y, blob.radius
-      );
+    try {
+      const styleId = 'particle-banner-waves';
+      if (typeof document === 'undefined' || document.getElementById(styleId)) return;
       
-      // Parse color and create variations
-      const colorMatch = blob.color.match(/rgba?\(([^)]+)\)/);
-      if (colorMatch) {
-        const values = colorMatch[1].split(',').map(v => parseFloat(v.trim()));
-        gradient.addColorStop(0, blob.color);
-        gradient.addColorStop(0.5, `rgba(${values[0]}, ${values[1]}, ${values[2]}, 0.1)`);
-        gradient.addColorStop(1, `rgba(${values[0]}, ${values[1]}, ${values[2]}, 0)`);
-      } else {
-        gradient.addColorStop(0, blob.color);
-        gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.1)');
-        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
-      }
-
-      // Draw fluid blob with soft edges
-      ctx.beginPath();
-      const points = 32;
-      for (let i = 0; i <= points; i++) {
-        const angle = (i / points) * Math.PI * 2;
-        const radiusVariation = blob.radius * (1 + Math.sin(angle * 3 + time * 0.02) * 0.1);
-        const x = blob.x + Math.cos(angle) * radiusVariation;
-        const y = blob.y + Math.sin(angle) * radiusVariation;
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
+      const style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = `
+        @keyframes wave1 {
+          0%, 100% { clip-path: polygon(0 60%, 15% 45%, 30% 60%, 45% 40%, 60% 60%, 75% 45%, 90% 60%, 100% 50%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 65%, 15% 50%, 30% 65%, 45% 45%, 60% 65%, 75% 50%, 90% 65%, 100% 55%, 100% 100%, 0 100%); }
         }
-      }
-      ctx.closePath();
-      ctx.fillStyle = gradient;
-      ctx.fill();
-
-      // Add subtle highlight
-      const highlightGradient = ctx.createRadialGradient(
-        blob.x - blob.radius * 0.3, blob.y - blob.radius * 0.3, 0,
-        blob.x, blob.y, blob.radius * 0.5
-      );
-      highlightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
-      highlightGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      ctx.fillStyle = highlightGradient;
-      ctx.fill();
-    };
-
-    const drawConnections = () => {
-      // Draw fluid connections between nearby blobs
-      for (let i = 0; i < blobs.length; i++) {
-        for (let j = i + 1; j < blobs.length; j++) {
-          const dx = blobs[i].x - blobs[j].x;
-          const dy = blobs[i].y - blobs[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = (blobs[i].radius + blobs[j].radius) * 1.5;
-
-          if (distance < maxDist) {
-            const opacity = (1 - distance / maxDist) * 0.2;
-            const gradient = ctx.createLinearGradient(
-              blobs[i].x, blobs[i].y,
-              blobs[j].x, blobs[j].y
-            );
-            
-            // Parse colors properly
-            const parseColor = (color: string, alpha: number) => {
-              const match = color.match(/rgba?\(([^)]+)\)/);
-              if (match) {
-                const values = match[1].split(',').map(v => parseFloat(v.trim()));
-                return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${alpha})`;
-              }
-              return `rgba(59, 130, 246, ${alpha})`;
-            };
-            
-            gradient.addColorStop(0, parseColor(blobs[i].color, opacity));
-            gradient.addColorStop(1, parseColor(blobs[j].color, opacity));
-
-            ctx.beginPath();
-            ctx.moveTo(blobs[i].x, blobs[i].y);
-            ctx.lineTo(blobs[j].x, blobs[j].y);
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 2;
-            ctx.stroke();
+        @keyframes wave2 {
+          0%, 100% { clip-path: polygon(0 70%, 20% 55%, 40% 70%, 60% 50%, 80% 70%, 100% 60%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 75%, 20% 60%, 40% 75%, 60% 55%, 80% 75%, 100% 65%, 100% 100%, 0 100%); }
+        }
+        @keyframes wave3 {
+          0%, 100% { clip-path: polygon(0 80%, 25% 65%, 50% 80%, 75% 60%, 100% 75%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 85%, 25% 70%, 50% 85%, 75% 65%, 100% 80%, 100% 100%, 0 100%); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      return () => {
+        try {
+          const existingStyle = document.getElementById(styleId);
+          if (existingStyle) {
+            existingStyle.remove();
           }
+        } catch (e) {
+          // Ignore cleanup errors
         }
-      }
-    };
-
-    const animate = () => {
-      if (width === 0 || height === 0) {
-        animationFrameId = requestAnimationFrame(animate);
-        return;
-      }
-
-      time += 0.5;
-
-      // Clear with slight fade for trails
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.1)';
-      ctx.fillRect(0, 0, width, height);
-
-      updateBlobs();
-      drawConnections();
-      blobs.forEach(blob => drawBlob(blob));
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    const init = () => {
-      resize();
-      if (width > 0 && height > 0) {
-        initBlobs();
-        animate();
-      } else {
-        setTimeout(init, 100);
-      }
-    };
-
-    window.addEventListener('resize', resize);
-    init();
-
-    return () => {
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
-    };
+      };
+    } catch (error) {
+      // Silently fail - page will still render without animations
+    }
   }, []);
 
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
-      {/* Canvas for fluid dynamics simulation */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      {/* Animated gradient waves with bigger amplitude */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Wave layer 1 - Bigger amplitude, animated */}
+        <div 
+          className="absolute bottom-0 w-full h-full opacity-30"
+          style={{
+            background: 'linear-gradient(to top, rgba(59, 130, 246, 0.4) 0%, rgba(96, 165, 250, 0.3) 50%, rgba(59, 130, 246, 0.2) 100%)',
+            clipPath: 'polygon(0 60%, 15% 45%, 30% 60%, 45% 40%, 60% 60%, 75% 45%, 90% 60%, 100% 50%, 100% 100%, 0 100%)',
+            animation: 'wave1 6s ease-in-out infinite',
+            WebkitAnimation: 'wave1 6s ease-in-out infinite',
+          }}
+        />
+        
+        {/* Wave layer 2 - Bigger amplitude, animated */}
+        <div 
+          className="absolute bottom-0 w-full h-full opacity-25"
+          style={{
+            background: 'linear-gradient(to top, rgba(37, 99, 235, 0.35) 0%, rgba(59, 130, 246, 0.25) 50%, rgba(37, 99, 235, 0.15) 100%)',
+            clipPath: 'polygon(0 70%, 20% 55%, 40% 70%, 60% 50%, 80% 70%, 100% 60%, 100% 100%, 0 100%)',
+            animation: 'wave2 8s ease-in-out infinite',
+            animationDelay: '0.5s',
+            WebkitAnimation: 'wave2 8s ease-in-out infinite',
+            WebkitAnimationDelay: '0.5s',
+          }}
+        />
+        
+        {/* Wave layer 3 - Bigger amplitude, animated */}
+        <div 
+          className="absolute bottom-0 w-full h-full opacity-20"
+          style={{
+            background: 'linear-gradient(to top, rgba(96, 165, 250, 0.3) 0%, rgba(147, 197, 253, 0.2) 50%, rgba(96, 165, 250, 0.1) 100%)',
+            clipPath: 'polygon(0 80%, 25% 65%, 50% 80%, 75% 60%, 100% 75%, 100% 100%, 0 100%)',
+            animation: 'wave3 10s ease-in-out infinite',
+            animationDelay: '1s',
+            WebkitAnimation: 'wave3 10s ease-in-out infinite',
+            WebkitAnimationDelay: '1s',
+          }}
+        />
+      </div>
       
-      {/* Gradient overlay for depth */}
+      {/* Simple gradient overlay */}
       <div 
         className="absolute inset-0 opacity-20"
         style={{
