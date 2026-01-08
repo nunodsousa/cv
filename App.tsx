@@ -931,6 +931,24 @@ const App: React.FC = () => {
               </div>
             </section>
 
+            {/* TLTR Shortcut */}
+            <section className="mb-16">
+              <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">TLTR</h3>
+                  <p className="text-slate-600 text-sm mt-1">
+                    Short summary page (we’ll build it next).
+                  </p>
+                </div>
+                <a
+                  href={`${import.meta.env.BASE_URL}tldr/`}
+                  className="inline-flex items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 shadow-lg shadow-blue-900/20 transition-colors"
+                >
+                  TLTR
+                </a>
+              </div>
+            </section>
+
             {/* Employment History */}
             <section className="mb-16">
               <motion.h2 
