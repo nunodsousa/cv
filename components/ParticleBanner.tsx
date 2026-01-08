@@ -3,10 +3,41 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const ParticleBanner: React.FC = () => {
+  // Inject CSS keyframes for wave animations
+  useEffect(() => {
+    const styleId = 'particle-banner-waves';
+    if (document.getElementById(styleId)) return;
+    
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+      @keyframes wave1 {
+        0%, 100% { clip-path: polygon(0 60%, 25% 55%, 50% 60%, 75% 55%, 100% 60%, 100% 100%, 0 100%); }
+        50% { clip-path: polygon(0 65%, 25% 60%, 50% 65%, 75% 60%, 100% 65%, 100% 100%, 0 100%); }
+      }
+      @keyframes wave2 {
+        0%, 100% { clip-path: polygon(0 70%, 20% 65%, 40% 70%, 60% 65%, 80% 70%, 100% 65%, 100% 100%, 0 100%); }
+        50% { clip-path: polygon(0 75%, 20% 70%, 40% 75%, 60% 70%, 80% 75%, 100% 70%, 100% 100%, 0 100%); }
+      }
+      @keyframes wave3 {
+        0%, 100% { clip-path: polygon(0 80%, 30% 75%, 60% 80%, 100% 75%, 100% 100%, 0 100%); }
+        50% { clip-path: polygon(0 85%, 30% 80%, 60% 85%, 100% 80%, 100% 100%, 0 100%); }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      const existingStyle = document.getElementById(styleId);
+      if (existingStyle) {
+        existingStyle.remove();
+      }
+    };
+  }, []);
+
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
       {/* Simple CSS-based wave layers */}
@@ -43,22 +74,6 @@ const ParticleBanner: React.FC = () => {
           }}
         />
       </div>
-      
-      {/* CSS keyframes for wave animation */}
-      <style>{`
-        @keyframes wave1 {
-          0%, 100% { clip-path: polygon(0 60%, 25% 55%, 50% 60%, 75% 55%, 100% 60%, 100% 100%, 0 100%); }
-          50% { clip-path: polygon(0 65%, 25% 60%, 50% 65%, 75% 60%, 100% 65%, 100% 100%, 0 100%); }
-        }
-        @keyframes wave2 {
-          0%, 100% { clip-path: polygon(0 70%, 20% 65%, 40% 70%, 60% 65%, 80% 70%, 100% 65%, 100% 100%, 0 100%); }
-          50% { clip-path: polygon(0 75%, 20% 70%, 40% 75%, 60% 70%, 80% 75%, 100% 70%, 100% 100%, 0 100%); }
-        }
-        @keyframes wave3 {
-          0%, 100% { clip-path: polygon(0 80%, 30% 75%, 60% 80%, 100% 75%, 100% 100%, 0 100%); }
-          50% { clip-path: polygon(0 85%, 30% 80%, 60% 85%, 100% 80%, 100% 100%, 0 100%); }
-        }
-      `}</style>
       
       {/* Animated gradient background layers - using blue theme */}
       <motion.div
