@@ -732,8 +732,8 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      {/* Top Animation Banner */}
-      <ParticleBanner />
+      {/* Top Animation Banner - Temporarily disabled for debugging */}
+      {/* <ParticleBanner /> */}
 
       <div className="flex flex-col md:flex-row flex-1 relative">
         
