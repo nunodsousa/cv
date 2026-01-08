@@ -9,86 +9,56 @@ import { motion } from 'framer-motion';
 const ParticleBanner: React.FC = () => {
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
-      {/* CSS-based wave animation - safer and more reliable */}
+      {/* Simple CSS-based wave layers */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <svg className="absolute bottom-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 200">
-            <defs>
-              <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(59, 130, 246, 0.4)" />
-                <stop offset="50%" stopColor="rgba(96, 165, 250, 0.3)" />
-                <stop offset="100%" stopColor="rgba(59, 130, 246, 0.2)" />
-              </linearGradient>
-              <linearGradient id="wave2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(37, 99, 235, 0.35)" />
-                <stop offset="50%" stopColor="rgba(59, 130, 246, 0.25)" />
-                <stop offset="100%" stopColor="rgba(37, 99, 235, 0.15)" />
-              </linearGradient>
-              <linearGradient id="wave3" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(96, 165, 250, 0.3)" />
-                <stop offset="50%" stopColor="rgba(147, 197, 253, 0.2)" />
-                <stop offset="100%" stopColor="rgba(96, 165, 250, 0.1)" />
-              </linearGradient>
-            </defs>
-            
-            {/* Wave 1 */}
-            <motion.path
-              d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z"
-              fill="url(#wave1)"
-              animate={{
-                d: [
-                  "M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z",
-                  "M0,100 Q300,80 600,100 T1200,100 L1200,200 L0,200 Z",
-                  "M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z",
-                ],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            
-            {/* Wave 2 */}
-            <motion.path
-              d="M0,120 Q400,70 800,120 T1200,120 L1200,200 L0,200 Z"
-              fill="url(#wave2)"
-              animate={{
-                d: [
-                  "M0,120 Q400,70 800,120 T1200,120 L1200,200 L0,200 Z",
-                  "M0,120 Q400,90 800,120 T1200,120 L1200,200 L0,200 Z",
-                  "M0,120 Q400,70 800,120 T1200,120 L1200,200 L0,200 Z",
-                ],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
-            />
-            
-            {/* Wave 3 */}
-            <motion.path
-              d="M0,140 Q200,90 400,140 T800,140 T1200,140 L1200,200 L0,200 Z"
-              fill="url(#wave3)"
-              animate={{
-                d: [
-                  "M0,140 Q200,90 400,140 T800,140 T1200,140 L1200,200 L0,200 Z",
-                  "M0,140 Q200,110 400,140 T800,140 T1200,140 L1200,200 L0,200 Z",
-                  "M0,140 Q200,90 400,140 T800,140 T1200,140 L1200,200 L0,200 Z",
-                ],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            />
-          </svg>
-        </div>
+        {/* Wave layer 1 */}
+        <div 
+          className="absolute bottom-0 w-full h-full opacity-30"
+          style={{
+            background: 'linear-gradient(to top, rgba(59, 130, 246, 0.4) 0%, rgba(96, 165, 250, 0.3) 50%, rgba(59, 130, 246, 0.2) 100%)',
+            clipPath: 'polygon(0 60%, 25% 55%, 50% 60%, 75% 55%, 100% 60%, 100% 100%, 0 100%)',
+            animation: 'wave1 8s ease-in-out infinite',
+          }}
+        />
+        
+        {/* Wave layer 2 */}
+        <div 
+          className="absolute bottom-0 w-full h-full opacity-25"
+          style={{
+            background: 'linear-gradient(to top, rgba(37, 99, 235, 0.35) 0%, rgba(59, 130, 246, 0.25) 50%, rgba(37, 99, 235, 0.15) 100%)',
+            clipPath: 'polygon(0 70%, 20% 65%, 40% 70%, 60% 65%, 80% 70%, 100% 65%, 100% 100%, 0 100%)',
+            animation: 'wave2 10s ease-in-out infinite',
+            animationDelay: '1s',
+          }}
+        />
+        
+        {/* Wave layer 3 */}
+        <div 
+          className="absolute bottom-0 w-full h-full opacity-20"
+          style={{
+            background: 'linear-gradient(to top, rgba(96, 165, 250, 0.3) 0%, rgba(147, 197, 253, 0.2) 50%, rgba(96, 165, 250, 0.1) 100%)',
+            clipPath: 'polygon(0 80%, 30% 75%, 60% 80%, 100% 75%, 100% 100%, 0 100%)',
+            animation: 'wave3 12s ease-in-out infinite',
+            animationDelay: '2s',
+          }}
+        />
       </div>
+      
+      {/* CSS keyframes for wave animation */}
+      <style>{`
+        @keyframes wave1 {
+          0%, 100% { clip-path: polygon(0 60%, 25% 55%, 50% 60%, 75% 55%, 100% 60%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 65%, 25% 60%, 50% 65%, 75% 60%, 100% 65%, 100% 100%, 0 100%); }
+        }
+        @keyframes wave2 {
+          0%, 100% { clip-path: polygon(0 70%, 20% 65%, 40% 70%, 60% 65%, 80% 70%, 100% 65%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 75%, 20% 70%, 40% 75%, 60% 70%, 80% 75%, 100% 70%, 100% 100%, 0 100%); }
+        }
+        @keyframes wave3 {
+          0%, 100% { clip-path: polygon(0 80%, 30% 75%, 60% 80%, 100% 75%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 85%, 30% 80%, 60% 85%, 100% 80%, 100% 100%, 0 100%); }
+        }
+      `}</style>
       
       {/* Animated gradient background layers - using blue theme */}
       <motion.div
