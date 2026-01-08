@@ -4,32 +4,36 @@
 */
 
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const ParticleBanner: React.FC = () => {
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
-      {/* Simple static gradient waves - no animations that can break */}
+      {/* Larger static gradient waves */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Wave layer 1 - Larger */}
         <div 
-          className="absolute bottom-0 w-full h-3/4 opacity-30"
+          className="absolute bottom-0 w-full h-full opacity-30"
           style={{
             background: 'linear-gradient(to top, rgba(59, 130, 246, 0.4) 0%, rgba(96, 165, 250, 0.3) 50%, rgba(59, 130, 246, 0.2) 100%)',
-            clipPath: 'polygon(0 60%, 25% 55%, 50% 60%, 75% 55%, 100% 60%, 100% 100%, 0 100%)',
+            clipPath: 'polygon(0 40%, 20% 35%, 40% 40%, 60% 35%, 80% 40%, 100% 35%, 100% 100%, 0 100%)',
           }}
         />
+        
+        {/* Wave layer 2 - Larger */}
         <div 
-          className="absolute bottom-0 w-full h-4/5 opacity-25"
+          className="absolute bottom-0 w-full h-full opacity-25"
           style={{
             background: 'linear-gradient(to top, rgba(37, 99, 235, 0.35) 0%, rgba(59, 130, 246, 0.25) 50%, rgba(37, 99, 235, 0.15) 100%)',
-            clipPath: 'polygon(0 70%, 20% 65%, 40% 70%, 60% 65%, 80% 70%, 100% 65%, 100% 100%, 0 100%)',
+            clipPath: 'polygon(0 50%, 15% 45%, 30% 50%, 45% 45%, 60% 50%, 75% 45%, 90% 50%, 100% 45%, 100% 100%, 0 100%)',
           }}
         />
+        
+        {/* Wave layer 3 - Larger */}
         <div 
           className="absolute bottom-0 w-full h-full opacity-20"
           style={{
             background: 'linear-gradient(to top, rgba(96, 165, 250, 0.3) 0%, rgba(147, 197, 253, 0.2) 50%, rgba(96, 165, 250, 0.1) 100%)',
-            clipPath: 'polygon(0 80%, 30% 75%, 60% 80%, 100% 75%, 100% 100%, 0 100%)',
+            clipPath: 'polygon(0 60%, 25% 55%, 50% 60%, 75% 55%, 100% 60%, 100% 100%, 0 100%)',
           }}
         />
       </div>
