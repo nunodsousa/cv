@@ -26,8 +26,10 @@ const ParticleBanner: React.FC = () => {
     const resize = () => {
       width = container.offsetWidth;
       height = container.offsetHeight;
-      canvas.width = width;
-      canvas.height = height;
+      if (width > 0 && height > 0) {
+        canvas.width = width;
+        canvas.height = height;
+      }
     };
 
     const drawWave = (
@@ -38,6 +40,8 @@ const ParticleBanner: React.FC = () => {
       yOffset: number,
       gradient: CanvasGradient
     ) => {
+      if (width === 0 || height === 0) return;
+      
       ctx.beginPath();
       ctx.moveTo(0, height);
 
@@ -58,6 +62,11 @@ const ParticleBanner: React.FC = () => {
     };
 
     const animate = () => {
+      if (width === 0 || height === 0) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+      
       time += 1.5; // Increased speed multiplier
       
       // Clear with slight fade for smooth trails
@@ -98,8 +107,10 @@ const ParticleBanner: React.FC = () => {
 
       waves.forEach((wave, index) => {
         const gradient = ctx.createLinearGradient(0, wave.yOffset - wave.amplitude * 2, 0, height);
+        const colorCount = wave.colors.length;
         wave.colors.forEach((color, i) => {
-          gradient.addColorStop(i / (wave.colors.length - 1), color);
+          const stop = colorCount > 1 ? i / (colorCount - 1) : i;
+          gradient.addColorStop(stop, color);
         });
         
         drawWave(ctx, wave.amplitude, wave.frequency, wave.phase, wave.yOffset, gradient);
@@ -108,13 +119,30 @@ const ParticleBanner: React.FC = () => {
       animationFrameId = requestAnimationFrame(animate);
     };
 
+    // Initialize with a small delay to ensure container is rendered
+    const init = () => {
+      resize();
+      if (width > 0 && height > 0) {
+        animate();
+      } else {
+        // Retry if dimensions aren't ready
+        setTimeout(() => {
+          resize();
+          if (width > 0 && height > 0) {
+            animate();
+          }
+        }, 100);
+      }
+    };
+
     window.addEventListener('resize', resize);
-    resize();
-    animate();
+    init();
 
     return () => {
       window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, []);
 
