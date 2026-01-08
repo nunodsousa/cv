@@ -11,139 +11,176 @@ const ParticleBanner: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+    try {
+      const canvas = canvasRef.current;
+      const container = containerRef.current;
+      if (!canvas || !container) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-    let animationFrameId: number;
-    let width = 0;
-    let height = 0;
-    let time = 0;
+      let animationFrameId: number | null = null;
+      let width = 0;
+      let height = 0;
+      let time = 0;
+      let isAnimating = false;
 
-    const resize = () => {
-      width = container.offsetWidth;
-      height = container.offsetHeight;
-      if (width > 0 && height > 0) {
-        canvas.width = width;
-        canvas.height = height;
-      }
-    };
-
-    const drawWave = (
-      ctx: CanvasRenderingContext2D,
-      amplitude: number,
-      frequency: number,
-      phase: number,
-      yOffset: number,
-      gradient: CanvasGradient
-    ) => {
-      if (width === 0 || height === 0) return;
-      
-      ctx.beginPath();
-      ctx.moveTo(0, height);
-
-      for (let x = 0; x <= width; x += 2) {
-        // Multiple sine waves combined for organic feel
-        const wave1 = Math.sin((x * frequency + phase) * 0.01) * amplitude;
-        const wave2 = Math.sin((x * frequency * 1.5 + phase * 1.3) * 0.01) * amplitude * 0.5;
-        const wave3 = Math.sin((x * frequency * 0.7 + phase * 0.8) * 0.01) * amplitude * 0.3;
-        const y = yOffset + wave1 + wave2 + wave3;
-        
-        ctx.lineTo(x, y);
-      }
-
-      ctx.lineTo(width, height);
-      ctx.closePath();
-      ctx.fillStyle = gradient;
-      ctx.fill();
-    };
-
-    const animate = () => {
-      if (width === 0 || height === 0) {
-        animationFrameId = requestAnimationFrame(animate);
-        return;
-      }
-      
-      time += 1.5; // Increased speed multiplier
-      
-      // Clear with slight fade for smooth trails
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
-      ctx.fillRect(0, 0, width, height);
-
-      // Create multiple organic waves with gradients - using slate/blue theme
-      const waves = [
-        {
-          amplitude: height * 0.15,
-          frequency: 0.8,
-          phase: time * 0.8, // Increased speed
-          yOffset: height * 0.6,
-          colors: ['rgba(59, 130, 246, 0.4)', 'rgba(96, 165, 250, 0.3)', 'rgba(59, 130, 246, 0.2)'] // blue-500, blue-400
-        },
-        {
-          amplitude: height * 0.12,
-          frequency: 1.2,
-          phase: time * 1.0, // Increased speed
-          yOffset: height * 0.7,
-          colors: ['rgba(37, 99, 235, 0.35)', 'rgba(59, 130, 246, 0.25)', 'rgba(37, 99, 235, 0.15)'] // blue-600, blue-500
-        },
-        {
-          amplitude: height * 0.1,
-          frequency: 0.6,
-          phase: time * 0.7, // Increased speed
-          yOffset: height * 0.5,
-          colors: ['rgba(96, 165, 250, 0.3)', 'rgba(147, 197, 253, 0.2)', 'rgba(96, 165, 250, 0.1)'] // blue-400, blue-300
-        },
-        {
-          amplitude: height * 0.08,
-          frequency: 1.5,
-          phase: time * 0.9, // Increased speed
-          yOffset: height * 0.8,
-          colors: ['rgba(59, 130, 246, 0.25)', 'rgba(96, 165, 250, 0.15)', 'rgba(59, 130, 246, 0.08)'] // blue-500, blue-400
+      const resize = () => {
+        try {
+          if (!container) return;
+          width = container.offsetWidth || 0;
+          height = container.offsetHeight || 0;
+          if (width > 0 && height > 0 && canvas) {
+            canvas.width = width;
+            canvas.height = height;
+          }
+        } catch (error) {
+          console.error('Error in resize:', error);
         }
-      ];
+      };
 
-      waves.forEach((wave, index) => {
-        const gradient = ctx.createLinearGradient(0, wave.yOffset - wave.amplitude * 2, 0, height);
-        const colorCount = wave.colors.length;
-        wave.colors.forEach((color, i) => {
-          const stop = colorCount > 1 ? i / (colorCount - 1) : i;
-          gradient.addColorStop(stop, color);
-        });
-        
-        drawWave(ctx, wave.amplitude, wave.frequency, wave.phase, wave.yOffset, gradient);
-      });
+      const drawWave = (
+        ctx: CanvasRenderingContext2D,
+        amplitude: number,
+        frequency: number,
+        phase: number,
+        yOffset: number,
+        gradient: CanvasGradient
+      ) => {
+        try {
+          if (width === 0 || height === 0 || !ctx) return;
+          
+          ctx.beginPath();
+          ctx.moveTo(0, height);
 
-      animationFrameId = requestAnimationFrame(animate);
-    };
+          for (let x = 0; x <= width; x += 2) {
+            // Multiple sine waves combined for organic feel
+            const wave1 = Math.sin((x * frequency + phase) * 0.01) * amplitude;
+            const wave2 = Math.sin((x * frequency * 1.5 + phase * 1.3) * 0.01) * amplitude * 0.5;
+            const wave3 = Math.sin((x * frequency * 0.7 + phase * 0.8) * 0.01) * amplitude * 0.3;
+            const y = yOffset + wave1 + wave2 + wave3;
+            
+            ctx.lineTo(x, y);
+          }
 
-    // Initialize with a small delay to ensure container is rendered
-    const init = () => {
-      resize();
-      if (width > 0 && height > 0) {
-        animate();
-      } else {
-        // Retry if dimensions aren't ready
-        setTimeout(() => {
+          ctx.lineTo(width, height);
+          ctx.closePath();
+          ctx.fillStyle = gradient;
+          ctx.fill();
+        } catch (error) {
+          console.error('Error drawing wave:', error);
+        }
+      };
+
+      const animate = () => {
+        try {
+          if (!ctx || !canvas) {
+            isAnimating = false;
+            return;
+          }
+
+          if (width === 0 || height === 0) {
+            animationFrameId = requestAnimationFrame(animate);
+            return;
+          }
+          
+          time += 1.5; // Increased speed multiplier
+          
+          // Clear with slight fade for smooth trails
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
+          ctx.fillRect(0, 0, width, height);
+
+          // Create multiple organic waves with gradients - using slate/blue theme
+          const waves = [
+            {
+              amplitude: height * 0.15,
+              frequency: 0.8,
+              phase: time * 0.8, // Increased speed
+              yOffset: height * 0.6,
+              colors: ['rgba(59, 130, 246, 0.4)', 'rgba(96, 165, 250, 0.3)', 'rgba(59, 130, 246, 0.2)'] // blue-500, blue-400
+            },
+            {
+              amplitude: height * 0.12,
+              frequency: 1.2,
+              phase: time * 1.0, // Increased speed
+              yOffset: height * 0.7,
+              colors: ['rgba(37, 99, 235, 0.35)', 'rgba(59, 130, 246, 0.25)', 'rgba(37, 99, 235, 0.15)'] // blue-600, blue-500
+            },
+            {
+              amplitude: height * 0.1,
+              frequency: 0.6,
+              phase: time * 0.7, // Increased speed
+              yOffset: height * 0.5,
+              colors: ['rgba(96, 165, 250, 0.3)', 'rgba(147, 197, 253, 0.2)', 'rgba(96, 165, 250, 0.1)'] // blue-400, blue-300
+            },
+            {
+              amplitude: height * 0.08,
+              frequency: 1.5,
+              phase: time * 0.9, // Increased speed
+              yOffset: height * 0.8,
+              colors: ['rgba(59, 130, 246, 0.25)', 'rgba(96, 165, 250, 0.15)', 'rgba(59, 130, 246, 0.08)'] // blue-500, blue-400
+            }
+          ];
+
+          waves.forEach((wave, index) => {
+            try {
+              const gradient = ctx.createLinearGradient(0, wave.yOffset - wave.amplitude * 2, 0, height);
+              const colorCount = wave.colors.length;
+              wave.colors.forEach((color, i) => {
+                const stop = colorCount > 1 ? i / (colorCount - 1) : i;
+                gradient.addColorStop(stop, color);
+              });
+              
+              drawWave(ctx, wave.amplitude, wave.frequency, wave.phase, wave.yOffset, gradient);
+            } catch (error) {
+              console.error('Error in wave loop:', error);
+            }
+          });
+
+          if (isAnimating) {
+            animationFrameId = requestAnimationFrame(animate);
+          }
+        } catch (error) {
+          console.error('Error in animate:', error);
+          isAnimating = false;
+        }
+      };
+
+      // Initialize with a small delay to ensure container is rendered
+      const init = () => {
+        try {
           resize();
           if (width > 0 && height > 0) {
+            isAnimating = true;
             animate();
+          } else {
+            // Retry if dimensions aren't ready
+            setTimeout(() => {
+              resize();
+              if (width > 0 && height > 0) {
+                isAnimating = true;
+                animate();
+              }
+            }, 100);
           }
-        }, 100);
-      }
-    };
+        } catch (error) {
+          console.error('Error initializing banner:', error);
+        }
+      };
 
-    window.addEventListener('resize', resize);
-    init();
+      window.addEventListener('resize', resize);
+      init();
 
-    return () => {
-      window.removeEventListener('resize', resize);
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-    };
+      return () => {
+        isAnimating = false;
+        window.removeEventListener('resize', resize);
+        if (animationFrameId !== null) {
+          cancelAnimationFrame(animationFrameId);
+        }
+      };
+    } catch (error) {
+      console.error('Error setting up banner:', error);
+    }
   }, []);
 
   return (
