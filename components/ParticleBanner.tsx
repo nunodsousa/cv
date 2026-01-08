@@ -203,7 +203,7 @@ const LJParticleBanner: React.FC = () => {
             Data Science Lead
           </h2>
           <p className="text-blue-400 text-sm md:text-base uppercase tracking-[0.4em] font-bold">
-            Thermodynamics & AI Systems
+            Applied AI & Decision Systems
           </p>
         </div>
       </div>
