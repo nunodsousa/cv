@@ -28,93 +28,132 @@ const ParticleBanner: React.FC = () => {
       canvas.height = height;
     };
 
-    interface Particle {
+    interface Body {
       x: number;
       y: number;
+      vx: number;
+      vy: number;
+      mass: number;
       radius: number;
-      angle: number;
-      speed: number;
-      orbitRadius: number;
-      centerX: number;
-      centerY: number;
+      color: string;
       trail: Array<{ x: number; y: number; opacity: number }>;
     }
 
-    const particles: Particle[] = [];
-    const particleCount = 8;
+    const G = 0.1; // Gravitational constant (scaled for animation)
+    const dt = 0.1; // Time step
 
-    const initParticles = () => {
-      particles.length = 0;
-      const centers = [
-        { x: width * 0.2, y: height * 0.5 },
-        { x: width * 0.5, y: height * 0.4 },
-        { x: width * 0.8, y: height * 0.6 },
-      ];
+    // Initialize three bodies in a stable configuration
+    const bodies: Body[] = [
+      {
+        x: width * 0.4,
+        y: height * 0.5,
+        vx: 0.3,
+        vy: 0.2,
+        mass: 50,
+        radius: 8,
+        color: 'rgba(59, 130, 246, 0.9)',
+        trail: [],
+      },
+      {
+        x: width * 0.6,
+        y: height * 0.4,
+        vx: -0.2,
+        vy: 0.3,
+        mass: 40,
+        radius: 7,
+        color: 'rgba(96, 165, 250, 0.9)',
+        trail: [],
+      },
+      {
+        x: width * 0.5,
+        y: height * 0.6,
+        vx: -0.1,
+        vy: -0.5,
+        mass: 30,
+        radius: 6,
+        color: 'rgba(147, 197, 253, 0.9)',
+        trail: [],
+      },
+    ];
 
-      for (let i = 0; i < particleCount; i++) {
-        const center = centers[i % centers.length];
-        particles.push({
-          x: 0,
-          y: 0,
-          radius: 3 + Math.random() * 2,
-          angle: Math.random() * Math.PI * 2,
-          speed: 0.01 + Math.random() * 0.02,
-          orbitRadius: 40 + Math.random() * 60,
-          centerX: center.x + (Math.random() - 0.5) * 100,
-          centerY: center.y + (Math.random() - 0.5) * 80,
-          trail: [],
-        });
+    const calculateForces = () => {
+      const forces: Array<{ fx: number; fy: number }> = [];
+
+      for (let i = 0; i < bodies.length; i++) {
+        let fx = 0;
+        let fy = 0;
+
+        for (let j = 0; j < bodies.length; j++) {
+          if (i === j) continue;
+
+          const dx = bodies[j].x - bodies[i].x;
+          const dy = bodies[j].y - bodies[i].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const minDistance = 20; // Prevent division by zero
+
+          if (distance > minDistance) {
+            const force = (G * bodies[i].mass * bodies[j].mass) / (distance * distance);
+            fx += (force * dx) / distance;
+            fy += (force * dy) / distance;
+          }
+        }
+
+        forces.push({ fx, fy });
       }
+
+      return forces;
     };
 
-    const updateParticles = () => {
-      particles.forEach((particle) => {
-        // Orbital motion
-        particle.angle += particle.speed;
-        particle.x = particle.centerX + Math.cos(particle.angle) * particle.orbitRadius;
-        particle.y = particle.centerY + Math.sin(particle.angle) * particle.orbitRadius;
+    const updateBodies = () => {
+      const forces = calculateForces();
+
+      bodies.forEach((body, i) => {
+        // Update velocity using force
+        const ax = forces[i].fx / body.mass;
+        const ay = forces[i].fy / body.mass;
+        body.vx += ax * dt;
+        body.vy += ay * dt;
+
+        // Update position
+        body.x += body.vx * dt;
+        body.y += body.vy * dt;
 
         // Add to trail
-        particle.trail.push({ x: particle.x, y: particle.y, opacity: 1 });
-        if (particle.trail.length > 20) {
-          particle.trail.shift();
+        body.trail.push({ x: body.x, y: body.y, opacity: 1 });
+        if (body.trail.length > 100) {
+          body.trail.shift();
         }
 
         // Fade trail
-        particle.trail.forEach((point) => {
-          point.opacity *= 0.92;
+        body.trail.forEach((point) => {
+          point.opacity *= 0.98;
         });
+
+        // Wrap around edges (or bounce)
+        if (body.x < 0 || body.x > width) {
+          body.vx *= -0.5;
+          body.x = Math.max(0, Math.min(width, body.x));
+        }
+        if (body.y < 0 || body.y > height) {
+          body.vy *= -0.5;
+          body.y = Math.max(0, Math.min(height, body.y));
+        }
       });
     };
 
-    const drawFieldLines = () => {
-      // Draw electromagnetic-like field lines
-      ctx.strokeStyle = 'rgba(59, 130, 246, 0.15)';
-      ctx.lineWidth = 1;
+    const drawTrail = (body: Body) => {
+      for (let i = 0; i < body.trail.length - 1; i++) {
+        const point = body.trail[i];
+        const nextPoint = body.trail[i + 1];
 
-      for (let i = 0; i < 12; i++) {
-        const startX = (width / 13) * (i + 1);
-        ctx.beginPath();
-        ctx.moveTo(startX, 0);
-        
-        for (let y = 0; y < height; y += 5) {
-          const x = startX + Math.sin(y * 0.02 + time * 0.01) * 30;
-          ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-      }
-    };
-
-    const drawParticle = (particle: Particle) => {
-      // Draw trail
-      for (let i = 0; i < particle.trail.length - 1; i++) {
-        const point = particle.trail[i];
-        const nextPoint = particle.trail[i + 1];
-        
         const gradient = ctx.createLinearGradient(point.x, point.y, nextPoint.x, nextPoint.y);
-        gradient.addColorStop(0, `rgba(59, 130, 246, ${point.opacity * 0.3})`);
-        gradient.addColorStop(1, `rgba(96, 165, 250, ${nextPoint.opacity * 0.3})`);
-        
+        const colorMatch = body.color.match(/rgba?\(([^)]+)\)/);
+        if (colorMatch) {
+          const values = colorMatch[1].split(',').map(v => parseFloat(v.trim()));
+          gradient.addColorStop(0, `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${point.opacity * 0.4})`);
+          gradient.addColorStop(1, `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${nextPoint.opacity * 0.4})`);
+        }
+
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 2;
         ctx.beginPath();
@@ -122,45 +161,64 @@ const ParticleBanner: React.FC = () => {
         ctx.lineTo(nextPoint.x, nextPoint.y);
         ctx.stroke();
       }
+    };
 
-      // Draw particle with glow
+    const drawBody = (body: Body) => {
+      // Draw trail
+      drawTrail(body);
+
+      // Draw gravitational field effect
       const gradient = ctx.createRadialGradient(
-        particle.x, particle.y, 0,
-        particle.x, particle.y, particle.radius * 3
+        body.x, body.y, 0,
+        body.x, body.y, body.radius * 4
       );
-      gradient.addColorStop(0, 'rgba(96, 165, 250, 0.9)');
-      gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.5)');
-      gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+      const colorMatch = body.color.match(/rgba?\(([^)]+)\)/);
+      if (colorMatch) {
+        const values = colorMatch[1].split(',').map(v => parseFloat(v.trim()));
+        gradient.addColorStop(0, `rgba(${values[0]}, ${values[1]}, ${values[2]}, 0.3)`);
+        gradient.addColorStop(0.5, `rgba(${values[0]}, ${values[1]}, ${values[2]}, 0.1)`);
+        gradient.addColorStop(1, `rgba(${values[0]}, ${values[1]}, ${values[2]}, 0)`);
+      }
 
       ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.radius * 3, 0, Math.PI * 2);
+      ctx.arc(body.x, body.y, body.radius * 4, 0, Math.PI * 2);
       ctx.fill();
 
-      // Core particle
-      ctx.fillStyle = 'rgba(147, 197, 253, 0.9)';
+      // Draw body
+      ctx.fillStyle = body.color;
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      ctx.arc(body.x, body.y, body.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Highlight
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.beginPath();
+      ctx.arc(body.x - body.radius * 0.3, body.y - body.radius * 0.3, body.radius * 0.5, 0, Math.PI * 2);
       ctx.fill();
     };
 
-    const drawOrbit = (particle: Particle) => {
-      // Draw faint orbit path
+    const drawForceLines = () => {
+      // Draw gravitational force lines between bodies
       ctx.strokeStyle = 'rgba(59, 130, 246, 0.1)';
       ctx.lineWidth = 1;
-      ctx.setLineDash([5, 5]);
-      ctx.beginPath();
-      ctx.ellipse(
-        particle.centerX,
-        particle.centerY,
-        particle.orbitRadius,
-        particle.orbitRadius,
-        0,
-        0,
-        Math.PI * 2
-      );
-      ctx.stroke();
-      ctx.setLineDash([]);
+
+      for (let i = 0; i < bodies.length; i++) {
+        for (let j = i + 1; j < bodies.length; j++) {
+          const dx = bodies[j].x - bodies[i].x;
+          const dy = bodies[j].y - bodies[i].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 300) {
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(bodies[i].x, bodies[i].y);
+            ctx.lineTo(bodies[j].x, bodies[j].y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        }
+      }
     };
 
     const animate = () => {
@@ -169,21 +227,18 @@ const ParticleBanner: React.FC = () => {
         return;
       }
 
-      time += 0.5;
+      time += dt;
 
       // Clear with slight fade for trails
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.15)';
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.1)';
       ctx.fillRect(0, 0, width, height);
 
-      // Draw field lines
-      drawFieldLines();
+      // Draw force lines
+      drawForceLines();
 
-      // Draw orbits
-      particles.forEach((particle) => drawOrbit(particle));
-
-      // Update and draw particles
-      updateParticles();
-      particles.forEach((particle) => drawParticle(particle));
+      // Update and draw bodies
+      updateBodies();
+      bodies.forEach((body) => drawBody(body));
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -191,7 +246,13 @@ const ParticleBanner: React.FC = () => {
     const init = () => {
       resize();
       if (width > 0 && height > 0) {
-        initParticles();
+        // Reset bodies to initial positions
+        bodies[0].x = width * 0.4;
+        bodies[0].y = height * 0.5;
+        bodies[1].x = width * 0.6;
+        bodies[1].y = height * 0.4;
+        bodies[2].x = width * 0.5;
+        bodies[2].y = height * 0.6;
         animate();
       } else {
         setTimeout(init, 100);
@@ -209,7 +270,7 @@ const ParticleBanner: React.FC = () => {
 
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
-      {/* Canvas for physics animation */}
+      {/* Canvas for three-body problem simulation */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       
       {/* Gradient overlay for depth */}
