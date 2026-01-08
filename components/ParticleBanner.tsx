@@ -3,195 +3,221 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const ParticleBanner: React.FC = () => {
-  // Inject CSS keyframes for fluid wave animations
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
-    try {
-      const styleId = 'particle-banner-waves';
-      if (typeof document === 'undefined' || document.getElementById(styleId)) return;
-      
-      const style = document.createElement('style');
-      style.id = styleId;
-      style.textContent = `
-        @keyframes wave1 {
-          0% { 
-            clip-path: polygon(0 60%, 10% 50%, 20% 55%, 30% 45%, 40% 55%, 50% 48%, 60% 58%, 70% 47%, 80% 57%, 90% 50%, 100% 55%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-          25% { 
-            clip-path: polygon(0 58%, 10% 52%, 20% 57%, 30% 47%, 40% 57%, 50% 50%, 60% 60%, 70% 49%, 80% 59%, 90% 52%, 100% 57%, 100% 100%, 0 100%);
-            transform: translateX(2%);
-          }
-          50% { 
-            clip-path: polygon(0 62%, 10% 48%, 20% 53%, 30% 43%, 40% 53%, 50% 46%, 60% 56%, 70% 45%, 80% 55%, 90% 48%, 100% 53%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-          75% { 
-            clip-path: polygon(0 59%, 10% 51%, 20% 56%, 30% 46%, 40% 56%, 50% 49%, 60% 59%, 70% 48%, 80% 58%, 90% 51%, 100% 56%, 100% 100%, 0 100%);
-            transform: translateX(-2%);
-          }
-          100% { 
-            clip-path: polygon(0 60%, 10% 50%, 20% 55%, 30% 45%, 40% 55%, 50% 48%, 60% 58%, 70% 47%, 80% 57%, 90% 50%, 100% 55%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-        }
-        @keyframes wave2 {
-          0% { 
-            clip-path: polygon(0 70%, 15% 60%, 25% 65%, 35% 58%, 45% 68%, 55% 62%, 65% 72%, 75% 60%, 85% 70%, 95% 64%, 100% 68%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-          25% { 
-            clip-path: polygon(0 68%, 15% 62%, 25% 67%, 35% 60%, 45% 70%, 55% 64%, 65% 74%, 75% 62%, 85% 72%, 95% 66%, 100% 70%, 100% 100%, 0 100%);
-            transform: translateX(-1.5%);
-          }
-          50% { 
-            clip-path: polygon(0 72%, 15% 58%, 25% 63%, 35% 56%, 45% 66%, 55% 60%, 65% 70%, 75% 58%, 85% 68%, 95% 62%, 100% 66%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-          75% { 
-            clip-path: polygon(0 69%, 15% 61%, 25% 66%, 35% 59%, 45% 69%, 55% 63%, 65% 73%, 75% 61%, 85% 71%, 95% 65%, 100% 69%, 100% 100%, 0 100%);
-            transform: translateX(1.5%);
-          }
-          100% { 
-            clip-path: polygon(0 70%, 15% 60%, 25% 65%, 35% 58%, 45% 68%, 55% 62%, 65% 72%, 75% 60%, 85% 70%, 95% 64%, 100% 68%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-        }
-        @keyframes wave3 {
-          0% { 
-            clip-path: polygon(0 80%, 20% 72%, 30% 78%, 40% 70%, 50% 80%, 60% 74%, 70% 82%, 80% 72%, 90% 78%, 100% 75%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-          25% { 
-            clip-path: polygon(0 78%, 20% 74%, 30% 80%, 40% 72%, 50% 82%, 60% 76%, 70% 84%, 80% 74%, 90% 80%, 100% 77%, 100% 100%, 0 100%);
-            transform: translateX(1%);
-          }
-          50% { 
-            clip-path: polygon(0 82%, 20% 70%, 30% 76%, 40% 68%, 50% 78%, 60% 72%, 70% 80%, 80% 70%, 90% 76%, 100% 73%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-          75% { 
-            clip-path: polygon(0 79%, 20% 73%, 30% 79%, 40% 71%, 50% 81%, 60% 75%, 70% 83%, 80% 73%, 90% 79%, 100% 76%, 100% 100%, 0 100%);
-            transform: translateX(-1%);
-          }
-          100% { 
-            clip-path: polygon(0 80%, 20% 72%, 30% 78%, 40% 70%, 50% 80%, 60% 74%, 70% 82%, 80% 72%, 90% 78%, 100% 75%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-        }
-        @keyframes wave4 {
-          0% { 
-            clip-path: polygon(0 85%, 12% 80%, 22% 85%, 32% 78%, 42% 88%, 52% 82%, 62% 90%, 72% 80%, 82% 88%, 92% 83%, 100% 87%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-          33% { 
-            clip-path: polygon(0 83%, 12% 82%, 22% 87%, 32% 80%, 42% 90%, 52% 84%, 62% 92%, 72% 82%, 82% 90%, 92% 85%, 100% 89%, 100% 100%, 0 100%);
-            transform: translateX(-0.8%);
-          }
-          66% { 
-            clip-path: polygon(0 87%, 12% 78%, 22% 83%, 32% 76%, 42% 86%, 52% 80%, 62% 88%, 72% 78%, 82% 86%, 92% 81%, 100% 85%, 100% 100%, 0 100%);
-            transform: translateX(0.8%);
-          }
-          100% { 
-            clip-path: polygon(0 85%, 12% 80%, 22% 85%, 32% 78%, 42% 88%, 52% 82%, 62% 90%, 72% 80%, 82% 88%, 92% 83%, 100% 87%, 100% 100%, 0 100%);
-            transform: translateX(0);
-          }
-        }
-      `;
-      document.head.appendChild(style);
-      
-      return () => {
-        try {
-          const existingStyle = document.getElementById(styleId);
-          if (existingStyle) {
-            existingStyle.remove();
-          }
-        } catch (e) {
-          // Ignore cleanup errors
-        }
-      };
-    } catch (error) {
-      // Silently fail - page will still render without animations
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = 0;
+    let height = 0;
+    let time = 0;
+
+    const resize = () => {
+      if (!canvas.parentElement) return;
+      width = canvas.parentElement.offsetWidth;
+      height = canvas.parentElement.offsetHeight;
+      canvas.width = width;
+      canvas.height = height;
+    };
+
+    // Fluid blob structure
+    interface Blob {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      baseRadius: number;
+      color: string;
+      phase: number;
     }
+
+    const blobs: Blob[] = [];
+    const blobCount = 5;
+
+    const initBlobs = () => {
+      blobs.length = 0;
+      for (let i = 0; i < blobCount; i++) {
+        blobs.push({
+          x: Math.random() * width,
+          y: height * (0.5 + Math.random() * 0.5),
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.2,
+          radius: height * (0.15 + Math.random() * 0.2),
+          baseRadius: height * (0.15 + Math.random() * 0.2),
+          color: `rgba(${59 + Math.random() * 40}, ${130 + Math.random() * 50}, ${246 - Math.random() * 50}, ${0.15 + Math.random() * 0.15})`,
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+    };
+
+    const updateBlobs = () => {
+      blobs.forEach((blob, i) => {
+        // Update position with velocity
+        blob.x += blob.vx;
+        blob.y += blob.vy;
+
+        // Boundary collision with damping
+        if (blob.x < -blob.radius || blob.x > width + blob.radius) {
+          blob.vx *= -0.8;
+          blob.x = Math.max(-blob.radius, Math.min(width + blob.radius, blob.x));
+        }
+        if (blob.y < height * 0.3 || blob.y > height + blob.radius) {
+          blob.vy *= -0.8;
+          blob.y = Math.max(height * 0.3, Math.min(height + blob.radius, blob.y));
+        }
+
+        // Fluid-like radius pulsing
+        blob.radius = blob.baseRadius * (1 + Math.sin(time * 0.01 + blob.phase) * 0.2);
+
+        // Inter-blob interaction (repulsion)
+        blobs.forEach((other, j) => {
+          if (i === j) return;
+          const dx = blob.x - other.x;
+          const dy = blob.y - other.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const minDist = blob.radius + other.radius;
+
+          if (distance < minDist && distance > 0) {
+            const force = (minDist - distance) / minDist;
+            const angle = Math.atan2(dy, dx);
+            blob.vx += Math.cos(angle) * force * 0.05;
+            blob.vy += Math.sin(angle) * force * 0.05;
+          }
+        });
+
+        // Damping for fluid-like behavior
+        blob.vx *= 0.98;
+        blob.vy *= 0.98;
+      });
+    };
+
+    const drawBlob = (blob: Blob) => {
+      // Create gradient for fluid effect
+      const gradient = ctx.createRadialGradient(
+        blob.x, blob.y, 0,
+        blob.x, blob.y, blob.radius
+      );
+      gradient.addColorStop(0, blob.color);
+      gradient.addColorStop(0.5, blob.color.replace(')', ', 0.1)').replace('rgba', 'rgba'));
+      gradient.addColorStop(1, blob.color.replace(')', ', 0)').replace('rgba', 'rgba'));
+
+      // Draw fluid blob with soft edges
+      ctx.beginPath();
+      const points = 32;
+      for (let i = 0; i <= points; i++) {
+        const angle = (i / points) * Math.PI * 2;
+        const radiusVariation = blob.radius * (1 + Math.sin(angle * 3 + time * 0.02) * 0.1);
+        const x = blob.x + Math.cos(angle) * radiusVariation;
+        const y = blob.y + Math.sin(angle) * radiusVariation;
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.closePath();
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Add subtle highlight
+      const highlightGradient = ctx.createRadialGradient(
+        blob.x - blob.radius * 0.3, blob.y - blob.radius * 0.3, 0,
+        blob.x, blob.y, blob.radius * 0.5
+      );
+      highlightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+      highlightGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = highlightGradient;
+      ctx.fill();
+    };
+
+    const drawConnections = () => {
+      // Draw fluid connections between nearby blobs
+      for (let i = 0; i < blobs.length; i++) {
+        for (let j = i + 1; j < blobs.length; j++) {
+          const dx = blobs[i].x - blobs[j].x;
+          const dy = blobs[i].y - blobs[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDist = (blobs[i].radius + blobs[j].radius) * 1.5;
+
+          if (distance < maxDist) {
+            const opacity = (1 - distance / maxDist) * 0.2;
+            const gradient = ctx.createLinearGradient(
+              blobs[i].x, blobs[i].y,
+              blobs[j].x, blobs[j].y
+            );
+            gradient.addColorStop(0, blobs[i].color.replace(/[\d\.]+\)$/, `${opacity})`));
+            gradient.addColorStop(1, blobs[j].color.replace(/[\d\.]+\)$/, `${opacity})`));
+
+            ctx.beginPath();
+            ctx.moveTo(blobs[i].x, blobs[i].y);
+            ctx.lineTo(blobs[j].x, blobs[j].y);
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    const animate = () => {
+      if (width === 0 || height === 0) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+
+      time += 0.5;
+
+      // Clear with slight fade for trails
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.1)';
+      ctx.fillRect(0, 0, width, height);
+
+      updateBlobs();
+      drawConnections();
+      blobs.forEach(blob => drawBlob(blob));
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const init = () => {
+      resize();
+      if (width > 0 && height > 0) {
+        initBlobs();
+        animate();
+      } else {
+        setTimeout(init, 100);
+      }
+    };
+
+    window.addEventListener('resize', resize);
+    init();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
-      {/* Fluid dynamic gradient waves */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Wave layer 1 - Fast, shallow */}
-        <div 
-          className="absolute bottom-0 w-full h-full opacity-30"
-          style={{
-            background: 'linear-gradient(to top, rgba(59, 130, 246, 0.4) 0%, rgba(96, 165, 250, 0.3) 50%, rgba(59, 130, 246, 0.2) 100%)',
-            clipPath: 'polygon(0 60%, 10% 50%, 20% 55%, 30% 45%, 40% 55%, 50% 48%, 60% 58%, 70% 47%, 80% 57%, 90% 50%, 100% 55%, 100% 100%, 0 100%)',
-            animation: 'wave1 5s ease-in-out infinite',
-            WebkitAnimation: 'wave1 5s ease-in-out infinite',
-            willChange: 'clip-path, transform',
-          }}
-        />
-        
-        {/* Wave layer 2 - Medium speed */}
-        <div 
-          className="absolute bottom-0 w-full h-full opacity-25"
-          style={{
-            background: 'linear-gradient(to top, rgba(37, 99, 235, 0.35) 0%, rgba(59, 130, 246, 0.25) 50%, rgba(37, 99, 235, 0.15) 100%)',
-            clipPath: 'polygon(0 70%, 15% 60%, 25% 65%, 35% 58%, 45% 68%, 55% 62%, 65% 72%, 75% 60%, 85% 70%, 95% 64%, 100% 68%, 100% 100%, 0 100%)',
-            animation: 'wave2 7s ease-in-out infinite',
-            animationDelay: '0.3s',
-            WebkitAnimation: 'wave2 7s ease-in-out infinite',
-            WebkitAnimationDelay: '0.3s',
-            willChange: 'clip-path, transform',
-          }}
-        />
-        
-        {/* Wave layer 3 - Slower, deeper */}
-        <div 
-          className="absolute bottom-0 w-full h-full opacity-20"
-          style={{
-            background: 'linear-gradient(to top, rgba(96, 165, 250, 0.3) 0%, rgba(147, 197, 253, 0.2) 50%, rgba(96, 165, 250, 0.1) 100%)',
-            clipPath: 'polygon(0 80%, 20% 72%, 30% 78%, 40% 70%, 50% 80%, 60% 74%, 70% 82%, 80% 72%, 90% 78%, 100% 75%, 100% 100%, 0 100%)',
-            animation: 'wave3 9s ease-in-out infinite',
-            animationDelay: '0.6s',
-            WebkitAnimation: 'wave3 9s ease-in-out infinite',
-            WebkitAnimationDelay: '0.6s',
-            willChange: 'clip-path, transform',
-          }}
-        />
-        
-        {/* Wave layer 4 - Deep, slow */}
-        <div 
-          className="absolute bottom-0 w-full h-full opacity-15"
-          style={{
-            background: 'linear-gradient(to top, rgba(59, 130, 246, 0.25) 0%, rgba(96, 165, 250, 0.15) 50%, rgba(59, 130, 246, 0.1) 100%)',
-            clipPath: 'polygon(0 85%, 12% 80%, 22% 85%, 32% 78%, 42% 88%, 52% 82%, 62% 90%, 72% 80%, 82% 88%, 92% 83%, 100% 87%, 100% 100%, 0 100%)',
-            animation: 'wave4 11s ease-in-out infinite',
-            animationDelay: '0.9s',
-            WebkitAnimation: 'wave4 11s ease-in-out infinite',
-            WebkitAnimationDelay: '0.9s',
-            willChange: 'clip-path, transform',
-          }}
-        />
-      </div>
+      {/* Canvas for fluid dynamics simulation */}
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       
-      {/* Animated gradient overlay for depth */}
+      {/* Gradient overlay for depth */}
       <div 
         className="absolute inset-0 opacity-20"
         style={{
           background: 'radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 60%)',
-          animation: 'pulse 8s ease-in-out infinite',
         }}
       />
-      
-      {/* Add pulse animation for overlay */}
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.25; }
-        }
-      `}</style>
       
       {/* Overlay Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 px-4 text-center">
