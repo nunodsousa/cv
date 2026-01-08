@@ -932,7 +932,7 @@ const App: React.FC = () => {
             </section>
 
             {/* TLTR Shortcut */}
-            <section className="mb-16 flex justify-end">
+            <section className="mb-16 flex justify-start">
               <a
                 href={`${import.meta.env.BASE_URL}tldr/`}
                 className="inline-flex items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 shadow-lg shadow-blue-900/20 transition-colors"
