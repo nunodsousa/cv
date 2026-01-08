@@ -106,9 +106,19 @@ const ParticleBanner: React.FC = () => {
         blob.x, blob.y, 0,
         blob.x, blob.y, blob.radius
       );
-      gradient.addColorStop(0, blob.color);
-      gradient.addColorStop(0.5, blob.color.replace(')', ', 0.1)').replace('rgba', 'rgba'));
-      gradient.addColorStop(1, blob.color.replace(')', ', 0)').replace('rgba', 'rgba'));
+      
+      // Parse color and create variations
+      const colorMatch = blob.color.match(/rgba?\(([^)]+)\)/);
+      if (colorMatch) {
+        const values = colorMatch[1].split(',').map(v => parseFloat(v.trim()));
+        gradient.addColorStop(0, blob.color);
+        gradient.addColorStop(0.5, `rgba(${values[0]}, ${values[1]}, ${values[2]}, 0.1)`);
+        gradient.addColorStop(1, `rgba(${values[0]}, ${values[1]}, ${values[2]}, 0)`);
+      } else {
+        gradient.addColorStop(0, blob.color);
+        gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.1)');
+        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+      }
 
       // Draw fluid blob with soft edges
       ctx.beginPath();
@@ -154,8 +164,19 @@ const ParticleBanner: React.FC = () => {
               blobs[i].x, blobs[i].y,
               blobs[j].x, blobs[j].y
             );
-            gradient.addColorStop(0, blobs[i].color.replace(/[\d\.]+\)$/, `${opacity})`));
-            gradient.addColorStop(1, blobs[j].color.replace(/[\d\.]+\)$/, `${opacity})`));
+            
+            // Parse colors properly
+            const parseColor = (color: string, alpha: number) => {
+              const match = color.match(/rgba?\(([^)]+)\)/);
+              if (match) {
+                const values = match[1].split(',').map(v => parseFloat(v.trim()));
+                return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${alpha})`;
+              }
+              return `rgba(59, 130, 246, ${alpha})`;
+            };
+            
+            gradient.addColorStop(0, parseColor(blobs[i].color, opacity));
+            gradient.addColorStop(1, parseColor(blobs[j].color, opacity));
 
             ctx.beginPath();
             ctx.moveTo(blobs[i].x, blobs[i].y);
