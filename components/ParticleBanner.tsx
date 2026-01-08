@@ -39,8 +39,8 @@ const ParticleBanner: React.FC = () => {
       trail: Array<{ x: number; y: number; opacity: number }>;
     }
 
-    const G = 0.5; // Gravitational constant (scaled for animation)
-    const dt = 0.15; // Time step
+    const G = 0.65; // Gravitational constant (scaled for animation) - faster dynamics
+    const dt = 0.22; // Time step - faster simulation
     const softening = 120; // soften gravity to keep trajectories stable & visible
 
     // Initialize three bodies with more dynamic initial velocities
@@ -219,15 +219,15 @@ const ParticleBanner: React.FC = () => {
       for (const t of tracers) {
         const { ax, ay } = accelerationAt(t.x, t.y);
         // Stronger response for visuals; still stable due to softening
-        t.vx += ax * dt * 2.2;
-        t.vy += ay * dt * 2.2;
+        t.vx += ax * dt * 3.2;
+        t.vy += ay * dt * 3.2;
 
         // mild damping (fluid-like)
         t.vx *= 0.995;
         t.vy *= 0.995;
 
-        t.x += t.vx * dt * 2.5;
-        t.y += t.vy * dt * 2.5;
+        t.x += t.vx * dt * 3.5;
+        t.y += t.vy * dt * 3.5;
 
         // keep inside banner
         if (t.x < margin) { t.x = margin; t.vx *= -0.4; }
@@ -240,7 +240,7 @@ const ParticleBanner: React.FC = () => {
         t.trail.forEach(p => { p.opacity *= 0.92; });
 
         // Slowly recycle particles to keep motion lively
-        t.life -= 0.0015;
+        t.life -= 0.0022;
         if (t.life <= 0) resetTracer(t);
       }
     };
