@@ -7,35 +7,44 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const ParticleBanner: React.FC = () => {
-  // Inject CSS keyframes for wave animations
+  // Inject CSS keyframes for wave animations - safe for production
   useEffect(() => {
-    const styleId = 'particle-banner-waves';
-    if (document.getElementById(styleId)) return;
-    
-    const style = document.createElement('style');
-    style.id = styleId;
-    style.textContent = `
-      @keyframes wave1 {
-        0%, 100% { clip-path: polygon(0 60%, 25% 55%, 50% 60%, 75% 55%, 100% 60%, 100% 100%, 0 100%); }
-        50% { clip-path: polygon(0 65%, 25% 60%, 50% 65%, 75% 60%, 100% 65%, 100% 100%, 0 100%); }
-      }
-      @keyframes wave2 {
-        0%, 100% { clip-path: polygon(0 70%, 20% 65%, 40% 70%, 60% 65%, 80% 70%, 100% 65%, 100% 100%, 0 100%); }
-        50% { clip-path: polygon(0 75%, 20% 70%, 40% 75%, 60% 70%, 80% 75%, 100% 70%, 100% 100%, 0 100%); }
-      }
-      @keyframes wave3 {
-        0%, 100% { clip-path: polygon(0 80%, 30% 75%, 60% 80%, 100% 75%, 100% 100%, 0 100%); }
-        50% { clip-path: polygon(0 85%, 30% 80%, 60% 85%, 100% 80%, 100% 100%, 0 100%); }
-      }
-    `;
-    document.head.appendChild(style);
-    
-    return () => {
-      const existingStyle = document.getElementById(styleId);
-      if (existingStyle) {
-        existingStyle.remove();
-      }
-    };
+    try {
+      const styleId = 'particle-banner-waves';
+      if (typeof document === 'undefined' || document.getElementById(styleId)) return;
+      
+      const style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = `
+        @keyframes wave1 {
+          0%, 100% { clip-path: polygon(0 60%, 25% 55%, 50% 60%, 75% 55%, 100% 60%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 65%, 25% 60%, 50% 65%, 75% 60%, 100% 65%, 100% 100%, 0 100%); }
+        }
+        @keyframes wave2 {
+          0%, 100% { clip-path: polygon(0 70%, 20% 65%, 40% 70%, 60% 65%, 80% 70%, 100% 65%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 75%, 20% 70%, 40% 75%, 60% 70%, 80% 75%, 100% 70%, 100% 100%, 0 100%); }
+        }
+        @keyframes wave3 {
+          0%, 100% { clip-path: polygon(0 80%, 30% 75%, 60% 80%, 100% 75%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 85%, 30% 80%, 60% 85%, 100% 80%, 100% 100%, 0 100%); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      return () => {
+        try {
+          const existingStyle = document.getElementById(styleId);
+          if (existingStyle) {
+            existingStyle.remove();
+          }
+        } catch (e) {
+          // Ignore cleanup errors
+        }
+      };
+    } catch (error) {
+      // Silently fail - page will still render without animations
+      console.error('Banner animation setup failed:', error);
+    }
   }, []);
 
   return (
@@ -80,10 +89,10 @@ const ParticleBanner: React.FC = () => {
         className="absolute inset-0 opacity-20"
         animate={{
           background: [
-            'radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 60%)', // blue-500
-            'radial-gradient(ellipse at 80% 50%, rgba(37, 99, 235, 0.3) 0%, transparent 60%)', // blue-600
-            'radial-gradient(ellipse at 50% 30%, rgba(96, 165, 250, 0.3) 0%, transparent 60%)', // blue-400
-            'radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 60%)', // blue-500
+            'radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 60%)',
+            'radial-gradient(ellipse at 80% 50%, rgba(37, 99, 235, 0.3) 0%, transparent 60%)',
+            'radial-gradient(ellipse at 50% 30%, rgba(96, 165, 250, 0.3) 0%, transparent 60%)',
+            'radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 60%)',
           ],
         }}
         transition={{
@@ -106,9 +115,9 @@ const ParticleBanner: React.FC = () => {
             className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-blue-500/20 to-blue-400/20 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl"
             animate={{
               boxShadow: [
-                '0 0 40px rgba(37, 99, 235, 0.3), 0 0 80px rgba(59, 130, 246, 0.2)', // blue-600, blue-500
-                '0 0 60px rgba(59, 130, 246, 0.4), 0 0 100px rgba(96, 165, 250, 0.3)', // blue-500, blue-400
-                '0 0 40px rgba(37, 99, 235, 0.3), 0 0 80px rgba(59, 130, 246, 0.2)', // blue-600, blue-500
+                '0 0 40px rgba(37, 99, 235, 0.3), 0 0 80px rgba(59, 130, 246, 0.2)',
+                '0 0 60px rgba(59, 130, 246, 0.4), 0 0 100px rgba(96, 165, 250, 0.3)',
+                '0 0 40px rgba(37, 99, 235, 0.3), 0 0 80px rgba(59, 130, 246, 0.2)',
               ],
             }}
             transition={{
