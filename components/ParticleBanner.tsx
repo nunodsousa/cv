@@ -6,7 +6,7 @@
 import React, { useEffect, useRef } from 'react';
 
 const PARAMS = {
-  particleCount: 50,
+  particleCount: 75, // +50%
   sigma: 38.0,
   epsilon: 1.2,
   baseDt: 0.12,        // Base time step for 60fps
