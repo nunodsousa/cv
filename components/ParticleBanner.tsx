@@ -16,16 +16,19 @@ const ParticleBanner: React.FC = () => {
       style.id = styleId;
       style.textContent = `
         @keyframes wave1 {
-          0%, 100% { clip-path: polygon(0 60%, 15% 45%, 30% 60%, 45% 40%, 60% 60%, 75% 45%, 90% 60%, 100% 50%, 100% 100%, 0 100%); }
-          50% { clip-path: polygon(0 60%, 15% 50%, 30% 60%, 45% 45%, 60% 60%, 75% 50%, 90% 60%, 100% 55%, 100% 100%, 0 100%); }
+          0% { clip-path: polygon(0 60%, 15% 45%, 30% 60%, 45% 40%, 60% 60%, 75% 45%, 90% 60%, 100% 50%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 65%, 15% 50%, 30% 65%, 45% 45%, 60% 65%, 75% 50%, 90% 65%, 100% 55%, 100% 100%, 0 100%); }
+          100% { clip-path: polygon(0 60%, 15% 45%, 30% 60%, 45% 40%, 60% 60%, 75% 45%, 90% 60%, 100% 50%, 100% 100%, 0 100%); }
         }
         @keyframes wave2 {
-          0%, 100% { clip-path: polygon(0 70%, 20% 55%, 40% 70%, 60% 50%, 80% 70%, 100% 60%, 100% 100%, 0 100%); }
-          50% { clip-path: polygon(0 70%, 20% 60%, 40% 70%, 60% 55%, 80% 70%, 100% 65%, 100% 100%, 0 100%); }
+          0% { clip-path: polygon(0 70%, 20% 55%, 40% 70%, 60% 50%, 80% 70%, 100% 60%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 75%, 20% 60%, 40% 75%, 60% 55%, 80% 75%, 100% 65%, 100% 100%, 0 100%); }
+          100% { clip-path: polygon(0 70%, 20% 55%, 40% 70%, 60% 50%, 80% 70%, 100% 60%, 100% 100%, 0 100%); }
         }
         @keyframes wave3 {
-          0%, 100% { clip-path: polygon(0 80%, 25% 65%, 50% 80%, 75% 60%, 100% 75%, 100% 100%, 0 100%); }
-          50% { clip-path: polygon(0 80%, 25% 70%, 50% 80%, 75% 65%, 100% 80%, 100% 100%, 0 100%); }
+          0% { clip-path: polygon(0 80%, 25% 65%, 50% 80%, 75% 60%, 100% 75%, 100% 100%, 0 100%); }
+          50% { clip-path: polygon(0 85%, 25% 70%, 50% 85%, 75% 65%, 100% 80%, 100% 100%, 0 100%); }
+          100% { clip-path: polygon(0 80%, 25% 65%, 50% 80%, 75% 60%, 100% 75%, 100% 100%, 0 100%); }
         }
       `;
       document.head.appendChild(style);
@@ -55,7 +58,8 @@ const ParticleBanner: React.FC = () => {
           style={{
             background: 'linear-gradient(to top, rgba(59, 130, 246, 0.4) 0%, rgba(96, 165, 250, 0.3) 50%, rgba(59, 130, 246, 0.2) 100%)',
             clipPath: 'polygon(0 60%, 15% 45%, 30% 60%, 45% 40%, 60% 60%, 75% 45%, 90% 60%, 100% 50%, 100% 100%, 0 100%)',
-            animation: 'wave1 8s ease-in-out infinite',
+            animation: 'wave1 6s ease-in-out infinite',
+            WebkitAnimation: 'wave1 6s ease-in-out infinite',
           }}
         />
         
@@ -65,8 +69,10 @@ const ParticleBanner: React.FC = () => {
           style={{
             background: 'linear-gradient(to top, rgba(37, 99, 235, 0.35) 0%, rgba(59, 130, 246, 0.25) 50%, rgba(37, 99, 235, 0.15) 100%)',
             clipPath: 'polygon(0 70%, 20% 55%, 40% 70%, 60% 50%, 80% 70%, 100% 60%, 100% 100%, 0 100%)',
-            animation: 'wave2 10s ease-in-out infinite',
-            animationDelay: '1s',
+            animation: 'wave2 8s ease-in-out infinite',
+            animationDelay: '0.5s',
+            WebkitAnimation: 'wave2 8s ease-in-out infinite',
+            WebkitAnimationDelay: '0.5s',
           }}
         />
         
@@ -76,8 +82,10 @@ const ParticleBanner: React.FC = () => {
           style={{
             background: 'linear-gradient(to top, rgba(96, 165, 250, 0.3) 0%, rgba(147, 197, 253, 0.2) 50%, rgba(96, 165, 250, 0.1) 100%)',
             clipPath: 'polygon(0 80%, 25% 65%, 50% 80%, 75% 60%, 100% 75%, 100% 100%, 0 100%)',
-            animation: 'wave3 12s ease-in-out infinite',
-            animationDelay: '2s',
+            animation: 'wave3 10s ease-in-out infinite',
+            animationDelay: '1s',
+            WebkitAnimation: 'wave3 10s ease-in-out infinite',
+            WebkitAnimationDelay: '1s',
           }}
         />
       </div>
