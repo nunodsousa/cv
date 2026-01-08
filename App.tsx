@@ -27,7 +27,7 @@ import {
   Mic,
   Briefcase
 } from 'lucide-react';
-import ParticleBanner from './components/ParticleBanner';
+// import ParticleBanner from './components/ParticleBanner';
 import { Job, Education, SkillCategory } from './types';
 
 // Publications Data
