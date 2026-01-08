@@ -3,190 +3,92 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 const ParticleBanner: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    try {
-      const canvas = canvasRef.current;
-      const container = containerRef.current;
-      if (!canvas || !container) return;
-
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      let animationFrameId: number | null = null;
-      let width = 0;
-      let height = 0;
-      let time = 0;
-      let isAnimating = false;
-
-      const resize = () => {
-        try {
-          if (!container) return;
-          width = container.offsetWidth || 0;
-          height = container.offsetHeight || 0;
-          if (width > 0 && height > 0 && canvas) {
-            canvas.width = width;
-            canvas.height = height;
-          }
-        } catch (error) {
-          console.error('Error in resize:', error);
-        }
-      };
-
-      const drawWave = (
-        ctx: CanvasRenderingContext2D,
-        amplitude: number,
-        frequency: number,
-        phase: number,
-        yOffset: number,
-        gradient: CanvasGradient
-      ) => {
-        try {
-          if (width === 0 || height === 0 || !ctx) return;
-          
-          ctx.beginPath();
-          ctx.moveTo(0, height);
-
-          for (let x = 0; x <= width; x += 2) {
-            // Multiple sine waves combined for organic feel
-            const wave1 = Math.sin((x * frequency + phase) * 0.01) * amplitude;
-            const wave2 = Math.sin((x * frequency * 1.5 + phase * 1.3) * 0.01) * amplitude * 0.5;
-            const wave3 = Math.sin((x * frequency * 0.7 + phase * 0.8) * 0.01) * amplitude * 0.3;
-            const y = yOffset + wave1 + wave2 + wave3;
-            
-            ctx.lineTo(x, y);
-          }
-
-          ctx.lineTo(width, height);
-          ctx.closePath();
-          ctx.fillStyle = gradient;
-          ctx.fill();
-        } catch (error) {
-          console.error('Error drawing wave:', error);
-        }
-      };
-
-      const animate = () => {
-        try {
-          if (!ctx || !canvas) {
-            isAnimating = false;
-            return;
-          }
-
-          if (width === 0 || height === 0) {
-            animationFrameId = requestAnimationFrame(animate);
-            return;
-          }
-          
-          time += 1.5; // Increased speed multiplier
-          
-          // Clear with slight fade for smooth trails
-          ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
-          ctx.fillRect(0, 0, width, height);
-
-          // Create multiple organic waves with gradients - using slate/blue theme
-          const waves = [
-            {
-              amplitude: height * 0.15,
-              frequency: 0.8,
-              phase: time * 0.8, // Increased speed
-              yOffset: height * 0.6,
-              colors: ['rgba(59, 130, 246, 0.4)', 'rgba(96, 165, 250, 0.3)', 'rgba(59, 130, 246, 0.2)'] // blue-500, blue-400
-            },
-            {
-              amplitude: height * 0.12,
-              frequency: 1.2,
-              phase: time * 1.0, // Increased speed
-              yOffset: height * 0.7,
-              colors: ['rgba(37, 99, 235, 0.35)', 'rgba(59, 130, 246, 0.25)', 'rgba(37, 99, 235, 0.15)'] // blue-600, blue-500
-            },
-            {
-              amplitude: height * 0.1,
-              frequency: 0.6,
-              phase: time * 0.7, // Increased speed
-              yOffset: height * 0.5,
-              colors: ['rgba(96, 165, 250, 0.3)', 'rgba(147, 197, 253, 0.2)', 'rgba(96, 165, 250, 0.1)'] // blue-400, blue-300
-            },
-            {
-              amplitude: height * 0.08,
-              frequency: 1.5,
-              phase: time * 0.9, // Increased speed
-              yOffset: height * 0.8,
-              colors: ['rgba(59, 130, 246, 0.25)', 'rgba(96, 165, 250, 0.15)', 'rgba(59, 130, 246, 0.08)'] // blue-500, blue-400
-            }
-          ];
-
-          waves.forEach((wave, index) => {
-            try {
-              const gradient = ctx.createLinearGradient(0, wave.yOffset - wave.amplitude * 2, 0, height);
-              const colorCount = wave.colors.length;
-              wave.colors.forEach((color, i) => {
-                const stop = colorCount > 1 ? i / (colorCount - 1) : i;
-                gradient.addColorStop(stop, color);
-              });
-              
-              drawWave(ctx, wave.amplitude, wave.frequency, wave.phase, wave.yOffset, gradient);
-            } catch (error) {
-              console.error('Error in wave loop:', error);
-            }
-          });
-
-          if (isAnimating) {
-            animationFrameId = requestAnimationFrame(animate);
-          }
-        } catch (error) {
-          console.error('Error in animate:', error);
-          isAnimating = false;
-        }
-      };
-
-      // Initialize with a small delay to ensure container is rendered
-      const init = () => {
-        try {
-          resize();
-          if (width > 0 && height > 0) {
-            isAnimating = true;
-            animate();
-          } else {
-            // Retry if dimensions aren't ready
-            setTimeout(() => {
-              resize();
-              if (width > 0 && height > 0) {
-                isAnimating = true;
-                animate();
-              }
-            }, 100);
-          }
-        } catch (error) {
-          console.error('Error initializing banner:', error);
-        }
-      };
-
-      window.addEventListener('resize', resize);
-      init();
-
-      return () => {
-        isAnimating = false;
-        window.removeEventListener('resize', resize);
-        if (animationFrameId !== null) {
-          cancelAnimationFrame(animationFrameId);
-        }
-      };
-    } catch (error) {
-      console.error('Error setting up banner:', error);
-    }
-  }, []);
-
   return (
-    <div ref={containerRef} className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
-      {/* Canvas for organic waves */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />
+    <div className="w-full h-48 md:h-72 lg:h-80 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden shrink-0 border-b border-slate-800">
+      {/* CSS-based wave animation - safer and more reliable */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <svg className="absolute bottom-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 200">
+            <defs>
+              <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(59, 130, 246, 0.4)" />
+                <stop offset="50%" stopColor="rgba(96, 165, 250, 0.3)" />
+                <stop offset="100%" stopColor="rgba(59, 130, 246, 0.2)" />
+              </linearGradient>
+              <linearGradient id="wave2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(37, 99, 235, 0.35)" />
+                <stop offset="50%" stopColor="rgba(59, 130, 246, 0.25)" />
+                <stop offset="100%" stopColor="rgba(37, 99, 235, 0.15)" />
+              </linearGradient>
+              <linearGradient id="wave3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(96, 165, 250, 0.3)" />
+                <stop offset="50%" stopColor="rgba(147, 197, 253, 0.2)" />
+                <stop offset="100%" stopColor="rgba(96, 165, 250, 0.1)" />
+              </linearGradient>
+            </defs>
+            
+            {/* Wave 1 */}
+            <motion.path
+              d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z"
+              fill="url(#wave1)"
+              animate={{
+                d: [
+                  "M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z",
+                  "M0,100 Q300,80 600,100 T1200,100 L1200,200 L0,200 Z",
+                  "M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z",
+                ],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+            
+            {/* Wave 2 */}
+            <motion.path
+              d="M0,120 Q400,70 800,120 T1200,120 L1200,200 L0,200 Z"
+              fill="url(#wave2)"
+              animate={{
+                d: [
+                  "M0,120 Q400,70 800,120 T1200,120 L1200,200 L0,200 Z",
+                  "M0,120 Q400,90 800,120 T1200,120 L1200,200 L0,200 Z",
+                  "M0,120 Q400,70 800,120 T1200,120 L1200,200 L0,200 Z",
+                ],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5,
+              }}
+            />
+            
+            {/* Wave 3 */}
+            <motion.path
+              d="M0,140 Q200,90 400,140 T800,140 T1200,140 L1200,200 L0,200 Z"
+              fill="url(#wave3)"
+              animate={{
+                d: [
+                  "M0,140 Q200,90 400,140 T800,140 T1200,140 L1200,200 L0,200 Z",
+                  "M0,140 Q200,110 400,140 T800,140 T1200,140 L1200,200 L0,200 Z",
+                  "M0,140 Q200,90 400,140 T800,140 T1200,140 L1200,200 L0,200 Z",
+                ],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
+            />
+          </svg>
+        </div>
+      </div>
       
       {/* Animated gradient background layers - using blue theme */}
       <motion.div
