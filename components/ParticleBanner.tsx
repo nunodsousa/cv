@@ -174,10 +174,10 @@ const ParticleBanner: React.FC = () => {
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-4">
         <div className="bg-slate-900/70 backdrop-blur-2xl p-10 rounded-[2rem] border border-white/10 shadow-2xl text-center">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-3 font-serif bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
+          <h2 className="text-[2.5rem] md:text-[3.75rem] font-bold tracking-[-0.05em] text-white mb-3 font-serif">
             Data Science Lead
           </h2>
-          <p className="text-blue-400 text-sm md:text-base uppercase tracking-[0.4em] font-bold">
+          <p className="text-[#60a5fa] text-[0.875rem] md:text-base uppercase tracking-[0.4em] font-bold">
             Applied AI & Decision Systems
           </p>
         </div>
