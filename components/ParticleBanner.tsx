@@ -173,14 +173,15 @@ const ParticleBanner: React.FC = () => {
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-slate-950 overflow-hidden border-b border-slate-800">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10" style={{ padding: '1rem' }}>
-        <div className="text-center" style={{
+        <div style={{
           background: 'rgba(15, 23, 42, 0.7)',
           backdropFilter: 'blur(24px)',
           WebkitBackdropFilter: 'blur(24px)',
           padding: '2.5rem',
           borderRadius: '2rem',
           border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          textAlign: 'center'
         }}>
           <h2 className="text-[2.5rem] md:text-[3.75rem] mb-3" style={{
             fontFamily: "'Merriweather', serif",
