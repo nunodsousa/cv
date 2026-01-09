@@ -172,7 +172,7 @@ const ParticleBanner: React.FC = () => {
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-slate-950 overflow-hidden border-b border-slate-800">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-4">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10" style={{ padding: '1rem' }}>
         <div className="text-center" style={{
           background: 'rgba(15, 23, 42, 0.7)',
           backdropFilter: 'blur(24px)',
