@@ -9,45 +9,53 @@
       tailwind.config = {
         theme: {
           extend: {
+            // Slate + blue, matching the original CV palette.
             colors: {
-              "surface-container-lowest": "#010f1f",
-              "surface-container-high": "#1c2b3c",
-              "on-primary-container": "#006970",
-              "background": "#051424",
-              "tertiary-container": "#d5d9e9",
-              "surface": "#051424",
-              "on-primary": "#00363a",
-              "primary-fixed": "#7df4ff",
-              "surface-tint": "#00dbe9",
-              "inverse-primary": "#006970",
-              "primary-container": "#00f0ff",
-              "on-tertiary-container": "#5a5f6c",
-              "on-surface": "#d4e4fa",
-              "on-secondary": "#283141",
-              "surface-container": "#122131",
-              "secondary": "#bec7dc",
-              "outline-variant": "#3b494b",
-              "surface-dim": "#051424",
-              "tertiary": "#f5f5ff",
-              "surface-container-low": "#0d1c2d",
-              "outline": "#849495",
-              "on-background": "#d4e4fa",
-              "primary-fixed-dim": "#00dbe9",
-              "on-primary-fixed": "#002022",
-              "surface-bright": "#2c3a4c",
-              "secondary-container": "#40495b",
-              "on-secondary-container": "#afb8cd",
-              "inverse-surface": "#d4e4fa",
-              "secondary-fixed-dim": "#bec7dc",
-              "surface-variant": "#273647",
-              "on-surface-variant": "#b9cacb",
-              "inverse-on-surface": "#233143",
-              "surface-container-highest": "#273647",
-              "on-primary-fixed-variant": "#004f54",
-              "secondary-fixed": "#dae2f9",
-              "primary": "#dbfcff",
-              "on-tertiary": "#2b303c",
-              "on-tertiary-fixed": "#171b27"
+              // surfaces — Tailwind slate scale
+              "background": "#0f172a",          // slate-900
+              "surface": "#0f172a",             // slate-900
+              "surface-dim": "#0f172a",
+              "surface-bright": "#334155",      // slate-700
+              "surface-container-lowest": "#020617", // slate-950
+              "surface-container-low": "#0f172a",    // slate-900
+              "surface-container": "#1e293b",        // slate-800
+              "surface-container-high": "#1e293b",   // slate-800
+              "surface-container-highest": "#334155",// slate-700
+              "surface-variant": "#334155",
+              "outline": "#64748b",             // slate-500
+              "outline-variant": "#475569",     // slate-600
+
+              // ink on dark surfaces
+              "on-surface": "#e2e8f0",          // slate-200
+              "on-surface-variant": "#94a3b8",  // slate-400
+              "on-background": "#e2e8f0",
+              "inverse-surface": "#e2e8f0",
+              "inverse-on-surface": "#1e293b",
+
+              // blue accent
+              "primary": "#2563eb",             // blue-600 — solid fills
+              "primary-container": "#3b82f6",   // blue-500 — solid fill hover
+              "primary-fixed": "#60a5fa",       // blue-400 — accent on dark
+              "primary-fixed-dim": "#3b82f6",   // blue-500
+              "inverse-primary": "#2563eb",
+              "surface-tint": "#3b82f6",
+              "on-primary": "#ffffff",          // text on a solid blue fill
+              "on-primary-container": "#2563eb",// blue-600 — accent on light
+              "on-primary-fixed": "#0f172a",
+              "on-primary-fixed-variant": "#1d4ed8",
+
+              // neutrals kept for completeness
+              "secondary": "#cbd5e1",
+              "secondary-container": "#475569",
+              "on-secondary": "#1e293b",
+              "on-secondary-container": "#cbd5e1",
+              "secondary-fixed": "#e2e8f0",
+              "secondary-fixed-dim": "#cbd5e1",
+              "tertiary": "#f8fafc",
+              "tertiary-container": "#e2e8f0",
+              "on-tertiary": "#334155",
+              "on-tertiary-container": "#64748b",
+              "on-tertiary-fixed": "#1e293b"
             },
             fontFamily: {
               serif: ['Libre Caslon Text', 'serif'],
@@ -154,7 +162,7 @@
         }
 
         aside .text-primary-fixed {
-          color: #0891b2 !important;
+          color: #2563eb !important;
           font-size: 8pt !important;
         }
 
@@ -206,7 +214,7 @@
         /* Profile summary box */
         .bg-surface-container-high {
           background: #f8fafc !important;
-          border-left: 3px solid #0891b2 !important;
+          border-left: 3px solid #2563eb !important;
           padding: 10px 12px !important;
           border-radius: 4px !important;
         }

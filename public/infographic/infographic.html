@@ -368,7 +368,7 @@
 
             function draw(t) {
                 ctx.clearRect(0, 0, w, h);
-                ctx.fillStyle = '#051424';
+                ctx.fillStyle = '#0f172a';
                 ctx.fillRect(0, 0, w, h);
 
                 /* one-shot resolve sweep on load */
@@ -388,7 +388,7 @@
                         const d2 = dx * dx + dy * dy;
                         if (d2 < 96 * 96) {
                             const a = (1 - Math.sqrt(d2) / 96) * 0.16 * resolved;
-                            ctx.strokeStyle = 'rgba(0,219,233,' + a + ')';
+                            ctx.strokeStyle = 'rgba(59,130,246,' + a + ')';
                             ctx.moveTo(lit[i].x, lit[i].y);
                             ctx.lineTo(lit[j].x, lit[j].y);
                         }
@@ -405,9 +405,9 @@
 
                     if (signal > 0.05) {
                         const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 11);
-                        g.addColorStop(0, 'rgba(125,244,255,' + (alpha * signal) + ')');
-                        g.addColorStop(0.35, 'rgba(0,219,233,' + (alpha * signal * 0.35) + ')');
-                        g.addColorStop(1, 'rgba(0,219,233,0)');
+                        g.addColorStop(0, 'rgba(147,197,253,' + (alpha * signal) + ')');
+                        g.addColorStop(0.35, 'rgba(59,130,246,' + (alpha * signal * 0.35) + ')');
+                        g.addColorStop(1, 'rgba(59,130,246,0)');
                         ctx.fillStyle = g;
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, p.r * 11, 0, Math.PI * 2);
@@ -415,8 +415,8 @@
                     }
 
                     const core = signal > 0.05
-                        ? 'rgba(212,228,250,' + Math.min(0.95, alpha + 0.25) + ')'
-                        : 'rgba(132,148,149,' + Math.min(0.5, alpha) + ')';
+                        ? 'rgba(226,232,240,' + Math.min(0.95, alpha + 0.25) + ')'
+                        : 'rgba(100,116,139,' + Math.min(0.5, alpha) + ')';
                     ctx.fillStyle = core;
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, Math.max(0.7, p.r * 0.8), 0, Math.PI * 2);

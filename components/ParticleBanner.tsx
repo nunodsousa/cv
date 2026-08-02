@@ -61,7 +61,7 @@ const ParticleBanner: React.FC = () => {
       const area = width * height;
       const count = Math.max(80, Math.min(220, Math.floor(area / 3500)));
       sparkles = Array.from({ length: count }, () => {
-        const hue = 178 + Math.random() * 25; // electric cyan range
+        const hue = 205 + Math.random() * 25; // slate-blue range
         // Bias toward the background layer so the foreground constellation stays sparse and legible.
         const depth = Math.pow(Math.random(), 1.6);
         const speedScale = reduceMotion ? 0 : 0.18 + depth * 1.15;
@@ -128,14 +128,14 @@ const ParticleBanner: React.FC = () => {
 
     const draw = (t: number) => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#051424';
+      ctx.fillStyle = '#020617';
       ctx.fillRect(0, 0, width, height);
 
       // vignette / depth
       const vignette = ctx.createRadialGradient(width * 0.5, height * 0.55, 10, width * 0.5, height * 0.55, Math.max(width, height) * 0.75);
-      vignette.addColorStop(0, 'rgba(0,240,255,0.07)');
-      vignette.addColorStop(0.45, 'rgba(5,20,36,0.0)');
-      vignette.addColorStop(1, 'rgba(5,20,36,0.92)');
+      vignette.addColorStop(0, 'rgba(59,130,246,0.07)');
+      vignette.addColorStop(0.45, 'rgba(2,6,23,0.0)');
+      vignette.addColorStop(1, 'rgba(2,6,23,0.92)');
       ctx.fillStyle = vignette;
       ctx.fillRect(0, 0, width, height);
 
@@ -153,8 +153,8 @@ const ParticleBanner: React.FC = () => {
         const ty = c.y - (c.vy / mag) * tailLen;
         const grad = ctx.createLinearGradient(c.x, c.y, tx, ty);
         grad.addColorStop(0, `rgba(255,255,255,${0.95 * alpha})`);
-        grad.addColorStop(0.4, `hsla(186, 95%, 75%, ${0.45 * alpha})`);
-        grad.addColorStop(1, 'hsla(186, 95%, 65%, 0)');
+        grad.addColorStop(0.4, `hsla(213, 94%, 78%, ${0.45 * alpha})`);
+        grad.addColorStop(1, 'hsla(213, 94%, 68%, 0)');
         ctx.strokeStyle = grad;
         ctx.lineWidth = 1.6;
         ctx.lineCap = 'round';
@@ -208,7 +208,7 @@ const ParticleBanner: React.FC = () => {
           const d2 = dx * dx + dy * dy;
           if (d2 < 80 * 80) {
             const a = (1 - Math.sqrt(d2) / 80) * 0.1;
-            ctx.strokeStyle = `rgba(0,219,233,${a})`;
+            ctx.strokeStyle = `rgba(96,165,250,${a})`;
             ctx.moveTo(linked[i].x, linked[i].y);
             ctx.lineTo(linked[j].x, linked[j].y);
           }
@@ -245,7 +245,7 @@ const ParticleBanner: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full h-48 md:h-72 lg:h-80 relative bg-[#051424] overflow-hidden border-b border-white/10">
+    <div className="w-full h-48 md:h-72 lg:h-80 relative bg-[#020617] overflow-hidden border-b border-white/10">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 px-6 text-center">
         <h2 style={{
@@ -254,8 +254,8 @@ const ParticleBanner: React.FC = () => {
           fontSize: 'clamp(2.1rem, 5.5vw, 3.75rem)',
           lineHeight: 1.1,
           letterSpacing: '-0.02em',
-          color: '#d4e4fa',
-          textShadow: '0 2px 24px rgba(0,240,255,0.45), 0 1px 2px rgba(0,0,0,0.9)',
+          color: '#e2e8f0',
+          textShadow: '0 2px 24px rgba(37,99,235,0.35), 0 1px 2px rgba(0,0,0,0.9)',
           whiteSpace: 'nowrap'
         }}>
           SME Data Science & AI
@@ -264,14 +264,14 @@ const ParticleBanner: React.FC = () => {
           width: '3.5rem',
           height: '2px',
           margin: '0.9rem 0',
-          background: 'linear-gradient(to right, transparent, #00dbe9, transparent)'
+          background: 'linear-gradient(to right, transparent, #60a5fa, transparent)'
         }} />
         <p style={{
           fontFamily: "'Geist', monospace",
           fontSize: 'clamp(0.7rem, 1.6vw, 1rem)',
           fontWeight: 600,
           textTransform: 'uppercase',
-          color: '#7df4ff',
+          color: '#93c5fd',
           letterSpacing: '0.3em',
           textShadow: '0 1px 4px rgba(0,0,0,0.9)'
         }}>

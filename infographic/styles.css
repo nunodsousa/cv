@@ -1,30 +1,44 @@
 /* =========================================================
    Nuno de Sousa — "Signal from disorder"
-   Design system: Cognitive Authority (matches the main CV)
+   Slate + blue palette, matching the main CV.
 
    Colour encoding is meaningful, not decorative:
-     cyan  = signal / resolved / the data series
+     blue  = signal / resolved / the data series
      slate = noise / context / structure
    ========================================================= */
 
 :root {
-    /* surfaces */
-    --void: #051424;
-    --surface-lowest: #010f1f;
-    --surface-low: #0d1c2d;
-    --surface: #122131;
-    --surface-high: #1c2b3c;
-    --surface-highest: #273647;
+    /* surfaces — Tailwind slate scale, as the original CV */
+    --void: #0f172a;
+    /* slate-900 */
+    --surface-lowest: #020617;
+    /* slate-950 */
+    --surface-low: #0f172a;
+    /* slate-900 */
+    --surface: #1e293b;
+    /* slate-800 */
+    --surface-high: #334155;
+    /* slate-700 */
+    --surface-highest: #475569;
+    /* slate-600 */
 
-    /* signal */
-    --cyan: #00dbe9;
-    --cyan-bright: #00f0ff;
-    --cyan-light: #7df4ff;
+    /* signal — blue, validated against the slate-950 chart surface */
+    --accent: #3b82f6;
+    /* blue-500 — data marks, rules, bullets */
+    --accent-light: #60a5fa;
+    /* blue-400 — labels and small text on dark */
+    --accent-bright: #93c5fd;
+    /* blue-300 — hover / emphasis */
+    --accent-solid: #2563eb;
+    /* blue-600 — solid button fill, white text */
 
     /* ink */
-    --ink: #d4e4fa;
-    --ink-muted: #b9cacb;
-    --ink-dim: #849495;
+    --ink: #e2e8f0;
+    /* slate-200 */
+    --ink-muted: #94a3b8;
+    /* slate-400 */
+    --ink-dim: #64748b;
+    /* slate-500 */
 
     /* lines */
     --hair: rgba(255, 255, 255, 0.10);
@@ -68,7 +82,7 @@ a {
 }
 
 :focus-visible {
-    outline: 2px solid var(--cyan-bright);
+    outline: 2px solid var(--accent-bright);
     outline-offset: 3px;
     border-radius: 2px;
 }
@@ -94,7 +108,7 @@ a {
     justify-content: space-between;
     gap: 1rem;
     padding: 0.75rem var(--gutter);
-    background: rgba(5, 20, 36, 0.82);
+    background: rgba(15, 23, 42, 0.86);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--hair);
 }
@@ -115,8 +129,8 @@ a {
 }
 
 .topbar-back:hover {
-    color: var(--cyan-light);
-    border-color: rgba(0, 240, 255, 0.4);
+    color: var(--accent-light);
+    border-color: rgba(59, 130, 246, 0.5);
 }
 
 .topbar-id {
@@ -134,7 +148,7 @@ a {
 }
 
 .topbar-role {
-    color: var(--cyan-light);
+    color: var(--accent-light);
 }
 
 @media (max-width: 640px) {
@@ -176,7 +190,7 @@ a {
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--cyan-light);
+    color: var(--accent-light);
     margin-bottom: 1.5rem;
 }
 
@@ -187,7 +201,7 @@ a {
     line-height: 0.95;
     letter-spacing: -0.035em;
     color: var(--ink);
-    text-shadow: 0 2px 40px rgba(0, 240, 255, 0.28);
+    text-shadow: 0 2px 24px rgba(2, 6, 23, 0.9);
     margin-bottom: 1.75rem;
 }
 
@@ -216,7 +230,7 @@ a {
     padding: 0.45rem 0.85rem;
     border: 1px solid var(--hair);
     border-radius: 4px;
-    background: rgba(18, 33, 49, 0.55);
+    background: rgba(30, 41, 59, 0.6);
     backdrop-filter: blur(6px);
 }
 
@@ -226,7 +240,7 @@ a {
     right: 0;
     bottom: 0;
     height: 140px;
-    background: linear-gradient(to bottom, rgba(5, 20, 36, 0), var(--void));
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0), var(--void));
     z-index: 1;
     pointer-events: none;
 }
@@ -289,7 +303,7 @@ a {
 }
 
 .tl-panel--now {
-    border-left: 3px solid var(--cyan);
+    border-left: 3px solid var(--accent);
     background: var(--surface-high);
 }
 
@@ -303,7 +317,7 @@ a {
 }
 
 .tl-panel--now .tl-era {
-    color: var(--cyan-light);
+    color: var(--accent-light);
 }
 
 .tl-domain {
@@ -320,9 +334,9 @@ a {
     font-style: italic;
     font-size: 1.02rem;
     line-height: 1.5;
-    color: var(--cyan-light);
+    color: var(--accent-light);
     padding-left: 0.9rem;
-    border-left: 2px solid rgba(0, 219, 233, 0.35);
+    border-left: 2px solid rgba(59, 130, 246, 0.45);
     margin-bottom: 1.1rem;
 }
 
@@ -350,7 +364,7 @@ a {
     flex: 1;
     width: 1px;
     min-height: 2rem;
-    background: linear-gradient(to bottom, transparent, rgba(0, 219, 233, 0.5), transparent);
+    background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.5), transparent);
 }
 
 .tl-arrow-label {
@@ -359,7 +373,7 @@ a {
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--cyan);
+    color: var(--accent);
     writing-mode: vertical-rl;
     white-space: nowrap;
 }
@@ -379,7 +393,7 @@ a {
         height: 1px;
         min-height: 0;
         align-self: center;
-        background: linear-gradient(to right, transparent, rgba(0, 219, 233, 0.5), transparent);
+        background: linear-gradient(to right, transparent, rgba(59, 130, 246, 0.5), transparent);
     }
 
     .tl-arrow-label {
@@ -428,7 +442,7 @@ a {
 }
 
 .readout-item b {
-    color: var(--cyan-light);
+    color: var(--accent-light);
     font-size: 1.15rem;
     font-weight: 600;
     letter-spacing: 0;
@@ -488,7 +502,7 @@ a {
     top: -0.25rem;
     bottom: 0;
     width: 1px;
-    background: linear-gradient(to bottom, rgba(0, 240, 255, 0.65), rgba(0, 240, 255, 0.15));
+    background: linear-gradient(to bottom, rgba(96, 165, 250, 0.7), rgba(37, 99, 235, 0.18));
     z-index: 3;
     pointer-events: none;
 }
@@ -502,7 +516,7 @@ a {
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--cyan-bright);
+    color: var(--accent-bright);
     white-space: nowrap;
 }
 
@@ -528,7 +542,7 @@ a {
     display: block;
     width: 46%;
     max-width: 20px;
-    background: var(--cyan);
+    background: var(--accent);
     /* 4px rounded data-end, anchored to the baseline */
     border-radius: 4px 4px 0 0;
     transition: background 0.18s;
@@ -536,11 +550,11 @@ a {
 
 .bar-cell:hover .bar,
 .bar-cell:focus-visible .bar {
-    background: var(--cyan-bright);
+    background: var(--accent-bright);
 }
 
 .bar--peak {
-    background: var(--cyan-bright);
+    background: var(--accent-bright);
 }
 
 .bar-label {
@@ -551,7 +565,7 @@ a {
     font-family: var(--mono);
     font-size: 0.72rem;
     font-weight: 600;
-    color: var(--cyan-light);
+    color: var(--accent-light);
 }
 
 /* x axis */
@@ -659,7 +673,7 @@ a {
 }
 
 .record-table summary:hover {
-    color: var(--cyan-light);
+    color: var(--accent-light);
 }
 
 .record-table table {
@@ -688,7 +702,7 @@ a {
 .record-table td:first-child {
     font-family: var(--mono);
     font-size: 0.76rem;
-    color: var(--cyan-light);
+    color: var(--accent-light);
     white-space: nowrap;
 }
 
@@ -735,7 +749,7 @@ a {
 .cap-tier {
     background: var(--surface);
     border: 1px solid var(--hair);
-    border-top: 3px solid var(--cyan);
+    border-top: 3px solid var(--accent);
     border-radius: 10px;
     padding: clamp(1.4rem, 2.5vw, 2rem);
 }
@@ -746,7 +760,7 @@ a {
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--cyan-light);
+    color: var(--accent-light);
     margin-bottom: 0.5rem;
 }
 
@@ -782,7 +796,7 @@ a {
     top: 0.55em;
     width: 5px;
     height: 5px;
-    background: var(--cyan);
+    background: var(--accent);
     border-radius: 1px;
 }
 
@@ -809,7 +823,7 @@ a {
 
 .inst:hover {
     transform: translateY(-2px);
-    border-color: rgba(0, 240, 255, 0.35);
+    border-color: rgba(59, 130, 246, 0.45);
     background: var(--surface-high);
 }
 
@@ -857,7 +871,7 @@ a {
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid var(--hair);
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+    box-shadow: 0 4px 14px rgba(2, 6, 23, 0.5);
 }
 
 .footer-name {
@@ -896,14 +910,14 @@ a {
 }
 
 .btn--primary {
-    background: var(--cyan-light);
-    color: #002022;
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    background: var(--accent-solid);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.45);
 }
 
 .btn--primary:hover {
-    background: var(--cyan-bright);
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+    background: var(--accent);
+    box-shadow: 0 10px 26px rgba(2, 6, 23, 0.55);
     transform: translateY(-2px);
 }
 
@@ -921,7 +935,7 @@ a {
 }
 
 .footer-links a:hover {
-    color: var(--cyan-light);
+    color: var(--accent-light);
     transform: scale(1.1);
 }
 
@@ -942,7 +956,7 @@ a {
 }
 
 .orcid:hover {
-    border-color: rgba(0, 240, 255, 0.4);
+    border-color: rgba(59, 130, 246, 0.5);
 }
 
 /* =========================================================

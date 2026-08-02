@@ -793,7 +793,7 @@ const App: React.FC = () => {
               {/* Profile Header (Hidden on mobile if collapsed, but visible when open) */}
               <div className="mb-10 text-center md:text-left relative">
                   <div className="absolute -top-6 -left-6 w-40 h-40 bg-primary-fixed/10 blur-[50px] rounded-full pointer-events-none hidden md:block" />
-                  <div className="w-32 h-32 mx-auto md:mx-0 bg-surface-container-high rounded-full border-2 border-surface-container-high shadow-[0_0_20px_rgba(0,240,255,0.15)] mb-6 overflow-hidden relative z-10">
+                  <div className="w-32 h-32 mx-auto md:mx-0 bg-surface-container-high rounded-full border-2 border-surface-container-high shadow-lg shadow-black/40 mb-6 overflow-hidden relative z-10">
                     <img
                       src={`${import.meta.env.BASE_URL}photos/Nuno_2023.jpg`}
                       alt={CV_DATA.personal.name}
@@ -860,7 +860,7 @@ const App: React.FC = () => {
               {/* Download Button Sidebar */}
               <button
                 onClick={() => window.print()}
-                className="w-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(0,240,255,0.15)] hover:shadow-[0_0_25px_rgba(0,240,255,0.3)] mb-10 group print:hidden"
+                className="w-full bg-primary hover:bg-primary-container text-on-primary font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/30 mb-10 group print:hidden"
               >
                 <Download className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
                 <span>Download CV</span>
@@ -979,7 +979,7 @@ const App: React.FC = () => {
                     className="relative"
                   >
                     {/* Timeline Dot */}
-                    <div className="absolute md:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-primary-fixed border-4 border-[#f8fafc] shadow-[0_0_10px_rgba(0,240,255,0.6)] hidden md:block" />
+                    <div className="absolute md:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-primary-fixed border-4 border-[#f8fafc] shadow-sm hidden md:block" />
 
                     <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
                       <h3 className="text-xl font-serif font-bold text-slate-800">{job.role}</h3>
@@ -1180,7 +1180,7 @@ const App: React.FC = () => {
               <div className="p-4 border-t border-white/10 bg-surface-container-lowest/60 flex justify-end">
                 <button
                   onClick={() => setActiveModal(null)}
-                  className="px-6 py-2 bg-primary-fixed text-on-primary-fixed rounded-lg hover:bg-primary-container transition-colors font-medium text-sm"
+                  className="px-6 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary-container transition-colors font-medium text-sm"
                 >
                   Close
                 </button>
