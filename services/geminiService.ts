@@ -12,7 +12,7 @@ let chatSession: Chat | null = null;
 const RESUME_CONTEXT = `
 NAME: Nuno Miguel Santos Teixeira de Sousa (Nuno de Sousa)
 TITLE: SME Data Science & AI
-SUMMARY: Data & AI Expert with 10+ years of experience translating complex, data-sparse problems into board-level strategy — from quantitative pricing and forecasting models to enterprise-scale AI/ML transformation across finance, energy, healthcare, and industry. Ph.D. in Theoretical Physics and Executive MBA candidate at CPBS, combining deep technical expertise with the executive communication and governance skills to drive high-stakes decision-making.
+SUMMARY: Data & AI Expert with 10+ years of experience leading large, multidisciplinary teams and translating complex, data-sparse problems into board-level strategy — from quantitative pricing and forecasting models to enterprise-scale AI/ML transformation across finance, energy, healthcare, and industry. Ph.D. in Theoretical Physics and Executive MBA candidate at CPBS, combining deep technical expertise with the executive communication and governance skills to drive high-stakes decision-making.
 
 CONTACT (some info is hidden for privacy reasons):
 - Emails: nunoxxxxxxxx@gmail.com, nunoxxxxxxxx@simia-tech.com 
@@ -34,7 +34,7 @@ EMPLOYMENT HISTORY:
    - Defined/implemented end-to-end AI/ML/data science solutions for high-profile clients (utilities, healthcare, chemicals).
    - Processed/structured large datasets.
    - Acted as business translator between technical teams and stakeholders.
-   - Led cross-functional collaboration.
+   - Led large, cross-functional teams of data scientists, engineers, and analysts.
    - Expertise: Market analysis, pricing strategies, demand forecasting, process optimization.
 
 3. Quantitative Analyst - Arfima Trading (Madrid) [Apr 2019 - Oct 2019]

@@ -312,7 +312,7 @@ const CV_DATA = {
     name: "Nuno MST de Sousa",
     shortName: "Nuno de Sousa",
     title: "SME Data Science & AI",
-    summary: "Data & AI Expert with 10+ years of experience translating complex, data-sparse problems into board-level strategy — from quantitative pricing and forecasting models to enterprise-scale AI/ML transformation across finance, energy, healthcare, and industry. Ph.D. in Theoretical Physics and Executive MBA candidate at CPBS, combining deep technical expertise with the executive communication and governance skills to drive high-stakes decision-making.",
+    summary: "Data & AI Expert with 10+ years of experience leading large, multidisciplinary teams and translating complex, data-sparse problems into board-level strategy — from quantitative pricing and forecasting models to enterprise-scale AI/ML transformation across finance, energy, healthcare, and industry. Ph.D. in Theoretical Physics and Executive MBA candidate at CPBS, combining deep technical expertise with the executive communication and governance skills to drive high-stakes decision-making.",
     emails: ["(hidden)"],
     phones: ["(hidden)"],
     location: "Oporto & Madrid, Portugal and Spain",
@@ -361,7 +361,7 @@ const CV_DATA = {
       company: "DataJuicers and Simia-Tech (Madrid, Oporto & Remote)",
       companyUrl: "https://www.datajuicers.com",
       period: "NOVEMBER 2019 — MARCH 2026",
-      description: "Led the design, delivery, and scaling of end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as technical lead and strategic advisor, driving data-driven transformation across utilities, healthcare, chemicals, and energy-related domains, while supporting pre-sales, solution architecture, and executive decision-making.",
+      description: "Led large, multidisciplinary teams delivering and scaling end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as technical lead and strategic advisor, driving data-driven transformation across utilities, healthcare, chemicals, and energy-related domains, while supporting pre-sales, solution architecture, and executive decision-making.",
       highlights: [
         <span>
           Architected and deployed <b>production-grade data science and AI pipelines</b>, transforming <b>large, heterogeneous datasets</b> into reliable <b>analytical and forecasting platforms</b>.
@@ -373,7 +373,7 @@ const CV_DATA = {
           Served as a key <b>business–technology interface</b>, translating complex analytical outputs into clear, actionable insights for <b>senior stakeholders</b> and non-technical audiences.
         </span>,
         <span>
-          Provided <b>technical leadership</b> across <b>cross-functional teams</b>, ensuring alignment between <b>business objectives</b>, analytical rigor, and timely delivery of client solutions.
+          <b>Led large, cross-functional teams</b> of data scientists, engineers, and analysts, providing <b>technical leadership</b> and ensuring alignment between <b>business objectives</b>, analytical rigor, and timely delivery of client solutions.
         </span>,
         <span>
           Contributed to <b>pre-sales activities</b>, including <b>solution design</b>, <b>technical validation</b>, and <b>client-facing presentations</b>, helping secure and expand long-term engagements.
@@ -866,13 +866,14 @@ const App: React.FC = () => {
                 <span>Download CV</span>
               </button>
 
-              {/* Infographic Button (below Download CV) */}
+              {/* Infographic Button (below Download CV) — disabled
               <a
                 href={`${import.meta.env.BASE_URL}infographic/infographic.html`}
                 className="w-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all border border-white/10 mb-10 print:hidden"
               >
                 Infographic
               </a>
+              */}
 
               <div className="w-full h-px bg-white/10 mb-10 print:hidden" />
 
@@ -952,7 +953,7 @@ const App: React.FC = () => {
                   Profile
                 </motion.h2>
                 <p className="text-lg text-on-surface-variant leading-relaxed">
-                  <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Data & AI Expert</strong> with <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">10+ years of experience</strong> translating complex, data-sparse problems into <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">board-level strategy</strong> — from quantitative <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">pricing and forecasting models</strong> to enterprise-scale <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">AI/ML transformation</strong> across finance, energy, healthcare, and industry. <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Ph.D. in Theoretical Physics</strong> and <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Executive MBA candidate</strong> at <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">CPBS</strong>, combining deep technical expertise with the <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">executive communication and governance</strong> skills to drive high-stakes decision-making.
+                  <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Data & AI Expert</strong> with <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">10+ years of experience</strong> <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">leading large, multidisciplinary teams</strong> and translating complex, data-sparse problems into <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">board-level strategy</strong> — from quantitative <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">pricing and forecasting models</strong> to enterprise-scale <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">AI/ML transformation</strong> across finance, energy, healthcare, and industry. <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Ph.D. in Theoretical Physics</strong> and <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Executive MBA candidate</strong> at <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">CPBS</strong>, combining deep technical expertise with the <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">executive communication and governance</strong> skills to drive high-stakes decision-making.
                 </p>
               </div>
             </section>
