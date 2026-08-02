@@ -15,6 +15,16 @@ type Sparkle = {
   twinkleSpeed: number;
   twinklePhase: number;
   hue: number;
+  depth: number; // 0 = far background, 1 = near foreground
+};
+
+type Comet = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  spawnTime: number;
+  lifeMs: number;
 };
 
 const ParticleBanner: React.FC = () => {
@@ -26,10 +36,14 @@ const ParticleBanner: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     let width = 0;
     let height = 0;
     let animationFrameId: number;
     let sparkles: Sparkle[] = [];
+    let comets: Comet[] = [];
+    let nextCometAt = 0;
     let lastTime = performance.now();
 
     const resize = () => {
@@ -48,22 +62,41 @@ const ParticleBanner: React.FC = () => {
       const count = Math.max(80, Math.min(220, Math.floor(area / 3500)));
       sparkles = Array.from({ length: count }, () => {
         const hue = 205 + Math.random() * 25; // blue range
+        // Bias toward the background layer so the foreground constellation stays sparse and legible.
+        const depth = Math.pow(Math.random(), 1.6);
+        const speedScale = reduceMotion ? 0 : 0.18 + depth * 1.15;
         return {
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.12,
-          vy: (Math.random() - 0.5) * 0.08,
-          r: 0.8 + Math.random() * 1.9,
-          baseAlpha: 0.15 + Math.random() * 0.45,
+          vx: (Math.random() - 0.5) * 0.55 * speedScale,
+          vy: (Math.random() - 0.5) * 0.38 * speedScale,
+          r: 0.6 + depth * 2.1,
+          baseAlpha: (0.12 + depth * 0.5) * (0.7 + Math.random() * 0.3),
           twinkleSpeed: 0.8 + Math.random() * 1.8,
           twinklePhase: Math.random() * Math.PI * 2,
           hue,
+          depth,
         };
       });
+      comets = [];
+      nextCometAt = performance.now() + 2500 + Math.random() * 3500;
+    };
+
+    const spawnComet = (t: number): Comet => {
+      const fromLeft = Math.random() < 0.5;
+      const speed = 6.5 + Math.random() * 3.5;
+      const angle = (12 + Math.random() * 10) * (Math.PI / 180);
+      return {
+        x: fromLeft ? -60 : width + 60,
+        y: Math.random() * height * 0.55,
+        vx: (fromLeft ? 1 : -1) * speed * Math.cos(angle),
+        vy: speed * Math.sin(angle),
+        spawnTime: t,
+        lifeMs: 750 + Math.random() * 350,
+      };
     };
 
     const update = (t: number, dtScale: number) => {
-      // Subtle drift + wrap
       for (const s of sparkles) {
         s.x += s.vx * dtScale;
         s.y += s.vy * dtScale;
@@ -71,16 +104,29 @@ const ParticleBanner: React.FC = () => {
         if (s.x > width + 20) s.x = -20;
         if (s.y < -20) s.y = height + 20;
         if (s.y > height + 20) s.y = -20;
-        // very slight curl to feel “alive”
-        const curl = Math.sin(t * 0.0006 + s.twinklePhase) * 0.02;
-        s.vx += curl * 0.02;
-        s.vy -= curl * 0.02;
-        s.vx *= 0.999;
-        s.vy *= 0.999;
+        if (!reduceMotion) {
+          const curl = Math.sin(t * 0.0006 + s.twinklePhase) * 0.02 * (0.3 + s.depth);
+          s.vx += curl * 0.02;
+          s.vy -= curl * 0.02;
+          s.vx *= 0.999;
+          s.vy *= 0.999;
+        }
+      }
+
+      if (!reduceMotion) {
+        if (t > nextCometAt) {
+          comets.push(spawnComet(t));
+          nextCometAt = t + 3500 + Math.random() * 4500;
+        }
+        for (const c of comets) {
+          c.x += c.vx * dtScale;
+          c.y += c.vy * dtScale;
+        }
+        comets = comets.filter(c => t - c.spawnTime < c.lifeMs && c.x > -100 && c.x < width + 100);
       }
     };
 
-    const draw = () => {
+    const draw = (t: number) => {
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = '#020617';
       ctx.fillRect(0, 0, width, height);
@@ -93,16 +139,43 @@ const ParticleBanner: React.FC = () => {
       ctx.fillStyle = vignette;
       ctx.fillRect(0, 0, width, height);
 
-      // sparkles (additive)
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
 
+      // comet trails (drawn first, sit behind the star field's glow)
+      for (const c of comets) {
+        const age = (t - c.spawnTime) / c.lifeMs;
+        const fade = age < 0.15 ? age / 0.15 : age > 0.7 ? 1 - (age - 0.7) / 0.3 : 1;
+        const alpha = Math.max(0, Math.min(1, fade));
+        const tailLen = 70;
+        const mag = Math.hypot(c.vx, c.vy) || 1;
+        const tx = c.x - (c.vx / mag) * tailLen;
+        const ty = c.y - (c.vy / mag) * tailLen;
+        const grad = ctx.createLinearGradient(c.x, c.y, tx, ty);
+        grad.addColorStop(0, `rgba(255,255,255,${0.95 * alpha})`);
+        grad.addColorStop(0.4, `hsla(210, 95%, 75%, ${0.45 * alpha})`);
+        grad.addColorStop(1, 'hsla(210, 95%, 65%, 0)');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.6;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(c.x, c.y);
+        ctx.lineTo(tx, ty);
+        ctx.stroke();
+
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, 1.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // sparkles (additive)
       sparkles.forEach(s => {
         const alpha = Math.max(
           0,
           Math.min(
             1,
-            s.baseAlpha * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(performance.now() * 0.0015 * s.twinkleSpeed + s.twinklePhase)))
+            s.baseAlpha * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 0.0015 * s.twinkleSpeed + s.twinklePhase)))
           )
         );
 
@@ -123,19 +196,21 @@ const ParticleBanner: React.FC = () => {
         ctx.fill();
       });
 
-      // subtle connections like shadcn (only local)
+      // constellation lines: only among the nearer, brighter sparkles so the
+      // network reads as a foreground layer instead of cluttering the whole sky
+      const linked = sparkles.filter(s => s.depth > 0.45);
       ctx.beginPath();
       ctx.lineWidth = 1;
-      for (let i = 0; i < sparkles.length; i++) {
-        for (let j = i + 1; j < sparkles.length; j++) {
-          const dx = sparkles[i].x - sparkles[j].x;
-          const dy = sparkles[i].y - sparkles[j].y;
+      for (let i = 0; i < linked.length; i++) {
+        for (let j = i + 1; j < linked.length; j++) {
+          const dx = linked[i].x - linked[j].x;
+          const dy = linked[i].y - linked[j].y;
           const d2 = dx * dx + dy * dy;
-          if (d2 < 70 * 70) {
-            const a = (1 - Math.sqrt(d2) / 70) * 0.08;
+          if (d2 < 80 * 80) {
+            const a = (1 - Math.sqrt(d2) / 80) * 0.1;
             ctx.strokeStyle = `rgba(96,165,250,${a})`;
-            ctx.moveTo(sparkles[i].x, sparkles[i].y);
-            ctx.lineTo(sparkles[j].x, sparkles[j].y);
+            ctx.moveTo(linked[i].x, linked[i].y);
+            ctx.lineTo(linked[j].x, linked[j].y);
           }
         }
       }
@@ -154,7 +229,7 @@ const ParticleBanner: React.FC = () => {
       const dtScale = Math.min(deltaTime / (1000 / 60), 2.0); // Cap to 2.0 to avoid huge jumps if tab backgrounded
 
       update(currentTime, dtScale);
-      draw();
+      draw(currentTime);
       animationFrameId = requestAnimationFrame(loop);
     };
 
@@ -172,37 +247,35 @@ const ParticleBanner: React.FC = () => {
   return (
     <div className="w-full h-48 md:h-72 lg:h-80 relative bg-slate-950 overflow-hidden border-b border-slate-800">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10" style={{ padding: '1rem' }}>
-        <div style={{
-          background: 'rgba(15, 23, 42, 0.7)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          padding: '2.5rem',
-          borderRadius: '2rem',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-          textAlign: 'center'
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 px-6 text-center">
+        <h2 style={{
+          fontFamily: "'Merriweather', serif",
+          fontWeight: 700,
+          fontSize: 'clamp(2.1rem, 5.5vw, 3.75rem)',
+          lineHeight: 1.1,
+          letterSpacing: '-0.02em',
+          color: '#f8fafc',
+          textShadow: '0 2px 24px rgba(96,165,250,0.45), 0 1px 2px rgba(0,0,0,0.9)',
+          whiteSpace: 'nowrap'
         }}>
-          <h2 className="text-[2.5rem] md:text-[3.75rem] mb-3" style={{
-            fontFamily: "'Merriweather', serif",
-            fontWeight: 700,
-            letterSpacing: '-0.05em',
-            marginBottom: '0.75rem',
-            background: 'linear-gradient(to bottom, white, #94a3b8)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}>
-            Data Science Lead
-          </h2>
-          <p className="text-[0.875rem] md:text-base font-bold uppercase" style={{
-            color: '#60a5fa',
-            letterSpacing: '0.4em',
-            fontWeight: 700
-          }}>
-            Applied AI & Decision Systems
-          </p>
-        </div>
+          SME Data Science & AI
+        </h2>
+        <div style={{
+          width: '3.5rem',
+          height: '2px',
+          margin: '0.9rem 0',
+          background: 'linear-gradient(to right, transparent, #60a5fa, transparent)'
+        }} />
+        <p style={{
+          fontSize: 'clamp(0.7rem, 1.6vw, 1rem)',
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          color: '#93c5fd',
+          letterSpacing: '0.3em',
+          textShadow: '0 1px 4px rgba(0,0,0,0.9)'
+        }}>
+          Applied AI & Decision Systems
+        </p>
       </div>
     </div>
   );
