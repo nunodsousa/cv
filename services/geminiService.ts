@@ -11,7 +11,7 @@ let chatSession: Chat | null = null;
 
 const RESUME_CONTEXT = `
 NAME: Nuno Miguel Santos Teixeira de Sousa (Nuno de Sousa)
-TITLE: Expert in Data Science & IA
+TITLE: SME Data Science & AI
 SUMMARY: Expert in Data Science and IA with over 10 years of experience and a Ph.D. in Theoretical Physics, specializing in Python-based development of advanced pricing models, business analytics, technology-driven financial systems, and machine learning algorithms. MBA candidate at CPBS.
 
 CONTACT (some info is hidden for privacy reasons):
@@ -25,31 +25,36 @@ CONTACT (some info is hidden for privacy reasons):
 - Date of Birth: 28/07/1982
 
 EMPLOYMENT HISTORY:
-1. Expert in Data Science & IA - DataJuicers (Remote) [Nov 2019 - Present]
+1. Data Scientist & SME - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
+   - Designs/develops quantitative models for nowcasting and forecasting marine bunker fuel prices across global ports.
+   - Builds advanced statistical and machine learning frameworks to estimate prices in complex, data-sparse markets.
+   - Integrates heterogeneous data sources and economic indicators to generate robust pricing intelligence for strategic decision-making.
+
+2. Expert in Data Science & IA - DataJuicers (Remote) [Nov 2019 - Mar 2026]
    - Defined/implemented end-to-end AI/ML/data science solutions for high-profile clients (utilities, healthcare, chemicals).
    - Processed/structured large datasets.
    - Acted as business translator between technical teams and stakeholders.
    - Led cross-functional collaboration.
    - Expertise: Market analysis, pricing strategies, demand forecasting, process optimization.
 
-2. Quantitative Analyst - Arfima Trading (Madrid) [Apr 2019 - Oct 2019]
+3. Quantitative Analyst - Arfima Trading (Madrid) [Apr 2019 - Oct 2019]
    - Designed/deployed automated trading strategies (futures, EOS to HFT).
    - Analyzed financial data for trading signals.
    - Implemented ML models for commodities.
    - Developed backtesting frameworks and risk management protocols.
 
-3. Data Scientist - DataJuicers (Madrid) [Jun 2017 - Mar 2019]
+4. Data Scientist - DataJuicers (Madrid) [Jun 2017 - Mar 2019]
    - Specialized in Business Solutions, Time Series Forecasting, ML.
    - Sectors: Luxury, retail, services, industry.
    - Directed "Dress Recommendation System" (recognized by Google for TensorFlow/CV application).
    - Hedge fund projects (financial analysis/modeling).
 
-4. Researcher/Lecturer - Universidad Autónoma de Madrid [2009 - Jun 2017]
+5. Researcher/Lecturer - Universidad Autónoma de Madrid [2009 - Jun 2017]
    - Teaching Physics/Informatics Engineering.
    - Research in Computational Physics, Electrodynamics, Mathematical Methods.
 
 EDUCATION:
-- MBA (Católica Porto Business School - CPBS) [Oct 2024 - July 2026]
+- MBA (Católica Porto Business School - CPBS) [Oct 2024 - Ongoing, Oct 2026]
 - PhD in Theoretical Physics (Universidad Autónoma de Madrid) [Sep 2010 - Oct 2014]. Cum Laude.
   - Thesis: 'Light scattering in disordered and nonreciprocal media'.
   - Link: https://sirena.csic.es/wp-content/uploads/2024/07/Tesis-Nuno.pdf

@@ -251,13 +251,6 @@ const AI_PROJECTS = [
 
 const CERTIFICATIONS = [
   {
-    id: 8,
-    date: "02/2026",
-    title: "Azure (Cloud Certification)",
-    organization: "Microsoft Azure",
-    topics: "Cloud computing, Azure services"
-  },
-  {
     id: 7,
     date: "07/2018",
     title: "Python for Financial Analysis and Algorithmic Trading",
@@ -312,7 +305,7 @@ const CV_DATA = {
   personal: {
     name: "Nuno MST de Sousa",
     shortName: "Nuno de Sousa",
-    title: "Expert in Data Science & AI",
+    title: "SME Data Science & AI",
     summary: "Expert in Data Science and AI with over 10 years of experience and a Ph.D. in Theoretical Physics, specializing in Python-based development of advanced pricing models, business analytics, technology-driven financial systems, and machine learning algorithms. MBA candidate at CPBS.",
     emails: ["(hidden)"],
     phones: ["(hidden)"],
@@ -329,7 +322,7 @@ const CV_DATA = {
   skills: [
     { category: "Programming", skills: "Python (pandas, scikit-learn, statsmodels, NumPy, matplotlib, etc), SQL, C, n8n" },
     { category: "Modeling", skills: "Monte Carlo methods, GLM/GAM, Bayesian modeling, Survival analysis, Customer Lifetime Value (CLV)" },
-    { category: "AI & Cloud", skills: "OpenAI, LangChain, Azure (cert. 02/2026)" },
+    { category: "AI & Cloud", skills: "OpenAI, LangChain, Azure" },
     { category: "DevOps", skills: "Git, Docker" },
     { category: "Techniques", skills: "Deep Learning (Keras, TensorFlow), Random Forest, XGBoost, SVM, KNN, Naïve Bayes, k-Means, Hierarchical Clustering" },
     { category: "Time Series", skills: "Prophet, ARIMA, ETS, State Space, Structural Models" },
@@ -342,11 +335,26 @@ const CV_DATA = {
   ],
   experience: [
     {
+      id: "0",
+      role: "Data Scientist & SME",
+      company: "AuctionConnect (Oporto/Remote)",
+      period: "MARCH 2026 — PRESENT",
+      description: "Responsible for the design and development of quantitative models for nowcasting and forecasting of marine bunker fuel prices across global ports.",
+      highlights: [
+        <span>
+          Builds <b>advanced statistical and machine learning frameworks</b> to estimate prices in <b>complex, data-sparse markets</b>.
+        </span>,
+        <span>
+          Integrates <b>heterogeneous data sources and economic indicators</b> to generate robust <b>pricing intelligence</b> for <b>strategic decision-making</b>.
+        </span>
+      ]
+    },
+    {
       id: "1",
       role: "Expert in Data Science & AI",
       company: "DataJuicers (Remote)",
       companyUrl: "https://www.datajuicers.com",
-      period: "NOVEMBER 2019 — PRESENT",
+      period: "NOVEMBER 2019 — MARCH 2026",
       description: "Led the design, delivery, and scaling of end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as technical lead and strategic advisor, driving data-driven transformation across utilities, healthcare, chemicals, and energy-related domains, while supporting pre-sales, solution architecture, and executive decision-making.",
       highlights: [
         <span>
@@ -417,7 +425,7 @@ const CV_DATA = {
       degree: "Executive MBA",
       institution: "Católica Porto Business School - CPBS",
       institutionUrl: "https://catolicabs.porto.ucp.pt",
-      period: "OCTOBER 2024 — ON GOING (JULY 2026)",
+      period: "OCTOBER 2024 — ON GOING (OCTOBER 2026)",
       details: [
         "Ongoing, with in-person sessions held three consecutive working days per month.",
         "Strategic Leadership and Decision-Making: Executive decision-making, competitive strategy formulation, and business model innovation in complex environments.",
@@ -751,7 +759,7 @@ const App: React.FC = () => {
              </div>
              <div>
                 <h1 className="font-serif font-bold text-base leading-tight">{CV_DATA.personal.shortName}</h1>
-                <p className="text-blue-400 text-[10px] uppercase tracking-wider font-bold">Expert in Data Science & AI</p>
+                <p className="text-blue-400 text-[10px] uppercase tracking-wider font-bold">SME Data Science & AI</p>
              </div>
           </div>
           <button 
@@ -787,7 +795,7 @@ const App: React.FC = () => {
                     />
                   </div>
                   <h1 className="text-3xl font-serif font-bold mb-2 leading-tight">Nuno de Sousa, Ph.D.</h1>
-                  <p className="text-blue-400 font-medium text-sm tracking-wide uppercase">Expert in Data Scientist & AI</p>
+                  <p className="text-blue-400 font-medium text-sm tracking-wide uppercase">SME Data Science & AI</p>
               </div>
 
               {/* Contact Details */}
