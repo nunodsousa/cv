@@ -4,411 +4,468 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuno de Sousa - Portfolio</title>
+    <title>Nuno de Sousa — Signal from disorder</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- Sparkles Banner -->
-    <div class="sparkles-banner">
-        <canvas id="sparkles-canvas"></canvas>
-        <div class="banner-content">
-            <div class="banner-card">
-                <h2 class="banner-title">SME Data Science & AI</h2>
-                <div class="banner-divider"></div>
-                <p class="banner-subtitle">Applied AI & Decision Systems</p>
+    <!-- ============ TOP BAR ============ -->
+    <header class="topbar">
+        <a class="topbar-back" href="../">
+            <span aria-hidden="true">←</span> Full CV
+        </a>
+        <p class="topbar-id">Nuno de Sousa<span class="topbar-sep">·</span><span class="topbar-role">SME Data Science &amp; AI</span></p>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+        <canvas id="scatter-field" aria-hidden="true"></canvas>
+        <div class="hero-inner">
+            <p class="eyebrow">Nuno de Sousa, Ph.D. — Oporto &amp; Madrid</p>
+            <h1 class="hero-title">Signal from<br>disorder</h1>
+            <p class="hero-lede">
+                Two decades pulling structure out of noisy systems. First as a physicist modelling
+                light in disordered media — now as a Data &amp; AI expert pricing markets where the
+                data is thin and the decisions are expensive.
+            </p>
+            <ul class="hero-chips">
+                <li>Ph.D. Theoretical Physics</li>
+                <li>Executive MBA candidate</li>
+                <li>21 publications</li>
+            </ul>
+        </div>
+        <div class="hero-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============ THE THROUGH-LINE ============ -->
+    <section class="throughline" aria-labelledby="throughline-heading">
+        <h2 class="section-heading" id="throughline-heading">One method, two domains</h2>
+        <p class="section-sub">
+            The research question and the commercial question turned out to be the same question.
+        </p>
+
+        <div class="tl-pair">
+            <article class="tl-panel">
+                <p class="tl-era">2009 — 2017</p>
+                <h3 class="tl-domain">Light in disordered media</h3>
+                <p class="tl-q">How does a signal survive a medium that scatters it?</p>
+                <p class="tl-body">
+                    Light emission statistics in random photonic structures, magneto-optical response
+                    in nanoantennas, Anderson localisation. A dissertation graded
+                    <em>Sobresaliente Cum Laude</em>, and twenty peer-reviewed papers on recovering
+                    structure from systems built to destroy it.
+                </p>
+            </article>
+
+            <div class="tl-arrow" aria-hidden="true">
+                <span class="tl-arrow-line"></span>
+                <span class="tl-arrow-label">same method</span>
+                <span class="tl-arrow-line"></span>
+            </div>
+
+            <article class="tl-panel tl-panel--now">
+                <p class="tl-era">2017 — now</p>
+                <h3 class="tl-domain">Prices in data-sparse markets</h3>
+                <p class="tl-q">How does a price signal survive a market that barely reports?</p>
+                <p class="tl-body">
+                    Marine bunker fuel nowcast across global ports, demand and inventory across supply
+                    chains, pricing and market intelligence for utilities, healthcare, chemicals and
+                    energy. Same estimation problem, commercial stakes.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- ============ SIGNATURE: THE RECORD ON ONE AXIS ============ -->
+    <section class="record" aria-labelledby="record-heading">
+        <h2 class="section-heading" id="record-heading">Eighteen years on one axis</h2>
+        <p class="section-sub">
+            Peer-reviewed output, roles and degrees plotted against the same timeline. The pivot from
+            research to industry is June 2017 — publication did not stop when the domain changed.
+        </p>
+
+        <figure class="chart-figure">
+            <div class="chart-scroll">
+                <div class="chart" role="img"
+                    aria-label="Timeline from 2009 to 2026. Column chart of peer-reviewed publications per year: 2010 one, 2012 one, 2013 one, 2014 two, 2015 one, 2016 five, 2017 one, 2018 one, 2019 one, 2020 two, 2021 two, 2022 two, 2026 one — twenty-one in total. Below, career bands: Researcher and Lecturer 2009 to June 2017, Data Scientist 2017 to 2019, Quantitative Analyst 2019, Expert in Data Science and AI 2019 to 2026, SME Data Science and AI from 2026. Degree bands: MSc Photonics 2009 to 2010, PhD Theoretical Physics 2010 to 2014, Executive MBA 2024 to 2026.">
+
+                    <!-- readout strip -->
+                    <div class="readout">
+                        <span class="readout-item"><b>21</b> publications</span>
+                        <span class="readout-item"><b>~50</b> conference talks</span>
+                        <span class="readout-item"><b>5</b> theses supervised</span>
+                        <span class="readout-item"><b>8</b> funded research projects</span>
+                    </div>
+
+                    <!-- plot -->
+                    <div class="plot">
+                        <div class="plot-y" aria-hidden="true">
+                            <span style="bottom:100%">5</span>
+                            <span style="bottom:60%">3</span>
+                            <span style="bottom:20%">1</span>
+                        </div>
+
+                        <div class="plot-area">
+                            <!-- recessive gridlines -->
+                            <div class="gridline" style="bottom:20%"></div>
+                            <div class="gridline" style="bottom:40%"></div>
+                            <div class="gridline" style="bottom:60%"></div>
+                            <div class="gridline" style="bottom:80%"></div>
+                            <div class="gridline gridline--top" style="bottom:100%"></div>
+
+                            <!-- era wash -->
+                            <div class="era-wash era-wash--academia" style="left:0;width:46.78%"></div>
+
+                            <!-- pivot -->
+                            <div class="pivot" style="left:46.78%">
+                                <span class="pivot-flag">Jun 2017 — pivot</span>
+                            </div>
+
+                            <!-- bars: 2009 -> 2026 -->
+                            <div class="bars">
+                                <div class="bar-cell"><span class="bar" style="height:0%" data-year="2009" data-n="0"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:20%" data-year="2010" data-n="1"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:0%" data-year="2011" data-n="0"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:20%" data-year="2012" data-n="1"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:20%" data-year="2013" data-n="1"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:40%" data-year="2014" data-n="2"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:20%" data-year="2015" data-n="1"></span></div>
+                                <div class="bar-cell"><span class="bar bar--peak" style="height:100%" data-year="2016" data-n="5"><b class="bar-label">5</b></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:20%" data-year="2017" data-n="1"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:20%" data-year="2018" data-n="1"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:20%" data-year="2019" data-n="1"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:40%" data-year="2020" data-n="2"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:40%" data-year="2021" data-n="2"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:40%" data-year="2022" data-n="2"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:0%" data-year="2023" data-n="0"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:0%" data-year="2024" data-n="0"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:0%" data-year="2025" data-n="0"></span></div>
+                                <div class="bar-cell"><span class="bar" style="height:20%" data-year="2026" data-n="1"></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- x axis -->
+                    <div class="axis-x" aria-hidden="true">
+                        <span>2009</span><span>2010</span><span>2011</span><span>2012</span><span>2013</span>
+                        <span>2014</span><span>2015</span><span>2016</span><span>2017</span><span>2018</span>
+                        <span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span>
+                        <span>2024</span><span>2025</span><span>2026</span>
+                    </div>
+
+                    <!-- bands -->
+                    <div class="bands">
+                        <p class="band-row-label">Roles</p>
+                        <div class="band-track">
+                            <span class="band band--role" style="left:0;width:46.78%">Researcher &amp; Lecturer — UAM / DIPC</span>
+                            <span class="band band--role" style="left:46.78%;width:9.72%">Data Scientist</span>
+                            <span class="band band--role band--tight" style="left:56.94%;width:3%" title="Quantitative Analyst — Arfima Trading, 2019"><span class="band-abbr">QA</span></span>
+                            <span class="band band--role" style="left:60.17%;width:35.22%">Expert in Data Science &amp; AI</span>
+                            <span class="band band--role band--tight" style="left:95.39%;width:4.61%" title="SME Data Science &amp; AI — AuctionConnect, 2026 to present"><span class="band-abbr">SME</span></span>
+                        </div>
+
+                        <p class="band-row-label">Degrees</p>
+                        <div class="band-track">
+                            <span class="band band--edu band--tight" style="left:3.72%;width:4.17%" title="MSc Photonics — Universidad Autónoma de Madrid, 2009–2010"><span class="band-abbr">MSc</span></span>
+                            <span class="band band--edu" style="left:9.28%;width:22.89%">Ph.D. Theoretical Physics</span>
+                            <span class="band band--edu" style="left:87.5%;width:11.11%">Executive MBA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <figcaption class="chart-caption">
+                Bars are peer-reviewed publications per year. Hover any bar for the count.
+            </figcaption>
+        </figure>
+
+        <!-- accessible table view / role detail -->
+        <details class="record-table">
+            <summary>Roles and degrees in full</summary>
+            <table>
+                <caption class="visually-hidden">Career roles and degrees with dates</caption>
+                <thead>
+                    <tr><th scope="col">Period</th><th scope="col">Role or degree</th><th scope="col">Where</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>2026 — present</td><td>SME Data Science &amp; AI</td><td>AuctionConnect, Oporto / Remote</td></tr>
+                    <tr><td>2024 — 2026</td><td>Executive MBA</td><td>Católica Porto Business School</td></tr>
+                    <tr><td>2019 — 2026</td><td>Expert in Data Science &amp; AI</td><td>DataJuicers and Simia-Tech, Madrid / Oporto</td></tr>
+                    <tr><td>2019</td><td>Quantitative Analyst</td><td>Arfima Trading, Madrid</td></tr>
+                    <tr><td>2017 — 2019</td><td>Data Scientist</td><td>DataJuicers, Madrid</td></tr>
+                    <tr><td>2010 — 2014</td><td>Ph.D. Theoretical Physics</td><td>Universidad Autónoma de Madrid</td></tr>
+                    <tr><td>2009 — 2017</td><td>Researcher &amp; Lecturer</td><td>UAM &amp; Donostia International Physics Center</td></tr>
+                    <tr><td>2009 — 2010</td><td>MSc Photonics</td><td>Universidad Autónoma de Madrid</td></tr>
+                </tbody>
+            </table>
+        </details>
+    </section>
+
+    <!-- ============ CAPABILITY ============ -->
+    <section class="capability" aria-labelledby="capability-heading">
+        <h2 class="section-heading" id="capability-heading">What I actually do</h2>
+        <p class="section-sub">
+            Three altitudes — the work only lands when all three hold.
+        </p>
+
+        <div class="cap-grid">
+            <article class="cap-tier">
+                <p class="cap-tier-key">Decide</p>
+                <h3 class="cap-tier-name">Executive</h3>
+                <ul>
+                    <li>Pricing strategy and commercial policy</li>
+                    <li>Demand, inventory and supply planning</li>
+                    <li>Market and customer intelligence</li>
+                    <li>AI roadmap, build-vs-buy, governance</li>
+                </ul>
+            </article>
+
+            <article class="cap-tier">
+                <p class="cap-tier-key">Model</p>
+                <h3 class="cap-tier-name">Quantitative</h3>
+                <ul>
+                    <li>Time-series forecasting and nowcasting</li>
+                    <li>Bayesian inference and uncertainty</li>
+                    <li>Survival analysis and customer lifetime value</li>
+                    <li>Monte Carlo, optimisation, simulation</li>
+                </ul>
+            </article>
+
+            <article class="cap-tier">
+                <p class="cap-tier-key">Ship</p>
+                <h3 class="cap-tier-name">Engineering</h3>
+                <ul>
+                    <li>Production data and ML pipelines</li>
+                    <li>LLM and agent workflows</li>
+                    <li>Cloud deployment on Azure</li>
+                    <li>Automation and orchestration</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <!-- ============ INSTRUMENTS ============ -->
+    <section class="instruments" aria-labelledby="instruments-heading">
+        <h2 class="section-heading" id="instruments-heading">Instruments</h2>
+        <p class="section-sub">The tools the above is built with.</p>
+
+        <ul class="inst-grid">
+            <li class="inst"><img src="assets/images/tech/python.svg" alt=""><span>Python</span></li>
+            <li class="inst"><img src="assets/images/tech/sql.svg" alt=""><span>SQL</span></li>
+            <li class="inst"><img src="assets/images/tech/c.svg" alt=""><span>C</span></li>
+            <li class="inst"><img src="assets/images/tech/git.svg" alt=""><span>Git</span></li>
+            <li class="inst"><img src="assets/images/tech/docker.svg" alt=""><span>Docker</span></li>
+            <li class="inst"><img src="assets/images/tech/azure.svg" alt=""><span>Azure</span></li>
+            <li class="inst"><img src="assets/images/tech/tensorflow.svg" alt=""><span>TensorFlow</span></li>
+            <li class="inst"><img src="assets/images/tech/pytorch.svg" alt=""><span>PyTorch</span></li>
+            <li class="inst"><img src="assets/images/tech/prophet.svg" alt=""><span>Prophet</span></li>
+            <li class="inst"><img src="assets/images/tech/bayesian.svg" alt=""><span>Bayesian</span></li>
+            <li class="inst"><img src="assets/images/tech/openai.svg" alt=""><span>OpenAI</span></li>
+            <li class="inst"><img src="assets/images/tech/langchain.svg" alt=""><span>LangChain</span></li>
+            <li class="inst"><img src="assets/images/tech/n8n.svg" alt=""><span>n8n</span></li>
+        </ul>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="footer-id">
+            <img class="footer-photo" src="../photos/Nuno_2023.jpg" alt="Nuno de Sousa">
+            <div>
+                <p class="footer-name">Nuno de Sousa, Ph.D.</p>
+                <p class="footer-role">SME Data Science &amp; AI — Oporto &amp; Madrid</p>
             </div>
         </div>
-    </div>
 
-    <div class="layout-wrapper">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <!-- Pattern background -->
-            <div class="sidebar-pattern"></div>
-            
-            <div class="sidebar-content">
-                <!-- Back Button -->
-                <a class="back-btn" href="../">← Back to CV</a>
-
-                <!-- Profile Header -->
-                <div class="sidebar-profile">
-                    <div class="sidebar-photo">
-                        <img src="../photos/Nuno_2023.jpg" alt="Nuno de Sousa">
-                    </div>
-                    <h1 class="sidebar-name">Nuno de Sousa, Ph.D.</h1>
-                    <p class="sidebar-title">SME Data Science & AI</p>
-                </div>
-
-                <!-- Contact Details -->
-                <div class="sidebar-contact">
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <span>(hidden)</span>
-                    </div>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                        <span>(hidden)</span>
-                    </div>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        <span>Oporto & Madrid, Portugal and Spain</span>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="https://github.com/nunodsousa" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/nunodsousa/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                        <a href="https://orcid.org/0000-0002-3226-9683" target="_blank" rel="noopener noreferrer" class="social-link orcid-link" title="ORCID">
-                            ID ORCID
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="container">
-                <!-- Profile Section -->
-                <section class="profile-section">
-                    <div class="profile-card experience-card">
-                        <div class="stat-number">10+</div>
-                        <h3>Years of Experience</h3>
-                        <p>In Data Science, AI, and business analysis for executives.</p>
-                    </div>
-
-                    <div class="profile-card academic-card">
-                        <div class="icon-wrapper">
-                            <img src="assets/images/phd.png" alt="PhD Icon">
-                        </div>
-                        <h3>PhD in Theoretical Physics</h3>
-                        <p class="subtitle">With highest distinction ("Sobresaliente Cum Laude").</p>
-                    </div>
-
-                    <div class="profile-card mba-card">
-                        <div class="icon-wrapper">
-                            <img src="assets/images/mba.png" alt="MBA Icon">
-                        </div>
-                        <h3>Executive MBA</h3>
-                        <p class="subtitle">Ongoing at Católica Porto Business School to reinforce business vision.</p>
-                    </div>
-                </section>
-
-                <!-- Career Path Section -->
-                <section class="career-path">
-                    <h2 class="section-title">PROFESSIONAL PATH: FROM ACADEMIA TO INDUSTRY</h2>
-
-                    <div class="timeline-container">
-                        <!-- Timeline items -->
-
-                        <!-- Item 1 -->
-                        <div class="timeline-item">
-                            <div class="timeline-visual">
-                                <img src="assets/images/research.png" alt="Research Illustration">
-                            </div>
-                            <div class="timeline-content">
-                                <span class="year-badge">2009 - 2017</span>
-                                <h3>Researcher and Lecturer</h3>
-                                <p>Focused on Computational Physics, Statistical Mechanics and Electrodynamics at the Autonomous
-                                    University of Madrid.</p>
-                            </div>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div class="timeline-item">
-                            <div class="timeline-visual">
-                                <img src="assets/images/datascience.png" alt="Data Science Illustration">
-                            </div>
-                            <div class="timeline-content">
-                                <span class="year-badge">2017 - 2019</span>
-                                <h3>Data Scientist & Quantitative Analyst</h3>
-                                <p>Developed recommendation systems and automated trading strategies.</p>
-                            </div>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div class="timeline-item">
-                            <div class="timeline-visual">
-                                <img src="assets/images/ai.png" alt="AI Illustration">
-                            </div>
-                            <div class="timeline-content">
-                                <span class="year-badge">2019 - Present</span>
-                                <h3>Data Science & AI Specialist</h3>
-                                <p>Leads the design and delivery of AI solutions for international clients.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Skills Section -->
-                <section class="skills-section">
-                    <h2 class="section-title">SKILLS AND TOOLS</h2>
-
-                    <div class="skills-grid">
-                        <!-- Specialization Domain -->
-                        <div class="skill-group specializations">
-                            <h4>AREAS OF EXPERTISE</h4>
-                            <div class="icons-row">
-                                <div class="icon-item">
-                                    <img src="assets/images/strategy.png" alt="Price Optimization">
-                                    <span>Price Optimization</span>
-                                </div>
-                                <div class="icon-item">
-                                    <img src="assets/images/supply.png" alt="Demand Forecasting">
-                                    <span>Demand Forecasting</span>
-                                </div>
-                                <div class="icon-item">
-                                    <img src="assets/images/market.png" alt="Marketing Analytics">
-                                    <span>Marketing Analytics</span>
-                                </div>
-                                <div class="icon-item">
-                                    <img src="assets/images/datascience.png" alt="Data Science Leadership">
-                                    <span>Data Science Leadership</span>
-                                </div>
-                                <div class="icon-item">
-                                    <img src="assets/images/ai.png" alt="AI Strategy">
-                                    <span>AI Strategy</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Programming & DevOps -->
-                        <div class="skill-group programming">
-                            <h4>PROGRAMMING & DEVOPS</h4>
-                            <div class="tech-stack">
-                                <span class="tech-badge python">
-                                    <img src="assets/images/tech/python.svg" alt="Python">
-                                    <span class="badge-text">Python<small>Pandas & Scikit-learn</small></span>
-                                </span>
-                                <span class="tech-badge sql">
-                                    <img src="assets/images/tech/sql.svg" alt="SQL">
-                                    <span class="badge-text">SQL</span>
-                                </span>
-                                <span class="tech-badge c">
-                                    <img src="assets/images/tech/c.svg" alt="C">
-                                </span>
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/docker.svg" alt="Docker">
-                                    <span class="badge-text">Docker</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/git.svg" alt="Git">
-                                    <span class="badge-text">Git</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/n8n.svg" alt="n8n">
-                                    <span class="badge-text">n8n</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- AI & Cloud -->
-                        <div class="skill-group ai-cloud">
-                            <h4>MODELING, AI & CLOUD</h4>
-                            <div class="tech-stack">
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/azure.svg" alt="Azure">
-                                    <span class="badge-text">Azure</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/tensorflow.svg" alt="TensorFlow">
-                                    <span class="badge-text">TensorFlow</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/pytorch.svg" alt="PyTorch">
-                                    <span class="badge-text">PyTorch</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/bayesian.svg" alt="Bayesian Models">
-                                    <span class="badge-text">Bayesian models</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/prophet.svg" alt="Prophet">
-                                    <span class="badge-text">Prophet</span>
-                                </span>
-                                <span class="tech-badge openai">
-                                    <img src="assets/images/tech/openai.svg" alt="OpenAI">
-                                    <span class="badge-text">OpenAI</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <img src="assets/images/tech/langchain.svg" alt="LangChain">
-                                    <span class="badge-text">LangChain</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <span class="badge-icon">🧠</span>
-                                    <span class="badge-text">LLM</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <span class="badge-icon">🎲</span>
-                                    <span class="badge-text">Monte Carlo</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <span class="badge-icon">📈</span>
-                                    <span class="badge-text">GLM/GAM</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <span class="badge-icon">⏱️</span>
-                                    <span class="badge-text">Survival Analysis</span>
-                                </span>
-                                <span class="tech-badge">
-                                    <span class="badge-icon">💎</span>
-                                    <span class="badge-text">CLV</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        <div class="footer-actions">
+            <a class="btn btn--primary" href="../">Read the full CV</a>
+            <div class="footer-links">
+                <a href="https://github.com/nunodsousa" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/nunodsousa/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a class="orcid" href="https://orcid.org/0000-0002-3226-9683" target="_blank" rel="noopener noreferrer" title="ORCID">ORCID</a>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <!-- Sparkles Banner Script -->
+    <!-- chart tooltip -->
+    <div class="tip" id="tip" role="status" aria-live="polite"></div>
+
     <script>
-        (function() {
-            const canvas = document.getElementById('sparkles-canvas');
+        /* ---------- Hero: scattering field ----------
+           Dim particles drift in disorder; those crossing the focal band resolve
+           into a linked, bright structure — signal emerging from noise. */
+        (function () {
+            const canvas = document.getElementById('scatter-field');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
             if (!ctx) return;
 
-            let width = 0;
-            let height = 0;
-            let sparkles = [];
-            let lastTime = performance.now();
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            let w = 0, h = 0, particles = [], last = performance.now(), resolveT = 0;
 
             function resize() {
-                const banner = canvas.parentElement;
-                if (!banner) return;
-                width = banner.offsetWidth;
-                height = banner.offsetHeight;
+                const box = canvas.parentElement;
+                if (!box) return;
+                w = box.offsetWidth;
+                h = box.offsetHeight;
                 const dpr = window.devicePixelRatio || 1;
-                canvas.width = Math.max(1, Math.floor(width * dpr));
-                canvas.height = Math.max(1, Math.floor(height * dpr));
+                canvas.width = Math.max(1, Math.floor(w * dpr));
+                canvas.height = Math.max(1, Math.floor(h * dpr));
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             }
 
             function init() {
                 resize();
-                const area = width * height;
-                const count = Math.max(80, Math.min(220, Math.floor(area / 3500)));
-                sparkles = [];
-                for (let i = 0; i < count; i++) {
-                    sparkles.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        vx: (Math.random() - 0.5) * 0.12,
-                        vy: (Math.random() - 0.5) * 0.08,
-                        r: 0.8 + Math.random() * 1.9,
-                        baseAlpha: 0.15 + Math.random() * 0.45,
-                        twinkleSpeed: 0.8 + Math.random() * 1.8,
-                        twinklePhase: Math.random() * Math.PI * 2,
-                        hue: 205 + Math.random() * 25
+                const n = Math.max(90, Math.min(240, Math.floor((w * h) / 3200)));
+                particles = [];
+                for (let i = 0; i < n; i++) {
+                    const depth = Math.pow(Math.random(), 1.5);
+                    particles.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        vx: (Math.random() - 0.5) * (reduce ? 0 : 0.22 + depth * 0.5),
+                        vy: (Math.random() - 0.5) * (reduce ? 0 : 0.14 + depth * 0.3),
+                        r: 0.6 + depth * 1.8,
+                        depth: depth,
+                        phase: Math.random() * Math.PI * 2,
+                        speed: 0.7 + Math.random() * 1.6
                     });
                 }
+                resolveT = performance.now();
             }
 
-            function update(t, dtScale) {
-                for (const s of sparkles) {
-                    s.x += s.vx * dtScale;
-                    s.y += s.vy * dtScale;
-                    if (s.x < -20) s.x = width + 20;
-                    if (s.x > width + 20) s.x = -20;
-                    if (s.y < -20) s.y = height + 20;
-                    if (s.y > height + 20) s.y = -20;
-                    const curl = Math.sin(t * 0.0006 + s.twinklePhase) * 0.02;
-                    s.vx += curl * 0.02;
-                    s.vy -= curl * 0.02;
-                    s.vx *= 0.999;
-                    s.vy *= 0.999;
+            /* focal band = the horizontal zone where the title sits */
+            function focus(p) {
+                const band = h * 0.5;
+                const reach = h * 0.32;
+                const d = Math.abs(p.y - band);
+                return Math.max(0, 1 - d / reach);
+            }
+
+            function step(dt) {
+                for (const p of particles) {
+                    p.x += p.vx * dt;
+                    p.y += p.vy * dt;
+                    if (p.x < -20) p.x = w + 20;
+                    if (p.x > w + 20) p.x = -20;
+                    if (p.y < -20) p.y = h + 20;
+                    if (p.y > h + 20) p.y = -20;
                 }
             }
 
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-                ctx.fillStyle = '#020617';
-                ctx.fillRect(0, 0, width, height);
+            function draw(t) {
+                ctx.clearRect(0, 0, w, h);
+                ctx.fillStyle = '#051424';
+                ctx.fillRect(0, 0, w, h);
 
-                const vignette = ctx.createRadialGradient(width * 0.5, height * 0.55, 10, width * 0.5, height * 0.55, Math.max(width, height) * 0.75);
-                vignette.addColorStop(0, 'rgba(59,130,246,0.06)');
-                vignette.addColorStop(0.45, 'rgba(2,6,23,0.0)');
-                vignette.addColorStop(1, 'rgba(2,6,23,0.9)');
-                ctx.fillStyle = vignette;
-                ctx.fillRect(0, 0, width, height);
+                /* one-shot resolve sweep on load */
+                const age = (t - resolveT) / 1400;
+                const resolved = reduce ? 1 : Math.max(0, Math.min(1, age));
 
                 ctx.save();
                 ctx.globalCompositeOperation = 'lighter';
 
-                sparkles.forEach(function(s) {
-                    const alpha = Math.max(0, Math.min(1,
-                        s.baseAlpha * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(performance.now() * 0.0015 * s.twinkleSpeed + s.twinklePhase)))
-                    ));
-
-                    const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 10);
-                    g.addColorStop(0, 'hsla(' + s.hue + ', 95%, 75%, ' + alpha + ')');
-                    g.addColorStop(0.35, 'hsla(' + s.hue + ', 95%, 65%, ' + (alpha * 0.35) + ')');
-                    g.addColorStop(1, 'hsla(' + s.hue + ', 95%, 60%, 0)');
-                    ctx.fillStyle = g;
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r * 10, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    ctx.fillStyle = 'rgba(255,255,255,' + Math.min(0.9, alpha + 0.2) + ')';
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, Math.max(0.8, s.r * 0.8), 0, Math.PI * 2);
-                    ctx.fill();
-                });
-
-                ctx.beginPath();
+                /* links only between resolved (in-focus) particles */
+                const lit = particles.filter(p => focus(p) > 0.45);
                 ctx.lineWidth = 1;
-                for (let i = 0; i < sparkles.length; i++) {
-                    for (let j = i + 1; j < sparkles.length; j++) {
-                        const dx = sparkles[i].x - sparkles[j].x;
-                        const dy = sparkles[i].y - sparkles[j].y;
+                ctx.beginPath();
+                for (let i = 0; i < lit.length; i++) {
+                    for (let j = i + 1; j < lit.length; j++) {
+                        const dx = lit[i].x - lit[j].x, dy = lit[i].y - lit[j].y;
                         const d2 = dx * dx + dy * dy;
-                        if (d2 < 70 * 70) {
-                            const a = (1 - Math.sqrt(d2) / 70) * 0.08;
-                            ctx.strokeStyle = 'rgba(96,165,250,' + a + ')';
-                            ctx.moveTo(sparkles[i].x, sparkles[i].y);
-                            ctx.lineTo(sparkles[j].x, sparkles[j].y);
+                        if (d2 < 96 * 96) {
+                            const a = (1 - Math.sqrt(d2) / 96) * 0.16 * resolved;
+                            ctx.strokeStyle = 'rgba(0,219,233,' + a + ')';
+                            ctx.moveTo(lit[i].x, lit[i].y);
+                            ctx.lineTo(lit[j].x, lit[j].y);
                         }
                     }
                 }
                 ctx.stroke();
+
+                for (const p of particles) {
+                    const f = focus(p);
+                    const twinkle = 0.55 + 0.45 * Math.sin(t * 0.0014 * p.speed + p.phase);
+                    /* noise particles stay dim slate; resolved ones go cyan */
+                    const signal = f * resolved;
+                    const alpha = (0.10 + p.depth * 0.28) * twinkle * (0.5 + signal);
+
+                    if (signal > 0.05) {
+                        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 11);
+                        g.addColorStop(0, 'rgba(125,244,255,' + (alpha * signal) + ')');
+                        g.addColorStop(0.35, 'rgba(0,219,233,' + (alpha * signal * 0.35) + ')');
+                        g.addColorStop(1, 'rgba(0,219,233,0)');
+                        ctx.fillStyle = g;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r * 11, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+
+                    const core = signal > 0.05
+                        ? 'rgba(212,228,250,' + Math.min(0.95, alpha + 0.25) + ')'
+                        : 'rgba(132,148,149,' + Math.min(0.5, alpha) + ')';
+                    ctx.fillStyle = core;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, Math.max(0.7, p.r * 0.8), 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
                 ctx.restore();
             }
 
-            function loop(currentTime) {
-                const deltaTime = currentTime - lastTime;
-                lastTime = currentTime;
-                const dtScale = Math.min(deltaTime / (1000 / 60), 2.0);
-                update(currentTime, dtScale);
-                draw();
+            function loop(now) {
+                const dt = Math.min((now - last) / (1000 / 60), 2);
+                last = now;
+                step(dt);
+                draw(now);
                 requestAnimationFrame(loop);
             }
 
             init();
             requestAnimationFrame(loop);
             window.addEventListener('resize', init);
+        })();
+
+        /* ---------- Chart hover ---------- */
+        (function () {
+            const tip = document.getElementById('tip');
+            const bars = document.querySelectorAll('.bar');
+            if (!tip || !bars.length) return;
+
+            function show(el) {
+                const n = +el.dataset.n;
+                const year = el.dataset.year;
+                tip.textContent = n === 0
+                    ? year + ' — no publications'
+                    : year + ' — ' + n + (n === 1 ? ' publication' : ' publications');
+                tip.classList.add('is-on');
+                const r = el.getBoundingClientRect();
+                tip.style.left = (r.left + r.width / 2) + 'px';
+                tip.style.top = (r.top - 10) + 'px';
+            }
+            function hide() { tip.classList.remove('is-on'); }
+
+            bars.forEach(function (b) {
+                b.parentElement.setAttribute('tabindex', '0');
+                b.parentElement.addEventListener('mouseenter', function () { show(b); });
+                b.parentElement.addEventListener('mouseleave', hide);
+                b.parentElement.addEventListener('focus', function () { show(b); });
+                b.parentElement.addEventListener('blur', hide);
+            });
+            window.addEventListener('scroll', hide, { passive: true });
         })();
     </script>
 </body>

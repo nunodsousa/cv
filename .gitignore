@@ -37,3 +37,7 @@ yarn-error.log*
 # Misc
 .cache/
 .temp/
+
+# Design sources (local reference only)
+stitch_modern_organization_redesign/
+stitch_modern_organization_redesign.zip

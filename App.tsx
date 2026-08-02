@@ -33,6 +33,12 @@ import { Job, Education, SkillCategory } from './types';
 // Publications Data
 const PUBLICATIONS = [
   {
+    id: 21,
+    text: 'SC Silva, GT Elena, N de Sousa, "Dark Patterns: Reclaiming Autonomy in Online Shopping in the Age of AI", Encyclopedia of Artificial Intelligence in Marketing, 1-13 (2026).',
+    impact: 'Encyclopedia entry',
+    url: 'https://link.springer.com/rwe/10.1007/978-3-031-75316-9_108-1'
+  },
+  {
     id: 20,
     text: 'Diego R Abujetas, N de Sousa, A García-Martín, JM Llorens, JA Sánchez-Gil, "Active angular tuning and switching of Brewster quasi bound states in the continuum in magneto-optic metasurfaces", Active Photonic Platforms, PC121961Q (2022).',
     impact: '8.449',
@@ -306,7 +312,7 @@ const CV_DATA = {
     name: "Nuno MST de Sousa",
     shortName: "Nuno de Sousa",
     title: "SME Data Science & AI",
-    summary: "Expert in Data Science and AI with over 10 years of experience and a Ph.D. in Theoretical Physics, specializing in Python-based development of advanced pricing models, business analytics, technology-driven financial systems, and machine learning algorithms. MBA candidate at CPBS.",
+    summary: "Data & AI Expert with 10+ years of experience translating complex, data-sparse problems into board-level strategy — from quantitative pricing and forecasting models to enterprise-scale AI/ML transformation across finance, energy, healthcare, and industry. Ph.D. in Theoretical Physics and Executive MBA candidate at CPBS, combining deep technical expertise with the executive communication and governance skills to drive high-stakes decision-making.",
     emails: ["(hidden)"],
     phones: ["(hidden)"],
     location: "Oporto & Madrid, Portugal and Spain",
@@ -336,7 +342,7 @@ const CV_DATA = {
   experience: [
     {
       id: "0",
-      role: "Data Scientist & SME",
+      role: "SME Data Science & AI",
       company: "AuctionConnect (Oporto/Remote)",
       period: "MARCH 2026 — PRESENT",
       description: "Responsible for the design and development of quantitative models for nowcasting and forecasting of marine bunker fuel prices across global ports.",
@@ -352,7 +358,7 @@ const CV_DATA = {
     {
       id: "1",
       role: "Expert in Data Science & AI",
-      company: "DataJuicers (Remote)",
+      company: "DataJuicers and Simia-Tech (Madrid, Oporto & Remote)",
       companyUrl: "https://www.datajuicers.com",
       period: "NOVEMBER 2019 — MARCH 2026",
       description: "Led the design, delivery, and scaling of end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as technical lead and strategic advisor, driving data-driven transformation across utilities, healthcare, chemicals, and energy-related domains, while supporting pre-sales, solution architecture, and executive decision-making.",
@@ -427,7 +433,6 @@ const CV_DATA = {
       institutionUrl: "https://catolicabs.porto.ucp.pt",
       period: "OCTOBER 2024 — ON GOING (OCTOBER 2026)",
       details: [
-        "Ongoing, with in-person sessions held three consecutive working days per month.",
         "Strategic Leadership and Decision-Making: Executive decision-making, competitive strategy formulation, and business model innovation in complex environments.",
         "Corporate Finance and Risk Management: Financial analysis, valuation, capital allocation, and enterprise risk management.",
         "Operations and Organizational Performance: Operational excellence, performance management, and large-scale change and transformation initiatives.",
@@ -468,7 +473,7 @@ const CV_DATA = {
     }
   ] as Education[],
   achievements: [
-    { text: "Published 20 peer-reviewed journal papers.", type: 'publications', icon: FileText },
+    { text: "Published 21 publications.", type: 'publications', icon: FileText },
     { text: "Delivered approx. 50 oral presentations at international conferences.", type: 'presentations', icon: Mic },
     { text: "Supervision of 3 master's theses and 2 degree's Dissertations.", type: 'supervision', icon: Users },
     { text: "Research projects in Science and Artificial Intelligence.", type: 'projects', icon: Briefcase },
@@ -479,10 +484,10 @@ const CV_DATA = {
 
 const SidebarItem: React.FC<{ icon?: React.ReactNode; label: string; value?: string | React.ReactNode }> = ({ icon, label, value }) => (
   <div className="flex items-start gap-3 mb-4">
-    {icon && <div className="text-slate-400 mt-1 shrink-0">{icon}</div>}
+    {icon && <div className="text-on-surface-variant mt-1 shrink-0">{icon}</div>}
     <div>
-      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-0.5">{label}</h4>
-      <div className="text-sm text-slate-100 font-medium leading-tight">{value}</div>
+      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-on-surface-variant mb-0.5">{label}</h4>
+      <div className="text-sm text-on-surface font-medium leading-tight">{value}</div>
     </div>
   </div>
 );
@@ -509,19 +514,19 @@ const App: React.FC = () => {
         return {
           title: "Publications List",
           subtitle: "Peer-reviewed journal papers and conference proceedings",
-          icon: <FileText className="w-5 h-5 text-blue-600" />,
+          icon: <FileText className="w-5 h-5 text-primary-fixed" />,
           content: (
             <div className="space-y-4">
               {PUBLICATIONS.map((pub) => (
-                <div key={pub.id} className="flex gap-4 p-4 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                  <span className="text-blue-500 font-bold text-lg w-8 shrink-0 text-right">{pub.id}.</span>
+                <div key={pub.id} className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                  <span className="text-primary-fixed font-bold text-lg w-8 shrink-0 text-right">{pub.id}.</span>
                   <div className="flex-1">
-                    <p className="text-slate-700 text-sm leading-relaxed mb-2">
+                    <p className="text-on-surface-variant text-sm leading-relaxed mb-2">
                       {pub.text}
                     </p>
                     <div className="flex items-center gap-3 flex-wrap">
                       {pub.impact && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-green-50 text-green-700 text-xs font-bold border border-green-200">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-300 text-xs font-bold border border-emerald-500/20">
                            Impact Factor: {pub.impact}
                         </span>
                       )}
@@ -530,7 +535,7 @@ const App: React.FC = () => {
                           href={pub.url} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium border border-blue-200 hover:bg-blue-100 transition-colors"
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-primary-fixed/10 text-primary-fixed text-xs font-medium border border-primary-fixed/20 hover:bg-primary-fixed/20 transition-colors"
                         >
                           <ExternalLink className="w-3 h-3" />
                           View Paper
@@ -547,14 +552,14 @@ const App: React.FC = () => {
         return {
           title: "Supervision Experience",
           subtitle: "Master's theses and degree dissertations",
-          icon: <Users className="w-5 h-5 text-blue-600" />,
+          icon: <Users className="w-5 h-5 text-primary-fixed" />,
           content: (
              <div className="space-y-4">
                {SUPERVISION_DATA.map((item) => (
-                 <div key={item.id} className="flex gap-4 p-4 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                   <span className="text-blue-500 font-bold text-lg w-8 shrink-0 text-right">{item.id}.</span>
+                 <div key={item.id} className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                   <span className="text-primary-fixed font-bold text-lg w-8 shrink-0 text-right">{item.id}.</span>
                    <div className="flex-1">
-                     <p className="text-slate-700 text-sm leading-relaxed font-medium">
+                     <p className="text-on-surface-variant text-sm leading-relaxed font-medium">
                        {item.text}
                      </p>
                    </div>
@@ -567,17 +572,17 @@ const App: React.FC = () => {
         return {
           title: "Oral Presentations",
           subtitle: "Conference proceedings and international communications",
-          icon: <Mic className="w-5 h-5 text-blue-600" />,
+          icon: <Mic className="w-5 h-5 text-primary-fixed" />,
           content: (
             <div className="space-y-8">
               <div>
-                <h3 className="text-lg font-bold text-slate-800 mb-4 px-4">Oral Communications by invitation</h3>
+                <h3 className="text-lg font-serif font-bold text-on-surface mb-4 px-4">Oral Communications by invitation</h3>
                 <div className="space-y-4">
                   {CONFERENCE_PROCEEDINGS.map((item) => (
-                    <div key={item.id} className="flex gap-4 p-4 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                      <span className="text-blue-500 font-bold text-lg w-8 shrink-0 text-right">{item.id}.</span>
+                    <div key={item.id} className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                      <span className="text-primary-fixed font-bold text-lg w-8 shrink-0 text-right">{item.id}.</span>
                       <div className="flex-1">
-                        <p className="text-slate-700 text-sm leading-relaxed">
+                        <p className="text-on-surface-variant text-sm leading-relaxed">
                           {item.text}
                         </p>
                       </div>
@@ -587,13 +592,13 @@ const App: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-slate-800 mb-4 px-4 border-t border-slate-200 pt-6">Oral Communications</h3>
+                <h3 className="text-lg font-serif font-bold text-on-surface mb-4 px-4 border-t border-white/10 pt-6">Oral Communications</h3>
                 <div className="space-y-4">
                   {ORAL_COMMUNICATIONS.map((item) => (
-                    <div key={item.id} className="flex gap-4 p-4 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                      <span className="text-blue-500 font-bold text-lg w-8 shrink-0 text-right">{item.id}.</span>
+                    <div key={item.id} className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                      <span className="text-primary-fixed font-bold text-lg w-8 shrink-0 text-right">{item.id}.</span>
                       <div className="flex-1">
-                        <p className="text-slate-700 text-sm leading-relaxed">
+                        <p className="text-on-surface-variant text-sm leading-relaxed">
                           {item.text}
                         </p>
                       </div>
@@ -603,13 +608,13 @@ const App: React.FC = () => {
               </div>
 
                <div>
-                <h3 className="text-lg font-bold text-slate-800 mb-4 px-4 border-t border-slate-200 pt-6">Poster Communications</h3>
+                <h3 className="text-lg font-serif font-bold text-on-surface mb-4 px-4 border-t border-white/10 pt-6">Poster Communications</h3>
                 <div className="space-y-4">
                   {POSTER_COMMUNICATIONS.map((item) => (
-                    <div key={item.id} className="flex gap-4 p-4 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                      <span className="text-blue-500 font-bold text-lg w-8 shrink-0 text-right">{item.id}.</span>
+                    <div key={item.id} className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                      <span className="text-primary-fixed font-bold text-lg w-8 shrink-0 text-right">{item.id}.</span>
                       <div className="flex-1">
-                        <p className="text-slate-700 text-sm leading-relaxed">
+                        <p className="text-on-surface-variant text-sm leading-relaxed">
                           {item.text}
                         </p>
                       </div>
@@ -624,24 +629,24 @@ const App: React.FC = () => {
         return {
           title: "Research Projects",
           subtitle: "Science and Artificial Intelligence projects",
-          icon: <Briefcase className="w-5 h-5 text-blue-600" />,
+          icon: <Briefcase className="w-5 h-5 text-primary-fixed" />,
           content: (
             <div className="space-y-8">
               <div>
-                <h3 className="text-lg font-bold text-slate-800 mb-4 px-4">Science</h3>
+                <h3 className="text-lg font-serif font-bold text-on-surface mb-4 px-4">Science</h3>
                 <div className="space-y-4">
                   {SCIENCE_PROJECTS.map((project) => (
-                    <div key={project.id} className="flex gap-4 p-4 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                      <span className="text-blue-500 font-bold text-lg w-8 shrink-0 text-right">{project.id}.</span>
+                    <div key={project.id} className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                      <span className="text-primary-fixed font-bold text-lg w-8 shrink-0 text-right">{project.id}.</span>
                       <div className="flex-1">
-                        <p className="text-slate-700 text-sm leading-relaxed font-medium mb-1">
+                        <p className="text-on-surface-variant text-sm leading-relaxed font-medium mb-1">
                           {project.title}
                         </p>
-                        <p className="text-slate-600 text-xs mb-1">
+                        <p className="text-on-surface-variant text-xs mb-1">
                           <span className="font-semibold">{project.period}</span> - {project.ref}
                         </p>
                         {project.details && (
-                          <p className="text-slate-600 text-xs italic mt-1">
+                          <p className="text-on-surface-variant text-xs italic mt-1">
                             {project.details}
                           </p>
                         )}
@@ -652,20 +657,20 @@ const App: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-slate-800 mb-4 px-4 border-t border-slate-200 pt-6">Artificial Intelligence</h3>
+                <h3 className="text-lg font-serif font-bold text-on-surface mb-4 px-4 border-t border-white/10 pt-6">Artificial Intelligence</h3>
                 <div className="space-y-4">
                   {AI_PROJECTS.map((project) => (
-                    <div key={project.id} className="flex gap-4 p-4 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                      <span className="text-blue-500 font-bold text-lg w-8 shrink-0 text-right">{project.id}.</span>
+                    <div key={project.id} className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                      <span className="text-primary-fixed font-bold text-lg w-8 shrink-0 text-right">{project.id}.</span>
                       <div className="flex-1">
-                        <p className="text-slate-700 text-sm leading-relaxed font-medium mb-1">
+                        <p className="text-on-surface-variant text-sm leading-relaxed font-medium mb-1">
                           {project.title}
                         </p>
-                        <p className="text-slate-600 text-xs mb-1">
+                        <p className="text-on-surface-variant text-xs mb-1">
                           <span className="font-semibold">{project.period}</span>
                         </p>
                         {project.details && (
-                          <p className="text-slate-600 text-xs italic mt-1 mb-2">
+                          <p className="text-on-surface-variant text-xs italic mt-1 mb-2">
                             {project.details}
                           </p>
                         )}
@@ -677,7 +682,7 @@ const App: React.FC = () => {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium border border-blue-200 hover:bg-blue-100 transition-colors"
+                                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-primary-fixed/10 text-primary-fixed text-xs font-medium border border-primary-fixed/20 hover:bg-primary-fixed/20 transition-colors"
                               >
                                 {link.text}
                                 <ExternalLink className="w-3 h-3" />
@@ -697,31 +702,31 @@ const App: React.FC = () => {
         return {
           title: "Courses and Certifications",
           subtitle: "Professional development and training",
-          icon: <GraduationCap className="w-5 h-5 text-blue-600" />,
+          icon: <GraduationCap className="w-5 h-5 text-primary-fixed" />,
           content: (
             <div className="space-y-4">
               {CERTIFICATIONS.map((cert) => (
-                <div key={cert.id} className="flex gap-4 p-4 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
-                  <span className="text-blue-500 font-bold text-lg w-8 shrink-0 text-right">{cert.id}.</span>
+                <div key={cert.id} className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                  <span className="text-primary-fixed font-bold text-lg w-8 shrink-0 text-right">{cert.id}.</span>
                   <div className="flex-1">
-                    <p className="text-slate-700 text-sm leading-relaxed font-medium mb-1">
+                    <p className="text-on-surface-variant text-sm leading-relaxed font-medium mb-1">
                       {cert.title}
                     </p>
-                    <p className="text-slate-600 text-xs mb-1">
+                    <p className="text-on-surface-variant text-xs mb-1">
                       <span className="font-semibold">{cert.date}</span> - {cert.organization}
                     </p>
                     {cert.duration && (
-                      <p className="text-slate-600 text-xs mb-1">
+                      <p className="text-on-surface-variant text-xs mb-1">
                         Duration: {cert.duration}
                       </p>
                     )}
                     {cert.topics && (
-                      <p className="text-slate-600 text-xs mb-1 italic">
+                      <p className="text-on-surface-variant text-xs mb-1 italic">
                         Topics: {cert.topics}
                       </p>
                     )}
                     {cert.license && (
-                      <p className="text-slate-500 text-xs mt-1">
+                      <p className="text-on-surface-variant text-xs mt-1">
                         License: <span className="font-mono">{cert.license}</span>
                       </p>
                     )}
@@ -739,7 +744,7 @@ const App: React.FC = () => {
   const modalData = getModalContent();
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#f8fafc] flex flex-col">
       {/* Top Animation Banner */}
       <div className="print:hidden">
         <ParticleBanner />
@@ -748,23 +753,23 @@ const App: React.FC = () => {
       <div className="flex flex-col md:flex-row flex-1 relative">
         
         {/* Mobile Header / Navigation Bar */}
-        <div className="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-40 shadow-md border-b border-slate-800">
+        <div className="md:hidden bg-surface-container-lowest text-on-surface p-4 flex justify-between items-center sticky top-0 z-40 shadow-md border-b border-white/10">
           <div className="flex items-center gap-3">
-             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-700 bg-slate-800">
-                <img 
+             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container-high bg-surface-container-high">
+                <img
                   src={`${import.meta.env.BASE_URL}photos/Nuno_2023.jpg`}
-                  alt={CV_DATA.personal.shortName} 
-                  className="w-full h-full object-cover grayscale"
+                  alt={CV_DATA.personal.shortName}
+                  className="w-full h-full object-cover"
                 />
              </div>
              <div>
                 <h1 className="font-serif font-bold text-base leading-tight">{CV_DATA.personal.shortName}</h1>
-                <p className="text-blue-400 text-[10px] uppercase tracking-wider font-bold">SME Data Science & AI</p>
+                <p className="text-primary-fixed text-[10px] uppercase tracking-wider font-mono font-bold">SME Data Science & AI</p>
              </div>
           </div>
-          <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-            className="p-2 text-slate-300 hover:text-white transition-colors focus:outline-none"
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 text-on-surface-variant hover:text-on-surface transition-colors focus:outline-none"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -772,89 +777,90 @@ const App: React.FC = () => {
         </div>
 
         {/* Sidebar - Left Column */}
-        <aside className="w-full md:w-[350px] lg:w-[400px] bg-slate-900 text-white shrink-0 relative transition-all duration-300 ease-in-out md:block">
+        <aside className="w-full md:w-[350px] lg:w-[400px] bg-surface-container-lowest text-on-surface shrink-0 relative transition-all duration-300 ease-in-out md:block">
           {/* Subtle pattern background - always present */}
-          <div className="absolute inset-0 opacity-5 pointer-events-none" 
+          <div className="absolute inset-0 opacity-5 pointer-events-none"
               style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}>
           </div>
 
           {/* Collapsible Content Wrapper for Mobile */}
           <div className={`
              relative z-10 overflow-hidden transition-all duration-500 ease-in-out
-             ${isMobileMenuOpen ? 'max-h-[3500px] opacity-100 border-b border-slate-800' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100 md:border-b-0'}
+             ${isMobileMenuOpen ? 'max-h-[3500px] opacity-100 border-b border-white/10' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100 md:border-b-0'}
              print:max-h-none print:opacity-100 print:block
           `}>
             <div className="p-8 md:p-10 flex flex-col h-full">
               {/* Profile Header (Hidden on mobile if collapsed, but visible when open) */}
-              <div className="mb-10 text-center md:text-left">
-                  <div className="w-32 h-32 mx-auto md:mx-0 bg-gradient-to-br from-slate-700 to-slate-800 rounded-full border-4 border-slate-800 shadow-xl mb-6 overflow-hidden relative">
-                    <img 
+              <div className="mb-10 text-center md:text-left relative">
+                  <div className="absolute -top-6 -left-6 w-40 h-40 bg-primary-fixed/10 blur-[50px] rounded-full pointer-events-none hidden md:block" />
+                  <div className="w-32 h-32 mx-auto md:mx-0 bg-surface-container-high rounded-full border-2 border-surface-container-high shadow-[0_0_20px_rgba(0,240,255,0.15)] mb-6 overflow-hidden relative z-10">
+                    <img
                       src={`${import.meta.env.BASE_URL}photos/Nuno_2023.jpg`}
-                      alt={CV_DATA.personal.name} 
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                      alt={CV_DATA.personal.name}
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <h1 className="text-3xl font-serif font-bold mb-2 leading-tight">Nuno de Sousa, Ph.D.</h1>
-                  <p className="text-blue-400 font-medium text-sm tracking-wide uppercase">SME Data Science & AI</p>
+                  <p className="text-primary-fixed font-mono text-sm tracking-wide uppercase">SME Data Science & AI</p>
               </div>
 
               {/* Contact Details */}
               <div className="mb-8 space-y-4">
-                <motion.div 
-                  className="flex items-start gap-3 text-slate-300 hover:text-white transition-colors group cursor-default"
+                <motion.div
+                  className="flex items-start gap-3 text-on-surface-variant hover:text-on-surface transition-colors group cursor-default"
                   initial="rest" whileHover="hover" animate="rest"
                 >
                   <motion.div variants={iconAnim} className="mt-1">
-                    <Mail className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
+                    <Mail className="w-4 h-4 group-hover:text-primary-fixed transition-colors" />
                   </motion.div>
                   <div className="flex flex-col gap-1">
                     {CV_DATA.personal.emails.map((email, i) => (
-                      <a key={i} href={`mailto:${email}`} className="text-sm hover:text-blue-300 transition-colors block">{email}</a>
+                      <a key={i} href={`mailto:${email}`} className="text-sm font-mono hover:text-primary-fixed transition-colors block">{email}</a>
                     ))}
                   </div>
                 </motion.div>
 
-                <motion.div 
-                  className="flex items-start gap-3 text-slate-300 hover:text-white transition-colors group cursor-default"
+                <motion.div
+                  className="flex items-start gap-3 text-on-surface-variant hover:text-on-surface transition-colors group cursor-default"
                   initial="rest" whileHover="hover" animate="rest"
                 >
                   <motion.div variants={iconAnim} className="mt-1">
-                    <Phone className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
+                    <Phone className="w-4 h-4 group-hover:text-primary-fixed transition-colors" />
                   </motion.div>
                   <div className="flex flex-col gap-1">
                     {CV_DATA.personal.phones.map((phone, i) => (
-                      <span key={i} className="text-sm block">{phone}</span>
+                      <span key={i} className="text-sm font-mono block">{phone}</span>
                     ))}
                   </div>
                 </motion.div>
 
-                <motion.div 
-                  className="flex items-start gap-3 text-slate-300 hover:text-white transition-colors group cursor-default"
+                <motion.div
+                  className="flex items-start gap-3 text-on-surface-variant hover:text-on-surface transition-colors group cursor-default"
                   initial="rest" whileHover="hover" animate="rest"
                 >
                   <motion.div variants={iconAnim} className="mt-1">
-                    <MapPin className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
+                    <MapPin className="w-4 h-4 group-hover:text-primary-fixed transition-colors" />
                   </motion.div>
-                  <span className="text-sm max-w-[200px]">{CV_DATA.personal.location}</span>
+                  <span className="text-sm font-mono max-w-[200px]">{CV_DATA.personal.location}</span>
                 </motion.div>
 
                 <div className="flex items-center gap-4 pt-2">
-                   <a href={CV_DATA.personal.links.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                   <a href={CV_DATA.personal.links.github} target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-fixed transition-colors">
                      <Github className="w-5 h-5 hover:scale-110 transition-transform" />
                    </a>
-                   <a href={CV_DATA.personal.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                   <a href={CV_DATA.personal.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-fixed transition-colors">
                      <Linkedin className="w-5 h-5 hover:scale-110 transition-transform" />
                    </a>
-                   <a href={CV_DATA.personal.links.orcid} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors flex items-center gap-1 text-xs font-bold border border-slate-600 rounded px-1 hover:border-white">
+                   <a href={CV_DATA.personal.links.orcid} target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-fixed transition-colors flex items-center gap-1 text-xs font-mono font-bold border border-white/20 rounded px-1 hover:border-primary-fixed">
                      ID ORCID
                    </a>
                 </div>
               </div>
 
               {/* Download Button Sidebar */}
-              <button 
+              <button
                 onClick={() => window.print()}
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/20 mb-10 group print:hidden"
+                className="w-full bg-primary-fixed hover:bg-primary-container text-on-primary-fixed font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(0,240,255,0.15)] hover:shadow-[0_0_25px_rgba(0,240,255,0.3)] mb-10 group print:hidden"
               >
                 <Download className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
                 <span>Download CV</span>
@@ -863,12 +869,12 @@ const App: React.FC = () => {
               {/* Infographic Button (below Download CV) */}
               <a
                 href={`${import.meta.env.BASE_URL}infographic/infographic.html`}
-                className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-black/20 mb-10 print:hidden"
+                className="w-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all border border-white/10 mb-10 print:hidden"
               >
                 Infographic
               </a>
 
-              <div className="w-full h-px bg-slate-800 mb-10 print:hidden" />
+              <div className="w-full h-px bg-white/10 mb-10 print:hidden" />
 
               {/* Personal Details */}
               <div className="mb-10">
@@ -880,20 +886,20 @@ const App: React.FC = () => {
 
               {/* Skills Section */}
               <div className="mb-10 print:hidden">
-                <motion.h3 
+                <motion.h3
                   className="text-lg font-bold mb-6 flex items-center gap-2 cursor-default group"
                   initial="rest" whileHover="hover" animate="rest"
                 >
                   <motion.div variants={iconAnim}>
-                    <Terminal className="w-5 h-5 text-blue-400" />
+                    <Terminal className="w-5 h-5 text-primary-fixed" />
                   </motion.div>
                   Skills
                 </motion.h3>
                 <div className="space-y-6">
                     {CV_DATA.skills.map((skill, idx) => (
                       <div key={idx}>
-                        <h4 className="text-xs font-bold text-slate-400 uppercase mb-2">{skill.category}</h4>
-                        <p className="text-sm text-slate-300 leading-relaxed border-l-2 border-slate-700 pl-3">{skill.skills}</p>
+                        <h4 className="text-xs font-mono font-bold text-on-surface-variant uppercase tracking-wider mb-2">{skill.category}</h4>
+                        <p className="text-sm text-on-surface-variant leading-relaxed border-l-2 border-white/10 pl-3">{skill.skills}</p>
                       </div>
                     ))}
                 </div>
@@ -901,20 +907,20 @@ const App: React.FC = () => {
 
               {/* Languages */}
               <div className="print:hidden">
-                <motion.h3 
+                <motion.h3
                   className="text-lg font-bold mb-6 flex items-center gap-2 cursor-default group"
                   initial="rest" whileHover="hover" animate="rest"
                 >
                   <motion.div variants={iconAnim}>
-                    <Globe className="w-5 h-5 text-blue-400" />
+                    <Globe className="w-5 h-5 text-primary-fixed" />
                   </motion.div>
                   Languages
                 </motion.h3>
                 <ul className="space-y-3">
                   {CV_DATA.languages.map((lang, idx) => (
-                    <li key={idx} className="flex justify-between items-baseline border-b border-slate-800 pb-2">
-                      <span className="text-sm font-medium">{lang.name}</span>
-                      <span className="text-xs text-slate-400">{lang.level}</span>
+                    <li key={idx} className="flex justify-between items-baseline border-b border-white/10 pb-2">
+                      <span className="text-sm font-medium text-on-surface">{lang.name}</span>
+                      <span className="text-xs font-mono text-on-surface-variant">{lang.level}</span>
                     </li>
                   ))}
                 </ul>
@@ -933,78 +939,80 @@ const App: React.FC = () => {
           >
             {/* Profile Summary */}
             <section className="mb-16">
-              <div className="bg-slate-900 p-8 rounded-xl border-l-4 border-blue-600 shadow-md hover:shadow-lg transition-shadow">
-                <motion.h2 
-                  className="text-2xl font-bold text-white mb-6 uppercase tracking-wider flex items-center gap-3 cursor-default group"
+              <div className="bg-surface-container-high text-on-surface p-8 rounded-xl border border-white/10 shadow-xl relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                <div className="absolute left-0 top-0 w-1 h-full bg-primary-fixed" />
+                <motion.h2
+                  className="text-2xl font-serif font-bold text-on-surface mb-6 uppercase tracking-wider flex items-center gap-3 cursor-default group"
                   initial="rest" whileHover="hover" animate="rest"
                 >
                   <motion.div variants={iconAnim}>
-                    <BrainCircuit className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                    <BrainCircuit className="w-6 h-6 text-primary-fixed transition-colors" />
                   </motion.div>
                   Profile
                 </motion.h2>
-                <p className="text-lg text-slate-300 leading-relaxed font-serif">
-                  <strong className="text-white">Expert in Data Science and AI</strong> with over <strong className="text-white">10 years of experience</strong> and a <strong className="text-white">Ph.D. in Theoretical Physics</strong>, specializing in <strong className="text-white">Python</strong>-based development of advanced <strong className="text-white">pricing models</strong>, <strong className="text-white">business analytics</strong>, technology-driven <strong className="text-white">financial systems</strong>, and <strong className="text-white">machine learning algorithms</strong>. <strong className="text-white">MBA candidate</strong> at <strong className="text-white">CPBS</strong>.
+                <p className="text-lg text-on-surface-variant leading-relaxed">
+                  <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Data & AI Expert</strong> with <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">10+ years of experience</strong> translating complex, data-sparse problems into <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">board-level strategy</strong> — from quantitative <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">pricing and forecasting models</strong> to enterprise-scale <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">AI/ML transformation</strong> across finance, energy, healthcare, and industry. <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Ph.D. in Theoretical Physics</strong> and <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">Executive MBA candidate</strong> at <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">CPBS</strong>, combining deep technical expertise with the <strong className="text-on-surface font-semibold bg-primary-fixed/20 px-1 py-0.5 rounded">executive communication and governance</strong> skills to drive high-stakes decision-making.
                 </p>
               </div>
             </section>
 
             {/* Employment History */}
             <section className="mb-16">
-              <motion.h2 
-                className="text-2xl font-bold text-slate-900 mb-8 uppercase tracking-wider flex items-center gap-3 cursor-default group"
+              <motion.h2
+                className="text-2xl font-serif font-bold text-slate-900 mb-8 uppercase tracking-wider flex items-center gap-3 cursor-default group"
                 initial="rest" whileHover="hover" animate="rest"
               >
                 <motion.div variants={iconAnim}>
-                  <Code2 className="w-6 h-6 text-slate-400 group-hover:text-blue-600 transition-colors" />
+                  <Code2 className="w-6 h-6 text-slate-400 group-hover:text-on-primary-container transition-colors" />
                 </motion.div>
                 Employment History
               </motion.h2>
-              
+
               <div className="space-y-12 relative">
                 {/* Timeline Line */}
                 <div className="absolute left-0 md:-left-8 top-2 bottom-0 w-px bg-slate-200 hidden md:block" />
 
                 {CV_DATA.experience.map((job, idx) => (
-                  <div 
-                    key={job.id} 
+                  <div
+                    key={job.id}
                     className="relative"
                   >
                     {/* Timeline Dot */}
-                    <div className="absolute md:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-blue-600 border-4 border-white shadow-sm hidden md:block" />
+                    <div className="absolute md:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-primary-fixed border-4 border-[#f8fafc] shadow-[0_0_10px_rgba(0,240,255,0.6)] hidden md:block" />
 
                     <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
-                      <h3 className="text-xl font-bold text-slate-800">{job.role}</h3>
-                      <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2 py-1 rounded">{job.period}</span>
+                      <h3 className="text-xl font-serif font-bold text-slate-800">{job.role}</h3>
+                      <span className="text-xs font-mono font-bold text-primary-fixed uppercase tracking-widest bg-surface-container-lowest border border-black/5 px-2 py-1 rounded">{job.period}</span>
                     </div>
                     
                     <p className="text-base font-semibold text-slate-600 mb-4 flex items-center gap-2 flex-wrap">
                       {job.company === "Universidad Autónoma de Madrid & Donostia International Physics Center" ? (
                         <>
-                          <a 
-                            href="https://www.uam.es/uam/inicio" 
-                            target="_blank" 
+                          <a
+                            href="https://www.uam.es/uam/inicio"
+                            target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-blue-600 transition-colors"
+                            className="hover:text-on-primary-container transition-colors"
                           >
                             Universidad Autónoma de Madrid
                           </a>
                           <span> & </span>
-                          <a 
-                            href="https://dipc.ehu.eus/en" 
-                            target="_blank" 
+                          <a
+                            href="https://dipc.ehu.eus/en"
+                            target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-blue-600 transition-colors"
+                            className="hover:text-on-primary-container transition-colors"
                           >
                             Donostia International Physics Center
                           </a>
                         </>
                       ) : job.companyUrl ? (
-                        <a 
-                          href={job.companyUrl} 
-                          target="_blank" 
+                        <a
+                          href={job.companyUrl}
+                          target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-blue-600 transition-colors"
+                          className="hover:text-on-primary-container transition-colors"
                         >
                           {job.company}
                         </a>
@@ -1034,26 +1042,26 @@ const App: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {/* Education */}
               <section>
-                <motion.h2 
-                  className="text-2xl font-bold text-slate-900 mb-8 uppercase tracking-wider flex items-center gap-3 cursor-default group"
+                <motion.h2
+                  className="text-2xl font-serif font-bold text-slate-900 mb-8 uppercase tracking-wider flex items-center gap-3 cursor-default group"
                   initial="rest" whileHover="hover" animate="rest"
                 >
                   <motion.div variants={iconAnim}>
-                    <GraduationCap className="w-6 h-6 text-slate-400 group-hover:text-blue-600 transition-colors" />
+                    <GraduationCap className="w-6 h-6 text-slate-400 group-hover:text-on-primary-container transition-colors" />
                   </motion.div>
                   Education
                 </motion.h2>
                 <div className="space-y-8">
                   {CV_DATA.education.map((edu, idx) => (
                     <div key={idx} className="group">
-                      <h3 className="text-lg font-bold text-slate-800 group-hover:text-blue-700 transition-colors">{edu.degree}</h3>
+                      <h3 className="text-lg font-serif font-bold text-slate-800 group-hover:text-on-primary-container transition-colors">{edu.degree}</h3>
                       <p className="text-sm font-medium text-slate-600 mb-1">
                         {edu.institutionUrl ? (
-                          <a 
-                            href={edu.institutionUrl} 
-                            target="_blank" 
+                          <a
+                            href={edu.institutionUrl}
+                            target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-blue-600 transition-colors"
+                            className="hover:text-on-primary-container transition-colors"
                           >
                             {edu.institution}
                           </a>
@@ -1061,7 +1069,7 @@ const App: React.FC = () => {
                           edu.institution
                         )}
                       </p>
-                      {edu.period && <p className="text-xs text-slate-400 mb-2 uppercase tracking-wide">{edu.period}</p>}
+                      {edu.period && <p className="text-xs font-mono text-slate-400 mb-2 uppercase tracking-wide">{edu.period}</p>}
                       {edu.details.length > 0 && (
                         <ul className="space-y-1 mt-2">
                           {edu.details.map((detail, i) => (
@@ -1070,7 +1078,7 @@ const App: React.FC = () => {
                         </ul>
                       )}
                       {edu.link && (
-                        <a href={edu.link} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1 mt-2 font-medium">
+                        <a href={edu.link} target="_blank" rel="noopener noreferrer" className="text-xs text-on-primary-container hover:opacity-70 flex items-center gap-1 mt-2 font-medium">
                           <ExternalLink className="w-3 h-3" />
                           View Thesis
                         </a>
@@ -1082,20 +1090,20 @@ const App: React.FC = () => {
 
               {/* Additional Accomplishments */}
               <section>
-                <motion.h2 
-                  className="text-2xl font-bold text-slate-900 mb-8 uppercase tracking-wider flex items-center gap-3 cursor-default group"
+                <motion.h2
+                  className="text-2xl font-serif font-bold text-slate-900 mb-8 uppercase tracking-wider flex items-center gap-3 cursor-default group"
                   initial="rest" whileHover="hover" animate="rest"
                 >
                   <motion.div variants={iconAnim}>
-                    <Database className="w-6 h-6 text-slate-400 group-hover:text-blue-600 transition-colors" />
+                    <Database className="w-6 h-6 text-slate-400 group-hover:text-on-primary-container transition-colors" />
                   </motion.div>
                   Additional Accomplishments
                 </motion.h2>
                 <ul className="space-y-4">
                   {CV_DATA.achievements.map((achievement, idx) => (
-                    <li 
-                      key={idx} 
-                      className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-sm text-slate-700 flex gap-3 cursor-pointer hover:border-blue-300 hover:shadow-md transition-all group"
+                    <li
+                      key={idx}
+                      className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-sm text-slate-700 flex gap-3 cursor-pointer hover:border-on-primary-container/40 hover:shadow-md transition-all group"
                       onClick={() => {
                         if ((achievement as any).url) {
                           window.open((achievement as any).url, '_blank', 'noopener,noreferrer');
@@ -1105,11 +1113,11 @@ const App: React.FC = () => {
                       }}
                     >
                       <div className="flex items-center gap-2 shrink-0">
-                        <achievement.icon className="w-5 h-5 text-blue-500 group-hover:text-blue-600 transition-colors" />
+                        <achievement.icon className="w-5 h-5 text-on-primary-container transition-colors" />
                       </div>
                       <div className="flex-1">
                         {achievement.text}
-                        <div className="mt-2 text-xs text-blue-600 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        <div className="mt-2 text-xs text-on-primary-container font-mono font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                            <achievement.icon className="w-3 h-3" />
                            {(achievement as any).url ? 'Click to visit program page' : 'Click to view full list'}
                         </div>
@@ -1133,46 +1141,46 @@ const App: React.FC = () => {
       <AnimatePresence>
         {activeModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 print:hidden">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
               onClick={() => setActiveModal(null)}
             />
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white w-full max-w-4xl max-h-[85vh] rounded-2xl shadow-2xl relative flex flex-col overflow-hidden"
+              className="bg-surface-container-high/95 backdrop-blur-xl text-on-surface w-full max-w-4xl max-h-[85vh] rounded-2xl shadow-2xl border border-white/10 relative flex flex-col overflow-hidden"
             >
               {/* Modal Header */}
-              <div className="p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50 sticky top-0 z-10">
+              <div className="p-6 border-b border-white/10 flex justify-between items-center bg-surface-container-lowest/60 sticky top-0 z-10">
                 <div>
-                  <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                  <h2 className="text-xl font-serif font-bold text-on-surface flex items-center gap-2">
                     {modalData?.icon}
                     {modalData?.title}
                   </h2>
-                  <p className="text-sm text-slate-500 mt-1">{modalData?.subtitle}</p>
+                  <p className="text-sm text-on-surface-variant mt-1">{modalData?.subtitle}</p>
                 </div>
-                <button 
+                <button
                   onClick={() => setActiveModal(null)}
-                  className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-500 hover:text-slate-800"
+                  className="p-2 hover:bg-white/10 rounded-full transition-colors text-on-surface-variant hover:text-on-surface"
                 >
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              
+
               {/* Modal Content */}
               <div className="overflow-y-auto p-6">
                 {modalData?.content}
               </div>
 
               {/* Modal Footer */}
-              <div className="p-4 border-t border-slate-200 bg-slate-50 flex justify-end">
-                <button 
+              <div className="p-4 border-t border-white/10 bg-surface-container-lowest/60 flex justify-end">
+                <button
                   onClick={() => setActiveModal(null)}
-                  className="px-6 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium text-sm"
+                  className="px-6 py-2 bg-primary-fixed text-on-primary-fixed rounded-lg hover:bg-primary-container transition-colors font-medium text-sm"
                 >
                   Close
                 </button>

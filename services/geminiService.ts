@@ -12,7 +12,7 @@ let chatSession: Chat | null = null;
 const RESUME_CONTEXT = `
 NAME: Nuno Miguel Santos Teixeira de Sousa (Nuno de Sousa)
 TITLE: SME Data Science & AI
-SUMMARY: Expert in Data Science and IA with over 10 years of experience and a Ph.D. in Theoretical Physics, specializing in Python-based development of advanced pricing models, business analytics, technology-driven financial systems, and machine learning algorithms. MBA candidate at CPBS.
+SUMMARY: Data & AI Expert with 10+ years of experience translating complex, data-sparse problems into board-level strategy — from quantitative pricing and forecasting models to enterprise-scale AI/ML transformation across finance, energy, healthcare, and industry. Ph.D. in Theoretical Physics and Executive MBA candidate at CPBS, combining deep technical expertise with the executive communication and governance skills to drive high-stakes decision-making.
 
 CONTACT (some info is hidden for privacy reasons):
 - Emails: nunoxxxxxxxx@gmail.com, nunoxxxxxxxx@simia-tech.com 
@@ -25,12 +25,12 @@ CONTACT (some info is hidden for privacy reasons):
 - Date of Birth: 28/07/1982
 
 EMPLOYMENT HISTORY:
-1. Data Scientist & SME - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
+1. SME Data Science & AI - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
    - Designs/develops quantitative models for nowcasting and forecasting marine bunker fuel prices across global ports.
    - Builds advanced statistical and machine learning frameworks to estimate prices in complex, data-sparse markets.
    - Integrates heterogeneous data sources and economic indicators to generate robust pricing intelligence for strategic decision-making.
 
-2. Expert in Data Science & IA - DataJuicers (Remote) [Nov 2019 - Mar 2026]
+2. Expert in Data Science & IA - DataJuicers and Simia-Tech (Madrid, Oporto & Remote) [Nov 2019 - Mar 2026]
    - Defined/implemented end-to-end AI/ML/data science solutions for high-profile clients (utilities, healthcare, chemicals).
    - Processed/structured large datasets.
    - Acted as business translator between technical teams and stakeholders.

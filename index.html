@@ -8,24 +8,69 @@
     <script>
       tailwind.config = {
         theme: {
-          extend: {},
+          extend: {
+            colors: {
+              "surface-container-lowest": "#010f1f",
+              "surface-container-high": "#1c2b3c",
+              "on-primary-container": "#006970",
+              "background": "#051424",
+              "tertiary-container": "#d5d9e9",
+              "surface": "#051424",
+              "on-primary": "#00363a",
+              "primary-fixed": "#7df4ff",
+              "surface-tint": "#00dbe9",
+              "inverse-primary": "#006970",
+              "primary-container": "#00f0ff",
+              "on-tertiary-container": "#5a5f6c",
+              "on-surface": "#d4e4fa",
+              "on-secondary": "#283141",
+              "surface-container": "#122131",
+              "secondary": "#bec7dc",
+              "outline-variant": "#3b494b",
+              "surface-dim": "#051424",
+              "tertiary": "#f5f5ff",
+              "surface-container-low": "#0d1c2d",
+              "outline": "#849495",
+              "on-background": "#d4e4fa",
+              "primary-fixed-dim": "#00dbe9",
+              "on-primary-fixed": "#002022",
+              "surface-bright": "#2c3a4c",
+              "secondary-container": "#40495b",
+              "on-secondary-container": "#afb8cd",
+              "inverse-surface": "#d4e4fa",
+              "secondary-fixed-dim": "#bec7dc",
+              "surface-variant": "#273647",
+              "on-surface-variant": "#b9cacb",
+              "inverse-on-surface": "#233143",
+              "surface-container-highest": "#273647",
+              "on-primary-fixed-variant": "#004f54",
+              "secondary-fixed": "#dae2f9",
+              "primary": "#dbfcff",
+              "on-tertiary": "#2b303c",
+              "on-tertiary-fixed": "#171b27"
+            },
+            fontFamily: {
+              serif: ['Libre Caslon Text', 'serif'],
+              mono: ['Geist', 'monospace'],
+            },
+          },
         },
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       html {
         scroll-behavior: smooth;
       }
       body {
-        font-family: 'Inter', sans-serif;
-        background-color: #f1f5f9;
+        font-family: 'Hanken Grotesk', sans-serif;
+        background-color: #f8fafc;
         color: #334155;
       }
       .font-serif {
-        font-family: 'Merriweather', serif;
+        font-family: 'Libre Caslon Text', serif;
       }
 
       /* ========== PRINT STYLES ========== */
@@ -108,8 +153,8 @@
           margin-bottom: 2px !important;
         }
 
-        aside .text-blue-400 {
-          color: #60a5fa !important;
+        aside .text-primary-fixed {
+          color: #0891b2 !important;
           font-size: 8pt !important;
         }
 
@@ -159,26 +204,27 @@
         }
 
         /* Profile summary box */
-        .bg-slate-900 {
+        .bg-surface-container-high {
           background: #f8fafc !important;
-          border-left: 3px solid #2563eb !important;
+          border-left: 3px solid #0891b2 !important;
           padding: 10px 12px !important;
           border-radius: 4px !important;
         }
 
-        .bg-slate-900 h2 {
+        .bg-surface-container-high h2 {
           color: #0f172a !important;
           font-size: 11pt !important;
           border: none !important;
         }
 
-        .bg-slate-900 p {
+        .bg-surface-container-high p {
           color: #334155 !important;
           font-size: 9pt !important;
         }
 
-        .bg-slate-900 strong {
+        .bg-surface-container-high strong {
           color: #0f172a !important;
+          background: transparent !important;
         }
 
         /* Experience items */
@@ -229,8 +275,9 @@
         }
 
         /* Date badges */
-        .bg-blue-50 {
+        .bg-surface-container-lowest {
           background: transparent !important;
+          border: none !important;
           padding: 0 !important;
           font-size: 8pt !important;
         }
