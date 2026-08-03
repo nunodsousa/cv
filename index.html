@@ -2,326 +2,320 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nuno de Sousa - CV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Nuno de Sousa — SME Data Science &amp; AI. Ph.D. in Theoretical Physics, Executive MBA candidate. 10+ years leading multidisciplinary teams across finance, energy, healthcare and industry." />
+    <title>Nuno de Sousa — Data Science &amp; AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            // Slate + blue, matching the original CV palette.
+            // Every colour resolves through a CSS variable so the whole page
+            // adapts to the viewer's light/dark setting without a class toggle.
+            // rgb(var(--x) / <alpha-value>) keeps Tailwind's /50 opacity syntax working.
             colors: {
-              // surfaces — Tailwind slate scale
-              "background": "#0f172a",          // slate-900
-              "surface": "#0f172a",             // slate-900
-              "surface-dim": "#0f172a",
-              "surface-bright": "#334155",      // slate-700
-              "surface-container-lowest": "#020617", // slate-950
-              "surface-container-low": "#0f172a",    // slate-900
-              "surface-container": "#1e293b",        // slate-800
-              "surface-container-high": "#1e293b",   // slate-800
-              "surface-container-highest": "#334155",// slate-700
-              "surface-variant": "#334155",
-              "outline": "#64748b",             // slate-500
-              "outline-variant": "#475569",     // slate-600
-
-              // ink on dark surfaces
-              "on-surface": "#e2e8f0",          // slate-200
-              "on-surface-variant": "#94a3b8",  // slate-400
-              "on-background": "#e2e8f0",
-              "inverse-surface": "#e2e8f0",
-              "inverse-on-surface": "#1e293b",
-
-              // blue accent
-              "primary": "#2563eb",             // blue-600 — solid fills
-              "primary-container": "#3b82f6",   // blue-500 — solid fill hover
-              "primary-fixed": "#60a5fa",       // blue-400 — accent on dark
-              "primary-fixed-dim": "#3b82f6",   // blue-500
-              "inverse-primary": "#2563eb",
-              "surface-tint": "#3b82f6",
-              "on-primary": "#ffffff",          // text on a solid blue fill
-              "on-primary-container": "#2563eb",// blue-600 — accent on light
-              "on-primary-fixed": "#0f172a",
-              "on-primary-fixed-variant": "#1d4ed8",
-
-              // neutrals kept for completeness
-              "secondary": "#cbd5e1",
-              "secondary-container": "#475569",
-              "on-secondary": "#1e293b",
-              "on-secondary-container": "#cbd5e1",
-              "secondary-fixed": "#e2e8f0",
-              "secondary-fixed-dim": "#cbd5e1",
-              "tertiary": "#f8fafc",
-              "tertiary-container": "#e2e8f0",
-              "on-tertiary": "#334155",
-              "on-tertiary-container": "#64748b",
-              "on-tertiary-fixed": "#1e293b"
+              canvas:      "rgb(var(--canvas) / <alpha-value>)",
+              elevated:    "rgb(var(--elevated) / <alpha-value>)",
+              grouped:     "rgb(var(--grouped) / <alpha-value>)",
+              label:       "rgb(var(--label) / <alpha-value>)",
+              secondary:   "rgb(var(--label-secondary) / <alpha-value>)",
+              tertiary:    "rgb(var(--label-tertiary) / <alpha-value>)",
+              separator:   "rgb(var(--separator) / <alpha-value>)",
+              accent:      "rgb(var(--accent) / <alpha-value>)",
+              "accent-hover": "rgb(var(--accent-hover) / <alpha-value>)",
+              fill:        "rgb(var(--fill) / <alpha-value>)",
             },
-            fontFamily: {
-              serif: ['Libre Caslon Text', 'serif'],
-              mono: ['Geist', 'monospace'],
+            borderRadius: {
+              // Apple's continuous-corner scale: chips, cards, sheets.
+              card: "18px",
+              sheet: "26px",
+            },
+            maxWidth: {
+              measure: "42rem", // ~68 characters — comfortable reading measure
             },
           },
         },
       }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: 'Hanken Grotesk', sans-serif;
-        background-color: #f8fafc;
-        color: #334155;
-      }
-      .font-serif {
-        font-family: 'Libre Caslon Text', serif;
+      /* ============================================================
+         PALETTE — Apple system colours, light and dark
+         ============================================================ */
+      :root {
+        --canvas: 255 255 255;
+        --elevated: 255 255 255;
+        --grouped: 245 245 247;          /* apple.com gray */
+        --label: 29 29 31;
+        --label-secondary: 110 110 115;
+        --label-tertiary: 152 152 157;
+        --separator: 210 210 215;
+        --accent: 0 113 227;             /* apple.com blue */
+        --accent-hover: 0 102 204;
+        --fill: 242 242 247;
+
+        /* Materials. Weight encodes hierarchy: chrome is thicker than cards. */
+        --material-chrome: 255 255 255;
+        --material-chrome-alpha: 0.72;
+        --material-blur: 20px;
+        --scrim: 0 0 0;
+        --scrim-alpha: 0.32;
       }
 
-      /* ========== PRINT STYLES ========== */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --canvas: 0 0 0;
+          --elevated: 28 28 30;
+          --grouped: 22 22 24;
+          --label: 245 245 247;
+          --label-secondary: 152 152 157;
+          --label-tertiary: 110 110 115;
+          --separator: 56 56 58;
+          --accent: 10 132 255;          /* systemBlue, dark variant */
+          --accent-hover: 64 156 255;
+          --fill: 44 44 46;
+
+          --material-chrome: 22 22 24;
+          --material-chrome-alpha: 0.72;
+          --scrim-alpha: 0.5;
+        }
+      }
+
+      /* ============================================================
+         TYPOGRAPHY — system font, size-specific tracking and leading
+         ============================================================ */
+      html {
+        /* No scroll-behavior: smooth here — anchor scrolling is driven in JS
+           so it can respect prefers-reduced-motion. */
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+                     "Inter", "Segoe UI", system-ui, sans-serif;
+        font-size: 100%;
+        line-height: 1.5;              /* body: comfortable leading */
+        letter-spacing: 0;             /* body sits near zero tracking */
+        font-optical-sizing: auto;
+        background-color: rgb(var(--canvas));
+        color: rgb(var(--label));
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* Tracking is size-specific — never one value for all sizes.
+         Large text reads too loose, so it tightens; small text opens up. */
+      .type-display {
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        font-weight: 700;
+      }
+      .type-title {
+        line-height: 1.12;
+        letter-spacing: -0.019em;
+        font-weight: 700;
+      }
+      .type-headline {
+        line-height: 1.25;
+        letter-spacing: -0.011em;
+        font-weight: 600;
+      }
+      .type-body {
+        line-height: 1.6;
+        letter-spacing: -0.003em;
+      }
+      .type-caption {
+        line-height: 1.35;
+        letter-spacing: 0.006em;       /* small text wants positive tracking */
+      }
+      .type-eyebrow {
+        line-height: 1.2;
+        letter-spacing: 0.07em;        /* uppercase micro-type opens up further */
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 0.6875rem;
+      }
+
+      /* Vibrancy: text over a translucent material needs more weight and a
+         slight tracking bump to stay legible against a shifting backdrop. */
+      .on-material {
+        font-weight: 500;
+        letter-spacing: 0.001em;
+      }
+
+      /* ============================================================
+         MATERIALS
+         ============================================================ */
+      .material-chrome {
+        background-color: rgb(var(--material-chrome) / var(--material-chrome-alpha));
+        backdrop-filter: blur(var(--material-blur)) saturate(180%);
+        -webkit-backdrop-filter: blur(var(--material-blur)) saturate(180%);
+      }
+
+      /* A bigger surface reads as thicker glass: more blur, deeper shadow. */
+      .material-sheet {
+        background-color: rgb(var(--material-chrome) / 0.86);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        box-shadow: 0 -1px 0 rgb(var(--separator) / 0.6),
+                    0 -24px 60px rgb(0 0 0 / 0.22);
+      }
+
+      /* Scroll edge effect: content fades where it meets floating chrome,
+         instead of colliding with a hard 1px divider. */
+      .scroll-edge {
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 14px);
+        mask-image: linear-gradient(to bottom, transparent 0, black 14px);
+      }
+
+      /* A column taller than its frame fades out at the bottom rather than
+         being guillotined — the softness is what says "keep scrolling". */
+      .scroll-edge-bottom {
+        -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 32px), transparent 100%);
+        mask-image: linear-gradient(to bottom, black calc(100% - 32px), transparent 100%);
+      }
+
+      /* ============================================================
+         SCROLLBARS — thin and unobtrusive, macOS overlay style
+         ============================================================ */
+      .thin-scroll::-webkit-scrollbar { width: 8px; }
+      .thin-scroll::-webkit-scrollbar-track { background: transparent; }
+      .thin-scroll::-webkit-scrollbar-thumb {
+        background: rgb(var(--label-tertiary) / 0.45);
+        border-radius: 4px;
+      }
+      .thin-scroll::-webkit-scrollbar-thumb:hover {
+        background: rgb(var(--label-tertiary) / 0.7);
+      }
+
+      /* ============================================================
+         FOCUS — visible, and only for keyboard users
+         ============================================================ */
+      :focus-visible {
+        outline: 2px solid rgb(var(--accent));
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+
+      ::selection {
+        background: rgb(var(--accent) / 0.22);
+      }
+
+      /* ============================================================
+         ACCESSIBILITY PREFERENCES
+         Reduced motion doesn't mean no feedback — it means a gentler,
+         non-vestibular equivalent.
+         ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 150ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      @media (prefers-reduced-transparency: reduce) {
+        .material-chrome, .material-sheet {
+          background-color: rgb(var(--material-chrome));
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+      }
+
+      @media (prefers-contrast: more) {
+        :root {
+          --label-secondary: 70 70 75;
+          --separator: 120 120 128;
+        }
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --label-secondary: 200 200 205;
+            --separator: 120 120 128;
+          }
+        }
+        .material-chrome, .material-sheet {
+          background-color: rgb(var(--material-chrome));
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          border: 1px solid rgb(var(--separator));
+        }
+      }
+
+      /* ============================================================
+         PRINT — the CV as an A4 document
+         ============================================================ */
       @media print {
         @page {
           size: A4;
-          margin: 12mm 15mm;
+          margin: 14mm 15mm;
         }
 
         * {
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
+          box-shadow: none !important;
+          backdrop-filter: none !important;
+        }
+
+        :root {
+          --canvas: 255 255 255;
+          --elevated: 255 255 255;
+          --grouped: 255 255 255;
+          --label: 20 20 22;
+          --label-secondary: 80 80 85;
+          --label-tertiary: 110 110 115;
+          --separator: 200 200 205;
+          --accent: 0 90 190;
         }
 
         html, body {
-          font-size: 10pt !important;
+          background: #fff !important;
+          color: #141416 !important;
+          font-size: 9.5pt !important;
           line-height: 1.4 !important;
-          background: white !important;
-          color: #1e293b !important;
         }
 
-        /* Hide non-essential elements */
-        .print\\:hidden,
-        [class*="ParticleBanner"],
+        .print\:hidden,
+        [data-print="hide"],
+        nav,
         canvas,
-        button,
-        .md\\:hidden,
-        [aria-label="Toggle menu"] {
+        button {
           display: none !important;
         }
 
-        /* Root container */
-        #root > div {
-          display: block !important;
-          min-height: auto !important;
-        }
-
-        /* Sidebar becomes print header */
-        aside {
-          position: relative !important;
-          width: 100% !important;
-          max-width: 100% !important;
-          background: #0f172a !important;
-          color: white !important;
-          padding: 20px 25px !important;
-          margin-bottom: 15px !important;
-          page-break-inside: avoid !important;
-          border-radius: 8px !important;
-        }
-
-        aside > div {
-          max-height: none !important;
-          opacity: 1 !important;
-          overflow: visible !important;
-        }
-
-        aside .p-8, aside .md\\:p-10 {
-          padding: 0 !important;
-          display: grid !important;
-          grid-template-columns: auto 1fr 1fr !important;
-          gap: 20px !important;
-          align-items: start !important;
-        }
-
-        /* Profile photo in print */
-        aside .w-32 {
-          width: 70px !important;
-          height: 70px !important;
-          margin: 0 !important;
-          grid-row: span 2;
-        }
-
-        aside .mb-10.text-center {
-          margin-bottom: 0 !important;
-          text-align: left !important;
-        }
-
-        aside h1 {
-          font-size: 16pt !important;
-          margin-bottom: 2px !important;
-        }
-
-        aside .text-primary-fixed {
-          color: #2563eb !important;
-          font-size: 8pt !important;
-        }
-
-        /* Contact info compact */
-        aside .mb-8.space-y-4 {
-          margin-bottom: 0 !important;
-          display: flex !important;
-          flex-wrap: wrap !important;
-          gap: 8px 20px !important;
-        }
-
-        aside .mb-8.space-y-4 > div {
-          flex-direction: row !important;
-          gap: 5px !important;
-        }
-
-        aside .mb-8.space-y-4 .text-sm {
-          font-size: 8pt !important;
-        }
-
-        /* Hide skills section in sidebar for print (will show in main) */
-        aside .mb-10:has(h3),
-        aside .w-full.h-px,
-        aside > div > div > div:nth-child(n+4) {
-          display: none !important;
-        }
-
-        /* Main content */
         main {
-          padding: 0 !important;
           max-width: 100% !important;
-          width: 100% !important;
-        }
-
-        /* Section spacing */
-        section {
-          margin-bottom: 12px !important;
-          page-break-inside: avoid !important;
-        }
-
-        section h2 {
-          font-size: 12pt !important;
-          margin-bottom: 8px !important;
-          color: #0f172a !important;
-          border-bottom: 1px solid #e2e8f0;
-          padding-bottom: 4px;
-        }
-
-        /* Profile summary box */
-        .bg-surface-container-high {
-          background: #f8fafc !important;
-          border-left: 3px solid #2563eb !important;
-          padding: 10px 12px !important;
-          border-radius: 4px !important;
-        }
-
-        .bg-surface-container-high h2 {
-          color: #0f172a !important;
-          font-size: 11pt !important;
-          border: none !important;
-        }
-
-        .bg-surface-container-high p {
-          color: #334155 !important;
-          font-size: 9pt !important;
-        }
-
-        .bg-surface-container-high strong {
-          color: #0f172a !important;
-          background: transparent !important;
-        }
-
-        /* Experience items */
-        .space-y-12 {
-          gap: 10px !important;
-        }
-
-        .space-y-12 > div {
-          margin-bottom: 10px !important;
-          page-break-inside: avoid !important;
-        }
-
-        /* Job titles */
-        .text-xl {
-          font-size: 10pt !important;
-          font-weight: 700 !important;
-        }
-
-        .text-base {
-          font-size: 9pt !important;
-        }
-
-        /* Lists */
-        ul {
-          margin: 4px 0 !important;
-          padding-left: 15px !important;
-        }
-
-        li {
-          font-size: 8.5pt !important;
-          margin-bottom: 2px !important;
-          line-height: 1.35 !important;
-        }
-
-        /* Education grid */
-        .grid {
-          gap: 10px !important;
-        }
-
-        /* Timeline dot - hide */
-        .absolute.md\\:-left-\\[39px\\] {
-          display: none !important;
-        }
-
-        /* Timeline line - hide */
-        .absolute.left-0.md\\:-left-8 {
-          display: none !important;
-        }
-
-        /* Date badges */
-        .bg-surface-container-lowest {
-          background: transparent !important;
-          border: none !important;
           padding: 0 !important;
-          font-size: 8pt !important;
         }
 
-        /* Additional accomplishments - compact */
-        .cursor-pointer {
-          padding: 6px 8px !important;
+        section {
+          break-inside: avoid;
+          page-break-inside: avoid;
+          margin-bottom: 10pt !important;
         }
 
-        /* Links */
+        h1 { font-size: 19pt !important; }
+        h2 { font-size: 12pt !important; margin-bottom: 6pt !important; }
+        h3 { font-size: 10.5pt !important; }
+        li, p { font-size: 9pt !important; }
+
         a {
-          color: #2563eb !important;
+          color: #005abe !important;
           text-decoration: none !important;
         }
 
-        /* Force page break before education if needed */
-        section:has(h2:contains("Education")) {
-          page-break-before: auto;
-        }
-
-        /* Hide modal */
-        [class*="fixed"][class*="inset-0"] {
-          display: none !important;
-        }
-
-        /* Flex containers to block */
-        .flex-1.flex.justify-center {
+        /* Collapsed disclosure content should print in full */
+        [data-print="expand"] {
           display: block !important;
-        }
-
-        .flex.flex-col.md\\:flex-row {
-          display: block !important;
+          height: auto !important;
+          opacity: 1 !important;
+          overflow: visible !important;
         }
       }
     </style>
-</head>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
