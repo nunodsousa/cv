@@ -18,6 +18,7 @@ import {
   Printer,
   Users,
 } from 'lucide-react';
+import PhysicsBanner from './components/PhysicsBanner';
 import Sheet from './components/Sheet';
 import {
   AI_PROJECTS,
@@ -46,6 +47,13 @@ const SECTIONS = [
   { id: 'research', label: 'Research' },
 ] as const;
 
+/**
+ * The physics banner is a single switch. Flip this to false and the page
+ * returns exactly to its pre-banner state — the hero reclaims its full top
+ * spacing automatically. Deleting components/PhysicsBanner.tsx and the two
+ * lines that reference it removes every trace.
+ */
+const SHOW_PHYSICS_BANNER = true;
 
 /* ============================================================
    MOTION
@@ -279,7 +287,14 @@ const Hero: React.FC = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <header id="top" className="mx-auto max-w-4xl px-5 pb-16 pt-28 sm:px-6 sm:pb-24 sm:pt-40">
+    <header
+      id="top"
+      className={`mx-auto max-w-4xl px-5 pb-16 sm:px-6 sm:pb-24 ${
+        // With a banner above, the hero no longer needs to clear the fixed nav
+        // on its own — the banner already does it.
+        SHOW_PHYSICS_BANNER ? 'pt-12 sm:pt-16' : 'pt-28 sm:pt-40'
+      }`}
+    >
       <div className="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between sm:gap-12">
         <div className="min-w-0 flex-1">
           <motion.p
@@ -652,6 +667,8 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-canvas">
       <Nav active={activeSection} onNavigate={navigate} />
+
+      {SHOW_PHYSICS_BANNER && <PhysicsBanner />}
 
       <div className="mx-auto flex max-w-[88rem]">
         <Sidebar />
