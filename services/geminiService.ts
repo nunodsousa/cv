@@ -11,8 +11,8 @@ let chatSession: Chat | null = null;
 
 const RESUME_CONTEXT = `
 NAME: Nuno Miguel Santos Teixeira de Sousa (Nuno de Sousa)
-TITLE: SME Data Science & AI
-SUMMARY: Data & AI Expert with 10+ years of experience leading large, multidisciplinary teams and translating complex, data-sparse problems into board-level strategy — from quantitative pricing and forecasting models to enterprise-scale AI/ML transformation across finance, energy, healthcare, and industry. Ph.D. in Theoretical Physics and Executive MBA candidate at CPBS, combining deep technical expertise with the executive communication and governance skills to drive high-stakes decision-making.
+TITLE: Principal Data Scientist, PhD, MBA | Quantitative Modelling, Forecasting & AI
+SUMMARY: Data Science and AI leader with over 10 years of experience developing quantitative solutions for pricing, forecasting and decision support across energy, finance, marketing and industrial sectors. Combines deep technical expertise with a strong understanding of business strategy, having led multidisciplinary teams of more than 10 professionals and delivered complex analytics and AI initiatives for international clients. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together rigorous quantitative thinking, technical leadership and executive-level communication.
 
 CONTACT (some info is hidden for privacy reasons):
 - Emails: nunoxxxxxxxx@gmail.com, nunoxxxxxxxx@simia-tech.com 
@@ -25,7 +25,7 @@ CONTACT (some info is hidden for privacy reasons):
 - Date of Birth: 28/07/1982
 
 EMPLOYMENT HISTORY:
-1. SME Data Science & AI - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
+1. Principal Data Scientist | Quantitative Modelling, Forecasting & AI - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
    - Designs/develops quantitative models for nowcasting and forecasting marine bunker fuel prices across global ports.
    - Builds advanced statistical and machine learning frameworks to estimate prices in complex, data-sparse markets.
    - Integrates heterogeneous data sources and economic indicators to generate robust pricing intelligence for strategic decision-making.
@@ -34,7 +34,7 @@ EMPLOYMENT HISTORY:
    - Defined/implemented end-to-end AI/ML/data science solutions for high-profile clients (utilities, healthcare, chemicals).
    - Processed/structured large datasets.
    - Acted as business translator between technical teams and stakeholders.
-   - Led large, cross-functional teams of data scientists, engineers, and analysts.
+   - Led cross-functional teams of more than 10 professionals (data scientists, engineers, and analysts).
    - Expertise: Market analysis, pricing strategies, demand forecasting, process optimization.
 
 3. Quantitative Analyst - Arfima Trading (Madrid) [Apr 2019 - Oct 2019]
@@ -54,20 +54,19 @@ EMPLOYMENT HISTORY:
    - Research in Computational Physics, Electrodynamics, Mathematical Methods.
 
 EDUCATION:
-- MBA (Católica Porto Business School - CPBS) [Oct 2024 - Ongoing, Oct 2026]
+- MBA (Católica Porto Business School - CPBS) [Oct 2024 - Expected Oct 2026]
 - PhD in Theoretical Physics (Universidad Autónoma de Madrid) [Sep 2010 - Oct 2014]. Cum Laude.
   - Thesis: 'Light scattering in disordered and nonreciprocal media'.
   - Link: https://sirena.csic.es/wp-content/uploads/2024/07/Tesis-Nuno.pdf
 - Master in Photonics (UAM) [Sep 2009 - Jun 2010]. GPA 8.8/10.
-- Licenciate in Physics (Universidade do Porto).
+- Licentiate Degree in Physics (Universidade do Porto).
 
 SKILLS:
-- Programming: Python (pandas, scikit-learn, statsmodels, NumPy), SQL, C.
-- Modeling: Monte Carlo, GLM/GAM, Bayesian, Survival analysis, CLV.
-- AI & Cloud: OpenAI, LangChain.
-- DevOps: Git, Docker.
-- Techniques: Deep Learning (Keras, TensorFlow), Random Forest, XGBoost, SVM, KNN.
-- Time Series: Prophet, ARIMA, ETS, State Space.
+- Quantitative Modelling: Pricing models, time-series forecasting (ARIMA, ETS, state space, Prophet), Bayesian modelling, simulation, optimization, survival analysis, customer lifetime value.
+- Machine Learning & AI: scikit-learn, XGBoost, TensorFlow, LLM applications, RAG, model evaluation, agentic workflows.
+- Data & Production Systems: Python, SQL, pandas, NumPy, statsmodels, Docker, Git, Azure, workflow orchestration (n8n).
+- Business Applications: Pricing optimization, demand forecasting, inventory planning, market intelligence, quantitative trading.
+- Leadership: Technical strategy, team leadership, solution architecture, stakeholder communication, pre-sales.
 - Languages: Portuguese (Native), English (C1+), Spanish (12y in Spain).
 
 SUPERVISION EXPERIENCE:

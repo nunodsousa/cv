@@ -288,44 +288,47 @@ export const CV_DATA = {
   personal: {
     name: "Nuno MST de Sousa",
     shortName: "Nuno de Sousa",
-    title: "SME Data Science & AI",
-    summary: "Data & AI Expert with 10+ years of experience leading large, multidisciplinary teams and translating complex, data-sparse problems into board-level strategy — from quantitative pricing and forecasting models to enterprise-scale AI/ML transformation across finance, energy, healthcare, and industry. Ph.D. in Theoretical Physics and Executive MBA candidate at CPBS, combining deep technical expertise with the executive communication and governance skills to drive high-stakes decision-making.",
+    title: "Principal Data Scientist, PhD, MBA | Quantitative Modelling, Forecasting & AI",
+    summary: "Data Science and AI leader with over 10 years of experience developing quantitative solutions for pricing, forecasting and decision support across energy, finance, marketing and industrial sectors. Combines deep technical expertise with a strong understanding of business strategy, having led multidisciplinary teams of more than 10 professionals and delivered complex analytics and AI initiatives for international clients. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together rigorous quantitative thinking, technical leadership and executive-level communication.",
     // Same sentence, with the load-bearing phrases marked. Kept alongside the
     // plain string above, which still feeds the page description and any
     // context that needs unformatted text.
     summaryRich: (
       <>
-        <b>Data &amp; AI Expert</b> with <b>10+ years of experience</b>{' '}
-        <b>leading large, multidisciplinary teams</b> and translating complex, data-sparse
-        problems into <b>board-level strategy</b> — from quantitative{' '}
-        <b>pricing and forecasting models</b> to enterprise-scale{' '}
-        <b>AI/ML transformation</b> across finance, energy, healthcare, and industry.{' '}
-        <b>Ph.D. in Theoretical Physics</b> and <b>Executive MBA candidate</b> at{' '}
-        <b>CPBS</b>, combining deep technical expertise with the{' '}
-        <b>executive communication and governance</b> skills to drive high-stakes
-        decision-making.
+        <b>Data Science and AI leader</b> with <b>over 10 years of experience</b>{' '}
+        developing <b>quantitative solutions for pricing, forecasting and decision
+        support</b> across energy, finance, marketing and industrial sectors.
+        Combines <b>deep technical expertise</b> with a strong understanding of{' '}
+        <b>business strategy</b>, having led <b>multidisciplinary teams of more
+        than 10 professionals</b> and delivered <b>complex analytics and AI
+        initiatives</b> for <b>international clients</b>. Holds a{' '}
+        <b>PhD in Theoretical Physics</b> and is completing an{' '}
+        <b>Executive MBA</b>, bringing together rigorous quantitative thinking,{' '}
+        <b>technical leadership</b> and <b>executive-level communication</b>.
       </>
     ),
     emails: ["(hidden)"],
     phones: ["(hidden)"],
-    location: "Oporto & Madrid, Portugal and Spain",
+    location: "Porto, Portugal | Madrid, Spain",
     nationality: "Portuguese",
     birthdate: "July 28th 1982",
     gender: "Male",
     links: {
       github: "https://github.com/nunodsousa",
       linkedin: "https://www.linkedin.com/in/nunodsousa/",
-      orcid: "https://orcid.org/0000-0002-3226-9683"
+      orcid: "https://orcid.org/0000-0002-3226-9683",
+      scholar: "https://scholar.google.com/citations?user=IDuNw5EAAAAJ&hl=pt-PT"
     }
   },
+  // Organised by what the work *is*, not by what tool happens to do it. A long
+  // roll-call of algorithms reads as coursework at this level; capability —
+  // "I can price a market with sparse data" — is what carries.
   skills: [
-    { category: "Programming", skills: "Python (pandas, scikit-learn, statsmodels, NumPy, matplotlib, etc), SQL, C, n8n" },
-    { category: "Modeling", skills: "Monte Carlo methods, GLM/GAM, Bayesian modeling, Survival analysis, Customer Lifetime Value (CLV)" },
-    { category: "AI & Cloud", skills: "OpenAI, LangChain, Azure" },
-    { category: "DevOps", skills: "Git, Docker" },
-    { category: "Techniques", skills: "Deep Learning (Keras, TensorFlow), Random Forest, XGBoost, SVM, KNN, Naïve Bayes, k-Means, Hierarchical Clustering" },
-    { category: "Time Series", skills: "Prophet, ARIMA, ETS, State Space, Structural Models" },
-    { category: "Stats", skills: "Simulation, Optimization, Bootstrap, Monte Carlo, Hypothesis Testing, ANOVA" },
+    { category: "Quantitative Modelling", skills: "Pricing models, time-series forecasting (ARIMA, ETS, state space, Prophet), Bayesian modelling, simulation, optimization, survival analysis, customer lifetime value" },
+    { category: "Machine Learning & AI", skills: "scikit-learn, XGBoost, TensorFlow, LLM applications, RAG, model evaluation, agentic workflows" },
+    { category: "Data & Production Systems", skills: "Python, SQL, pandas, NumPy, statsmodels, Docker, Git, Azure, workflow orchestration (n8n)" },
+    { category: "Business Applications", skills: "Pricing optimization, demand forecasting, inventory planning, market intelligence, quantitative trading" },
+    { category: "Leadership", skills: "Technical strategy, team leadership, solution architecture, stakeholder communication, pre-sales" },
   ] as SkillCategory[],
   languages: [
     { name: "Portuguese", level: "Native" },
@@ -335,9 +338,9 @@ export const CV_DATA = {
   experience: [
     {
       id: "0",
-      role: "SME Data Science & AI",
+      role: "Principal Data Scientist | Quantitative Modelling, Forecasting & AI",
       company: "AuctionConnect (Oporto/Remote)",
-      period: "MARCH 2026 — PRESENT",
+      period: "Mar 2026 - Present",
       description: "Responsible for the design and development of quantitative models for nowcasting and forecasting of marine bunker fuel prices across global ports.",
       highlights: [
         <span>
@@ -353,8 +356,8 @@ export const CV_DATA = {
       role: "Expert in Data Science & AI",
       company: "DataJuicers and Simia-Tech (Madrid, Oporto & Remote)",
       companyUrl: "https://www.datajuicers.com",
-      period: "NOVEMBER 2019 — MARCH 2026",
-      description: "Led large, multidisciplinary teams delivering and scaling end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as technical lead and strategic advisor, driving data-driven transformation across utilities, healthcare, chemicals, and energy-related domains, while supporting pre-sales, solution architecture, and executive decision-making.",
+      period: "Nov 2019 - Mar 2026",
+      description: "Led multidisciplinary teams of more than 10 professionals delivering and scaling end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as technical lead and strategic advisor, driving data-driven transformation across utilities, healthcare, chemicals, and energy-related domains, while supporting pre-sales, solution architecture, and executive decision-making.",
       highlights: [
         <span>
           Architected and deployed <b>production-grade data science and AI pipelines</b>, transforming <b>large, heterogeneous datasets</b> into reliable <b>analytical and forecasting platforms</b>.
@@ -366,7 +369,7 @@ export const CV_DATA = {
           Served as a key <b>business–technology interface</b>, translating complex analytical outputs into clear, actionable insights for <b>senior stakeholders</b> and non-technical audiences.
         </span>,
         <span>
-          <b>Led large, cross-functional teams</b> of data scientists, engineers, and analysts, providing <b>technical leadership</b> and ensuring alignment between <b>business objectives</b>, analytical rigor, and timely delivery of client solutions.
+          <b>Led cross-functional teams of more than 10 professionals</b> — data scientists, engineers, and analysts — providing <b>technical leadership</b> and ensuring alignment between <b>business objectives</b>, analytical rigor, and timely delivery of client solutions.
         </span>,
         <span>
           Contributed to <b>pre-sales activities</b>, including <b>solution design</b>, <b>technical validation</b>, and <b>client-facing presentations</b>, helping secure and expand long-term engagements.
@@ -381,7 +384,7 @@ export const CV_DATA = {
       role: "Quantitative Analyst",
       company: "Arfima Trading (Madrid)",
       companyUrl: "https://www.arfima.com",
-      period: "APRIL 2019 — OCTOBER 2019",
+      period: "Apr 2019 - Oct 2019",
       description: "Designed and deployed automated trading strategies with a focus on financial analysis and the development of robust risk management frameworks.",
       highlights: [
         <span>
@@ -406,7 +409,7 @@ export const CV_DATA = {
       role: "Data Scientist",
       company: "DataJuicers (Madrid)",
       companyUrl: "https://www.datajuicers.com",
-      period: "JUNE 2017 — MARCH 2019",
+      period: "Jun 2017 - Mar 2019",
       description: "Specialized in Business Solutions, Time Series Forecasting, and Machine Learning.",
       highlights: [
         <span>
@@ -427,7 +430,7 @@ export const CV_DATA = {
       id: "4",
       role: "Researcher/Lecturer",
       company: "Universidad Autónoma de Madrid & Donostia International Physics Center",
-      period: "2009 — JUNE 2017",
+      period: "2009 - Jun 2017",
       // Location for this role: Madrid and Donostia, Spain
       highlights: [
         <span>
@@ -448,7 +451,7 @@ export const CV_DATA = {
       degree: "Executive MBA",
       institution: "Católica Porto Business School - CPBS",
       institutionUrl: "https://catolicabs.porto.ucp.pt",
-      period: "OCTOBER 2024 — ON GOING (OCTOBER 2026)",
+      period: "Oct 2024 - Expected Oct 2026",
       details: [
         "Strategic Leadership and Decision-Making: Executive decision-making, competitive strategy formulation, and business model innovation in complex environments.",
         "Corporate Finance and Risk Management: Financial analysis, valuation, capital allocation, and enterprise risk management.",
@@ -461,7 +464,7 @@ export const CV_DATA = {
       degree: "PhD in Theoretical Physics",
       institution: "Universidad Autónoma de Madrid",
       institutionUrl: "https://www.uam.es/uam/inicio",
-      period: "SEPTEMBER 2010 — OCTOBER 2014",
+      period: "Sep 2010 - Oct 2014",
       link: "https://sirena.csic.es/wp-content/uploads/2024/07/Tesis-Nuno.pdf",
       details: [
         "Program in Condensed Matter Physics and Nanotechnology.",
@@ -474,7 +477,7 @@ export const CV_DATA = {
       degree: "Master in Photonics",
       institution: "Universidad Autónoma de Madrid",
       institutionUrl: "https://www.uam.es/uam/inicio",
-      period: "SEPTEMBER 2009 — JUNE 2010",
+      period: "Sep 2009 - Jun 2010",
       details: [
         "GPA of 8.8 on a linear scale from 0 to 10.",
         "Thesis on light emission statistics in correlated random photonic nanostructures."
@@ -482,7 +485,7 @@ export const CV_DATA = {
     },
     {
       id: "licenciate",
-      degree: "Licenciate in Physics",
+      degree: "Licentiate Degree in Physics",
       institution: "Universidade do Porto",
       institutionUrl: "https://www.up.pt/portal/en/",
       period: "",
@@ -490,9 +493,9 @@ export const CV_DATA = {
     }
   ] as Education[],
   achievements: [
-    { text: "Published 21 publications.", type: 'publications', icon: FileText },
+    { text: "Author or co-author of 21 peer-reviewed publications.", type: 'publications', icon: FileText },
     { text: "Delivered approx. 50 oral presentations at international conferences.", type: 'presentations', icon: Mic },
-    { text: "Supervision of 3 master's theses and 2 degree's Dissertations.", type: 'supervision', icon: Users },
+    { text: "Supervision of three master's theses and two bachelor's dissertations.", type: 'supervision', icon: Users },
     { text: "Research projects in Science and Artificial Intelligence.", type: 'projects', icon: Briefcase },
     { text: "Courses and Certifications.", type: 'certifications', icon: GraduationCap },
     { text: <span>Director of the program <em>AI for Marketing</em> at Católica Porto Business School.</span>, type: null, icon: GraduationCap, url: 'https://catolicabs.porto.ucp.pt/executive-immersive-weeks/ai-marketing' }

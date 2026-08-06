@@ -41,3 +41,13 @@ yarn-error.log*
 # Design sources (local reference only)
 stitch_modern_organization_redesign/
 stitch_modern_organization_redesign.zip
+
+# LaTeX build artefacts
+latex/*.aux
+latex/*.log
+latex/*.out
+latex/*.bcf
+latex/*.run.xml
+latex/*.blg
+latex/*.bbl
+latex/*.bak

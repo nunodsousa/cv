@@ -8,6 +8,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import {
   ArrowUpRight,
   Briefcase,
+  Download,
   ExternalLink,
   FileText,
   Github,
@@ -18,6 +19,7 @@ import {
   Printer,
   Users,
 } from 'lucide-react';
+import AcademicCV from './components/AcademicCV';
 import PhysicsBanner from './components/PhysicsBanner';
 import Sheet from './components/Sheet';
 import {
@@ -55,6 +57,40 @@ const SECTIONS = [
  */
 const SHOW_PHYSICS_BANNER = true;
 
+/**
+ * Printing produces one of two documents, not one page with things missing.
+ * The mode is stamped on <body> so the print stylesheet can shape the output,
+ * and cleared afterwards so the screen is never left in a print state — the
+ * timeout covers browsers that fire afterprint unreliably.
+ */
+const printAs = (mode: 'executive' | 'academic') => {
+  document.body.dataset.printMode = mode;
+
+  const clear = () => {
+    delete document.body.dataset.printMode;
+    window.removeEventListener('afterprint', clear);
+  };
+
+  window.addEventListener('afterprint', clear);
+  window.setTimeout(clear, 2000);
+  window.print();
+};
+
+/** Minimal hash routing: the academic CV is the only second page. */
+const useHashRoute = () => {
+  const [hash, setHash] = useState(() =>
+    typeof window === 'undefined' ? '' : window.location.hash,
+  );
+
+  useEffect(() => {
+    const onChange = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onChange);
+    return () => window.removeEventListener('hashchange', onChange);
+  }, []);
+
+  return hash;
+};
+
 /* ============================================================
    MOTION
    Critically damped by default. Bounce is reserved for motion the
@@ -62,7 +98,16 @@ const SHOW_PHYSICS_BANNER = true;
    ============================================================ */
 const SPRING = { type: 'spring' as const, bounce: 0, duration: 0.4 };
 
-/** A section that settles into place as it comes into view. */
+/**
+ * A section that settles into place on load.
+ *
+ * This deliberately animates on mount rather than on scroll. A viewport-driven
+ * reveal (whileInView) leaves every block below the fold at opacity 0 until the
+ * page is scrolled — so a card sitting on the fold, or reached by an anchor
+ * jump, by the browser restoring a scroll position, or by Cmd+F, can be found
+ * blank. Settling everything once on load costs nothing and cannot strand
+ * content in the invisible state.
+ */
 const Reveal: React.FC<{
   children: React.ReactNode;
   className?: string;
@@ -76,8 +121,7 @@ const Reveal: React.FC<{
     <motion.div
       className={className}
       initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ ...SPRING, delay }}
     >
       {children}
@@ -172,14 +216,18 @@ const Nav: React.FC<{ active: string; onNavigate: (id: string) => void }> = ({
           ))}
         </div>
 
-        <Pressable
-          onClick={() => window.print()}
+        {/* The real PDF, not a browser print: the Europass in latex/, published
+            to public/ and served from the site root. `download` keeps it out of
+            a new tab so the click ends in the user's downloads folder. */}
+        <a
+          href={`${import.meta.env.BASE_URL}Nuno_de_Sousa_CV.pdf`}
+          download="Nuno_de_Sousa_CV.pdf"
           className="hidden shrink-0 items-center gap-1.5 rounded-full bg-accent px-3.5 py-1.5
-                     text-[0.8125rem] font-medium text-white hover:bg-accent-hover sm:flex"
+                     text-[0.8125rem] font-medium text-white transition-colors hover:bg-accent-hover sm:flex"
         >
-          <Printer className="h-3.5 w-3.5" strokeWidth={2.2} />
-          Résumé
-        </Pressable>
+          <Download className="h-3.5 w-3.5" strokeWidth={2.2} />
+          Download CV
+        </a>
       </div>
     </nav>
   );
@@ -219,19 +267,24 @@ const SidebarContent: React.FC = () => {
           className="mb-5 h-24 w-24 rounded-full object-cover
                      shadow-[0_1px_3px_rgb(0_0_0/0.08),0_10px_28px_rgb(0_0_0/0.12)]"
         />
-        <h2 className="type-title text-[1.375rem] text-label">Nuno de Sousa, Ph.D.</h2>
-        <p className="type-eyebrow mt-2 text-accent">{personal.title}</p>
+        <h2 className="type-title text-[1.375rem] text-label">Nuno de Sousa, PhD, MBA</h2>
+        <p className="type-eyebrow type-eyebrow-cased mt-2 text-accent">{personal.title}</p>
       </div>
 
       {/* Reach */}
       <div className="flex flex-col">
         <div className="-mx-2 flex items-center gap-2.5 px-2 py-1.5 text-[0.875rem] text-secondary">
           <MapPin className="h-4 w-4 shrink-0 text-tertiary" strokeWidth={2} />
-          Oporto &amp; Madrid
+          Porto, Portugal &amp; Madrid, Spain
         </div>
         {link(personal.links.linkedin, <Linkedin className="h-4 w-4" strokeWidth={2} />, 'LinkedIn')}
         {link(personal.links.github, <Github className="h-4 w-4" strokeWidth={2} />, 'GitHub')}
         {link(personal.links.orcid, <ExternalLink className="h-4 w-4" strokeWidth={2} />, 'ORCID')}
+        {link(
+          personal.links.scholar,
+          <GraduationCap className="h-4 w-4" strokeWidth={2} />,
+          'Google Scholar',
+        )}
       </div>
 
       <div className="h-px bg-separator" />
@@ -298,7 +351,7 @@ const Hero: React.FC = () => {
       <div className="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between sm:gap-12">
         <div className="min-w-0 flex-1">
           <motion.p
-            className="type-eyebrow mb-5 text-accent"
+            className="type-eyebrow type-eyebrow-cased mb-5 text-accent"
             initial={reduceMotion ? undefined : { opacity: 0, y: 10 }}
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ ...SPRING, delay: 0.05 }}
@@ -326,7 +379,7 @@ const Hero: React.FC = () => {
           >
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="h-4 w-4 text-tertiary" strokeWidth={2} />
-              Oporto &amp; Madrid
+              Porto, Portugal &amp; Madrid, Spain
             </span>
             <a
               href={personal.links.linkedin}
@@ -399,7 +452,9 @@ const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className = '',
 }) => (
-  <div className={`rounded-card bg-grouped p-6 sm:p-8 ${className}`}>{children}</div>
+  <div data-print="block" className={`rounded-card bg-grouped p-6 sm:p-8 ${className}`}>
+    {children}
+  </div>
 );
 
 /* ============================================================
@@ -409,6 +464,7 @@ const App: React.FC = () => {
   const [activeModal, setActiveModal] = useState<ModalType>(null);
   const [activeSection, setActiveSection] = useState<string>('profile');
   const reduceMotion = useReducedMotion();
+  const hash = useHashRoute();
 
   /* Scroll spy — the nav always answers "where am I?" */
   useEffect(() => {
@@ -664,6 +720,9 @@ const App: React.FC = () => {
     }
   }, [activeModal]);
 
+  // The academic CV is a document of its own, not a longer version of this one.
+  if (hash === '#academic') return <AcademicCV />;
+
   return (
     <div className="min-h-screen bg-canvas">
       <Nav active={activeSection} onNavigate={navigate} />
@@ -684,7 +743,8 @@ const App: React.FC = () => {
               {/* The emphasised phrases carry the claim; the rest is connective
                   tissue. Weight alone does the work — no highlight box needed. */}
               <p
-                className="type-body max-w-measure text-[1.0625rem] text-secondary sm:text-[1.125rem]
+                className="type-body max-w-measure text-justify hyphens-auto text-[1.0625rem]
+                           text-secondary sm:text-[1.125rem]
                            [&_b]:font-semibold [&_b]:text-label"
               >
                 {CV_DATA.personal.summaryRich}
@@ -718,7 +778,7 @@ const App: React.FC = () => {
                         )}
                       </p>
                     </div>
-                    <p className="type-caption shrink-0 text-[0.75rem] uppercase tracking-wider text-tertiary">
+                    <p className="type-caption shrink-0 text-[0.75rem] tracking-wide text-tertiary">
                       {job.period}
                     </p>
                   </div>
@@ -771,7 +831,7 @@ const App: React.FC = () => {
                     )}
                   </p>
                   {edu.period && (
-                    <p className="type-caption mt-2 text-[0.75rem] uppercase tracking-wider text-tertiary">
+                    <p className="type-caption mt-2 text-[0.75rem] tracking-wide text-tertiary">
                       {edu.period}
                     </p>
                   )}
@@ -896,7 +956,7 @@ const App: React.FC = () => {
           <Reveal>
             <h2 className="type-title text-[clamp(1.5rem,3.5vw,2rem)] text-label">Get in touch</h2>
             <p className="type-body mt-3 max-w-measure text-[1.0625rem] text-secondary">
-              Based in {CV_DATA.personal.location.replace(', Portugal and Spain', '')}. Available
+              Based in {CV_DATA.personal.location}. Available
               for advisory, technical leadership, and executive-level data and AI work.
             </p>
 
@@ -929,13 +989,30 @@ const App: React.FC = () => {
                 ORCID
               </Pressable>
               <Pressable
-                onClick={() => window.print()}
+                as="a"
+                href={CV_DATA.personal.links.scholar}
+                className="inline-flex items-center gap-2 rounded-full bg-fill px-5 py-2.5
+                           text-[0.9375rem] font-medium text-label transition-colors hover:bg-separator/50"
+              >
+                <GraduationCap className="h-4 w-4" strokeWidth={2.2} />
+                Google Scholar
+              </Pressable>
+              <Pressable
+                onClick={() => printAs('executive')}
                 className="inline-flex items-center gap-2 rounded-full bg-fill px-5 py-2.5
                            text-[0.9375rem] font-medium text-label transition-colors hover:bg-separator/50"
               >
                 <Printer className="h-4 w-4" strokeWidth={2.2} />
-                Print CV
+                Download Executive CV
               </Pressable>
+              <a
+                href="#academic"
+                className="inline-flex items-center gap-2 rounded-full bg-fill px-5 py-2.5
+                           text-[0.9375rem] font-medium text-label transition-colors hover:bg-separator/50"
+              >
+                <FileText className="h-4 w-4" strokeWidth={2.2} />
+                View Full Academic CV
+              </a>
             </div>
 
             <p className="type-caption mt-12 text-[0.8125rem] text-tertiary">

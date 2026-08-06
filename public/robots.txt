@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nunodsousa.github.io/cv/sitemap.xml

@@ -4,8 +4,79 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="Nuno de Sousa — SME Data Science &amp; AI. Ph.D. in Theoretical Physics, Executive MBA candidate. 10+ years leading multidisciplinary teams across finance, energy, healthcare and industry." />
-    <title>Nuno de Sousa — Data Science &amp; AI</title>
+    <meta name="description" content="Nuno de Sousa — Principal Data Scientist, PhD, MBA | Quantitative Modelling, Forecasting &amp; AI. PhD in Theoretical Physics, completing an Executive MBA. Over 10 years developing quantitative solutions for pricing, forecasting and decision support across energy, finance, marketing and industrial sectors." />
+    <title>Nuno de Sousa — Principal Data Scientist, PhD, MBA</title>
+    <link rel="canonical" href="https://nunodsousa.github.io/cv/" />
+    <meta name="author" content="Nuno de Sousa" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Icons. The favicon is inline so it costs no request; the touch icon and
+         share image are generated from the portrait into public/. -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230071e3'/%3E%3Ctext x='50' y='68' font-family='-apple-system,Helvetica,Arial' font-size='54' font-weight='700' fill='%23fff' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/cv/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://nunodsousa.github.io/cv/" />
+    <meta property="og:title" content="Nuno de Sousa — Principal Data Scientist, PhD, MBA" />
+    <meta property="og:description" content="Quantitative modelling, forecasting and AI. Over 10 years building pricing, forecasting and decision-support systems across energy, finance, marketing and industrial sectors." />
+    <meta property="og:image" content="https://nunodsousa.github.io/cv/og-image.png" />
+    <meta property="og:image:alt" content="Portrait of Nuno de Sousa" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="profile:first_name" content="Nuno" />
+    <meta property="profile:last_name" content="de Sousa" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Nuno de Sousa — Principal Data Scientist, PhD, MBA" />
+    <meta name="twitter:description" content="Quantitative modelling, forecasting and AI. Over 10 years building pricing, forecasting and decision-support systems across energy, finance, marketing and industrial sectors." />
+    <meta name="twitter:image" content="https://nunodsousa.github.io/cv/og-image.png" />
+
+    <!-- Structured data: ProfilePage with Person as the main entity, which is
+         the shape Google documents for a personal page. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "url": "https://nunodsousa.github.io/cv/",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Nuno Miguel Santos Teixeira de Sousa",
+          "alternateName": "Nuno de Sousa",
+          "jobTitle": "Principal Data Scientist",
+          "description": "Data Science and AI leader with over 10 years of experience developing quantitative solutions for pricing, forecasting and decision support across energy, finance, marketing and industrial sectors.",
+          "image": "https://nunodsousa.github.io/cv/og-image.png",
+          "nationality": "Portuguese",
+          "knowsLanguage": ["Portuguese", "English", "Spanish"],
+          "knowsAbout": [
+            "Quantitative modelling",
+            "Time-series forecasting",
+            "Bayesian modelling",
+            "Pricing optimization",
+            "Machine learning",
+            "Artificial intelligence"
+          ],
+          "alumniOf": [
+            { "@type": "CollegeOrUniversity", "name": "Universidad Autónoma de Madrid" },
+            { "@type": "CollegeOrUniversity", "name": "Universidade do Porto" },
+            { "@type": "CollegeOrUniversity", "name": "Católica Porto Business School" }
+          ],
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "degree",
+              "name": "PhD in Theoretical Physics"
+            }
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/in/nunodsousa/",
+            "https://github.com/nunodsousa",
+            "https://orcid.org/0000-0002-3226-9683",
+            "https://scholar.google.com/citations?user=IDuNw5EAAAAJ&hl=pt-PT"
+          ]
+        }
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -135,6 +206,15 @@
         text-transform: uppercase;
         font-weight: 600;
         font-size: 0.6875rem;
+      }
+
+      /* Same micro-type, minus the caps. "PhD" is a capitalisation, not an
+         acronym — uppercasing it prints "PHD". Mixed case also needs less
+         tracking and a touch more size to hold the same optical weight. */
+      .type-eyebrow-cased {
+        text-transform: none;
+        letter-spacing: 0.015em;
+        font-size: 0.8125rem;
       }
 
       /* Vibrancy: text over a translucent material needs more weight and a
@@ -277,11 +357,14 @@
           line-height: 1.4 !important;
         }
 
+        /* Chrome only. Blanket-hiding <button> used to take the research and
+           recognition cards with it — they are buttons that open sheets, and
+           they carry real content. Anything that is genuinely UI opts out by
+           marking itself print:hidden. */
         .print\:hidden,
         [data-print="hide"],
         nav,
-        canvas,
-        button {
+        canvas {
           display: none !important;
         }
 
@@ -290,10 +373,54 @@
           padding: 0 !important;
         }
 
+        /* A section is the wrong unit to keep whole: Experience alone is longer
+           than a page, so "avoid" there just pushes it to the next page and
+           leaves a half-empty one behind. The card is the unit that must not
+           split — the heading is kept with what follows it. */
         section {
+          margin-bottom: 10pt !important;
+        }
+
+        section > h2 {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        article,
+        [data-print="block"] {
           break-inside: avoid;
           page-break-inside: avoid;
-          margin-bottom: 10pt !important;
+        }
+
+        /* ---- Executive CV: the two-page, recruiter-facing document ----
+           Set by the Download Executive CV button just before printing. */
+        body[data-print-mode="executive"] footer {
+          display: none !important;
+        }
+
+        body[data-print-mode="executive"] section {
+          padding-top: 0 !important;
+          padding-bottom: 8pt !important;
+          margin-bottom: 0 !important;
+        }
+
+        body[data-print-mode="executive"] .rounded-card {
+          padding: 6pt 0 !important;
+        }
+
+        body[data-print-mode="executive"] header {
+          padding-top: 0 !important;
+          padding-bottom: 8pt !important;
+        }
+
+        body[data-print-mode="executive"] li,
+        body[data-print-mode="executive"] p {
+          font-size: 8.5pt !important;
+          line-height: 1.35 !important;
+        }
+
+        body[data-print-mode="executive"] img {
+          display: none !important;
         }
 
         h1 { font-size: 19pt !important; }

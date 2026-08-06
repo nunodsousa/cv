@@ -149,6 +149,9 @@ a {
 
 .topbar-role {
     color: var(--accent-light);
+    /* Opts out of the parent's caps: "PhD" uppercased reads "PHD". */
+    text-transform: none;
+    letter-spacing: 0.03em;
 }
 
 @media (max-width: 640px) {
@@ -884,8 +887,9 @@ a {
 .footer-role {
     font-family: var(--mono);
     font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    /* Mixed case for the same reason as .topbar-role — "PhD", not "PHD". */
+    letter-spacing: 0.03em;
+    text-transform: none;
     color: var(--ink-dim);
     margin-top: 0.25rem;
 }
