@@ -22,10 +22,9 @@ CONTACT (some info is hidden for privacy reasons):
 - ORCID: 0000-0002-3226-9683
 - Gender: Male
 - Nationality: Portuguese
-- Date of Birth: 28/07/1982
 
 EMPLOYMENT HISTORY:
-1. Principal Data Scientist | Quantitative Modelling, Forecasting & AI - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
+1. Data Scientist | Quantitative Modelling, Forecasting & AI - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
    - Designs/develops quantitative models for nowcasting and forecasting marine bunker fuel prices across global ports.
    - Builds advanced statistical and machine learning frameworks to estimate prices in complex, data-sparse markets.
    - Integrates heterogeneous data sources and economic indicators to generate robust pricing intelligence for strategic decision-making.

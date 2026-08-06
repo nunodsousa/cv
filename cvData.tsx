@@ -311,7 +311,7 @@ export const CV_DATA = {
     phones: ["(hidden)"],
     location: "Porto, Portugal | Madrid, Spain",
     nationality: "Portuguese",
-    birthdate: "July 28th 1982",
+    birthdate: "(hidden)",
     gender: "Male",
     links: {
       github: "https://github.com/nunodsousa",
@@ -338,7 +338,7 @@ export const CV_DATA = {
   experience: [
     {
       id: "0",
-      role: "Principal Data Scientist | Quantitative Modelling, Forecasting & AI",
+      role: "Data Scientist | Quantitative Modelling, Forecasting & AI",
       company: "AuctionConnect (Oporto/Remote)",
       period: "Mar 2026 - Present",
       description: "Responsible for the design and development of quantitative models for nowcasting and forecasting of marine bunker fuel prices across global ports.",

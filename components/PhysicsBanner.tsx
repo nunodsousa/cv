@@ -215,10 +215,6 @@ const PhysicsBanner: React.FC = () => {
           WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
         }}
       />
-      {/* Caption, sized like the eyebrows elsewhere — says what you're looking at. */}
-      <p className="type-eyebrow absolute bottom-4 left-5 text-tertiary sm:left-6 lg:left-7">
-        Light scattering in a disordered medium
-      </p>
     </div>
   );
 };
