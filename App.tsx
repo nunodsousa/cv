@@ -288,7 +288,7 @@ const SidebarContent: React.FC = () => {
       <div className="flex flex-col">
         <div className="-mx-2 flex items-center gap-2.5 px-2 py-1.5 text-[0.875rem] text-secondary">
           <MapPin className="h-4 w-4 shrink-0 text-tertiary" strokeWidth={2} />
-          Porto, Portugal &amp; Madrid, Spain
+          Based in {personal.location}
         </div>
         {link(personal.links.linkedin, <Linkedin className="h-4 w-4" strokeWidth={2} />, 'LinkedIn')}
         {link(personal.links.github, <Github className="h-4 w-4" strokeWidth={2} />, 'GitHub')}
@@ -419,7 +419,7 @@ const Hero: React.FC = () => {
           >
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="h-4 w-4 text-tertiary" strokeWidth={2} />
-              Porto, Portugal &amp; Madrid, Spain
+              Based in {personal.location}
             </span>
             <a
               href={personal.links.linkedin}

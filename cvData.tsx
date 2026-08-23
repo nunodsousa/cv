@@ -311,7 +311,7 @@ export const CV_DATA = {
     ),
     emails: ["(hidden)"],
     phones: ["(hidden)"],
-    location: "Porto, Portugal | Madrid, Spain",
+    location: "Oporto, Portugal",
     nationality: "Portuguese",
     birthdate: "(hidden)",
     gender: "Male",
