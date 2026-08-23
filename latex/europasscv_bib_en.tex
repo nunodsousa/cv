@@ -2,8 +2,9 @@
 % !TEX program = pdflatex
 % !TEX spellcheck = en_GB
 %
-% One-page executive CV generated exclusively from the information published at
-% https://nunodsousa.github.io/cv/
+% Two-page executive CV based on the information published at
+% https://nunodsousa.github.io/cv/ and the personal details previously
+% maintained in this CV repository.
 
 \documentclass[9pt,a4paper]{extarticle}
 
@@ -11,7 +12,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[scaled=0.95]{helvet}
 \renewcommand{\familydefault}{\sfdefault}
-\usepackage[a4paper,top=9mm,bottom=9mm,left=11mm,right=11mm]{geometry}
+\usepackage[a4paper,top=10mm,bottom=12mm,left=12mm,right=12mm]{geometry}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{enumitem}
@@ -19,12 +20,16 @@
 \usepackage{ragged2e}
 \usepackage{microtype}
 \usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fancyhdr}
 
 \definecolor{accent}{HTML}{006EDC}
 \definecolor{ink}{HTML}{1D1D1F}
 \definecolor{secondary}{HTML}{55565A}
 \definecolor{muted}{HTML}{77777C}
 \definecolor{rulecolour}{HTML}{D7D9DD}
+\definecolor{softblue}{HTML}{EDF6FF}
 
 \hypersetup{
   colorlinks=true,
@@ -35,154 +40,262 @@
   pdfsubject={Data Science, AI, quantitative strategy and leadership}
 }
 
-\pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \setlength{\tabcolsep}{0pt}
-\setlist[itemize]{leftmargin=3.1mm,itemsep=1.1pt,topsep=1.5pt,parsep=0pt,partopsep=0pt}
+\setlist[itemize]{leftmargin=3.2mm,itemsep=1.3pt,topsep=1.5pt,parsep=0pt,partopsep=0pt}
 \raggedbottom
 
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[L]{\color{muted}\fontsize{7.3}{8.3}\selectfont Nuno de Sousa \enspace|\enspace Executive CV}
+\fancyfoot[R]{\color{muted}\fontsize{7.3}{8.3}\selectfont \thepage\ / 2}
+
 \newcommand{\cvsection}[1]{%
-  \par\vspace{3.6mm}%
-  {\color{accent}\bfseries\fontsize{10}{11}\selectfont\MakeUppercase{#1}}%
-  \vspace{0.8mm}\par
+  \par\vspace{3.5mm}%
+  {\color{accent}\bfseries\fontsize{10.2}{11.2}\selectfont\MakeUppercase{#1}}%
+  \vspace{0.7mm}\par
   {\color{rulecolour}\rule{\linewidth}{0.45pt}}%
-  \vspace{1.7mm}\par
+  \vspace{1.5mm}\par
 }
 
-\newcommand{\sideitem}[2]{%
-  {\bfseries\color{ink}#1}\par
-  {\color{secondary}#2}\par\vspace{1.8mm}
-}
-
-\newcommand{\degree}[3]{%
-  {\bfseries\color{ink}#1}\hfill{\color{muted}#3}\par
-  {\color{secondary}#2}\par\vspace{1.25mm}
+\newcommand{\cvsubsection}[1]{%
+  \par\vspace{1.8mm}{\bfseries\color{ink}#1}\par\vspace{0.5mm}%
 }
 
 \newcommand{\job}[4]{%
   \par\noindent
-  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}p{29mm}@{}}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}p{31mm}@{}}
     {\bfseries\color{ink}#1} & {\color{muted}#2} \\
   \end{tabularx}
   {\color{accent}\bfseries #3}\hfill{\color{secondary}#4}\par
-  \vspace{0.25mm}
+  \vspace{0.35mm}
+}
+
+\newcommand{\degree}[3]{%
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}p{34mm}@{}}
+    {\bfseries\color{ink}#1} & {\color{muted}#3} \\
+  \end{tabularx}
+  {\color{accent}\bfseries #2}\par
+}
+
+\newcommand{\skillbox}[2]{%
+  \colorbox{softblue}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+      \vspace{1mm}{\bfseries\color{accent}#1}\par
+      \vspace{0.5mm}{\color{secondary}#2}\vspace{1mm}%
+    }%
+  }%
+}
+
+\newcommand{\metric}[2]{%
+  {\fontsize{16}{17}\selectfont\bfseries\color{accent}#1}\par
+  {\fontsize{8}{9.5}\selectfont\color{secondary}#2}%
 }
 
 \begin{document}
 \color{ink}
 \fontsize{9}{10.8}\selectfont
 
-% Header
-\begin{tabularx}{\textwidth}{@{}Xr@{}}
-  \begin{minipage}[b]{0.69\textwidth}
-    {\fontsize{25}{27}\selectfont\bfseries Nuno de Sousa}\par
-    \vspace{0.8mm}
-    {\fontsize{10.5}{12}\selectfont\bfseries\color{accent}
-      Data Scientist \& Subject Matter Expert}\par
-    {\fontsize{9.1}{10.8}\selectfont\color{secondary}
-      Quantitative Strategy, Forecasting \& AI \enspace|\enspace PhD \enspace|\enspace Executive MBA Candidate}
-  \end{minipage}
-  &
-  \begin{minipage}[b]{0.28\textwidth}
-    \RaggedLeft
-    {\color{secondary}Based in Oporto, Portugal}\par
-    \href{https://nunodsousa.github.io/cv/}{nunodsousa.github.io/cv}\par
-    \href{https://www.linkedin.com/in/nunodsousa/}{LinkedIn}
-    \enspace\textcolor{rulecolour}{|}\enspace
-    \href{https://github.com/nunodsousa}{GitHub}
-    \enspace\textcolor{rulecolour}{|}\enspace
-    \href{https://orcid.org/0000-0002-3226-9683}{ORCID}
-  \end{minipage}
-\end{tabularx}
-
-\vspace{2.7mm}
-{\color{accent}\rule{\textwidth}{1.1pt}}
-\vspace{1.4mm}
-
-\begin{minipage}[t]{0.303\textwidth}
-\vspace{0pt}
-\RaggedRight
-
-\cvsection{Leadership \& Management}
-\sideitem{Strategy \& Delivery}{Data \& AI strategy, solution architecture, prioritization and delivery of analytics initiatives, business--technology alignment.}
-\sideitem{People Leadership}{Leadership of multidisciplinary teams of more than 10 professionals, cross-functional coordination and technical direction.}
-\sideitem{Stakeholders \& Growth}{Executive stakeholder communication, strategic advisory, pre-sales and client-facing solution design.}
-
-\cvsection{Business Applications}
-Pricing optimization, demand forecasting, inventory planning, market intelligence and quantitative trading.
-
-\cvsection{Technical Skills}
-\sideitem{Quantitative Modelling}{Pricing models, time-series forecasting, Bayesian modelling, simulation, optimization, survival analysis and customer lifetime value.}
-\sideitem{Machine Learning \& AI}{scikit-learn, XGBoost, TensorFlow, LLM applications, RAG, model evaluation and agentic workflows.}
-\sideitem{Data \& Production}{Python, SQL, pandas, NumPy, statsmodels, Docker, Git, Azure and n8n.}
-
-\cvsection{Education}
-\degree{Executive MBA}{Católica Porto Business School}{2024--2026}
-\degree{PhD, Theoretical Physics}{Universidad Autónoma de Madrid}{2010--2014}
-\degree{Master in Photonics}{Universidad Autónoma de Madrid}{2009--2010}
-\degree{Licentiate Degree, Physics}{Universidade do Porto}{}
-
-\cvsection{Languages}
-\textbf{Portuguese} \textcolor{secondary}{-- Native}\par
-\textbf{English} \textcolor{secondary}{-- Certified C1+}\par
-\textbf{Spanish} \textcolor{secondary}{-- Lived in Spain for 12 years}
-
+% ---------------------------------------------------------------------------
+% PAGE 1 - Identity, executive positioning and experience
+% ---------------------------------------------------------------------------
+\begin{minipage}[c]{0.17\textwidth}
+  \centering
+  \begin{tikzpicture}
+    \clip (0,0) circle (13.6mm);
+    \node at (0,0) {\includegraphics[width=28mm,height=28mm]{../public/photos/nuno_2026.jpg}};
+  \end{tikzpicture}
 \end{minipage}
 \hfill
-{\color{rulecolour}\vrule width 0.5pt}
+\begin{minipage}[c]{0.47\textwidth}
+  {\fontsize{24}{26}\selectfont\bfseries Nuno de Sousa}\par
+  \vspace{0.9mm}
+  {\fontsize{10.6}{12.2}\selectfont\bfseries\color{accent}
+    Data Scientist \& Subject Matter Expert}\par
+  {\fontsize{9.1}{10.8}\selectfont\color{secondary}
+    Quantitative Strategy, Pricing, Forecasting \& AI}\par
+  \vspace{1.1mm}
+  {\color{secondary}PhD \enspace|\enspace Executive MBA Candidate}
+\end{minipage}
 \hfill
-\begin{minipage}[t]{0.655\textwidth}
-\vspace{0pt}
+\begin{minipage}[c]{0.31\textwidth}
+  \RaggedLeft
+  {\bfseries\color{ink}Based in Oporto, Portugal}\par
+  \href{mailto:nunodsousa@gmail.com}{nunodsousa@gmail.com}\par
+  \href{tel:+351910534307}{+351 91 053 43 07}\par
+  Rua de S\~ao Martinho 154, 4605-138 Mancelos\par
+  Portuguese \enspace|\enspace Male\par
+  Born 28 July 1982
+\end{minipage}
+
+\vspace{2.3mm}
+{\color{accent}\rule{\textwidth}{1.1pt}}
+\vspace{1.2mm}
+
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+  \href{https://nunodsousa.github.io/cv/}{nunodsousa.github.io/cv}
+  \enspace\textcolor{rulecolour}{|}\enspace
+  \href{https://www.linkedin.com/in/nunodsousa/}{LinkedIn}
+  \enspace\textcolor{rulecolour}{|}\enspace
+  \href{https://github.com/nunodsousa}{GitHub}
+  \enspace\textcolor{rulecolour}{|}\enspace
+  \href{https://orcid.org/0000-0002-3226-9683}{ORCID}
+  & {\color{muted}English CV} \\
+\end{tabularx}
 
 \cvsection{Executive Profile}
 {\justifying
-Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and is completing an Executive MBA.\par}
-\RaggedRight
+\textbf{Data Science and AI leader} with \textbf{over 10 years of experience} combining \textbf{quantitative expertise} with \textbf{business strategy and organizational leadership}. Currently works as a \textbf{Data Scientist and Subject Matter Expert}, developing \textbf{pricing and forecasting solutions} for complex, data-sparse markets. Has led \textbf{multidisciplinary teams of more than 10 professionals} and delivered \textbf{strategic analytics and AI initiatives} for international clients across energy, finance, chemicals and industrial sectors. Holds a \textbf{PhD in Theoretical Physics} and is completing an \textbf{Executive MBA}, bringing together analytical rigour, executive communication and a growing focus on \textbf{strategy, management and business leadership}.\par}
+
+\cvsection{Leadership at a Glance}
+\begin{tabularx}{\textwidth}{@{}X@{\hspace{3mm}}X@{\hspace{3mm}}X@{}}
+  \skillbox{Strategy \& Delivery}{Data and AI strategy, solution architecture, prioritisation, business-technology alignment and delivery of analytics initiatives.}
+  & \skillbox{People Leadership}{Leadership of multidisciplinary teams of more than 10 professionals, cross-functional coordination and technical direction.}
+  & \skillbox{Stakeholders \& Growth}{Executive communication, strategic advisory, pre-sales and client-facing solution design.}
+\end{tabularx}
 
 \cvsection{Professional Experience}
 
-\job{Data Scientist | Subject Matter Expert}{Mar 2026--Present}{AuctionConnect}{Porto / Remote}
+\job{Data Scientist | Subject Matter Expert in Quantitative Modelling, Pricing \& Forecasting}{Mar 2026--Present}{AuctionConnect}{Oporto / Remote}
 \begin{itemize}
-  \item Leads the quantitative approach to nowcasting and forecasting marine bunker fuel prices across global ports, aligned with commercial priorities and market needs.
-  \item Converts fragmented market data, economic indicators and pricing signals into actionable intelligence for planning, risk assessment and strategic decisions.
+  \item Defines the analytical approach for nowcasting and forecasting marine bunker fuel prices across global ports, aligning model development with commercial priorities and market needs.
+  \item Transforms fragmented market data, economic indicators and pricing signals into actionable intelligence for commercial planning, risk assessment and strategic decision-making.
   \item Develops robust statistical and machine learning frameworks for complex, data-sparse markets, balancing analytical accuracy with business applicability.
+  \item Communicates model assumptions, outputs and market implications to business stakeholders and contributes specialist knowledge to the long-term evolution of pricing products.
 \end{itemize}
-\vspace{1.1mm}
+\vspace{1.2mm}
 
-\job{Data \& AI Lead | Subject Matter Expert}{Nov 2019--Mar 2026}{DataJuicers and Simia-Tech}{Madrid / Porto / Remote}
+\job{Data \& AI Lead | Subject Matter Expert}{Nov 2019--Mar 2026}{DataJuicers and Simia-Tech}{Madrid / Oporto / Remote}
 \begin{itemize}
-  \item Led cross-functional teams of more than 10 data scientists, engineers and analysts, aligning business objectives, analytical rigour and timely delivery.
-  \item Architected production-grade Data Science and AI platforms and advanced models for pricing, demand and inventory forecasting, and market intelligence.
-  \item Served as a business--technology interface and strategic advisor to senior stakeholders; supported solution architecture, pre-sales and executive decision-making.
+  \item Led cross-functional teams of more than 10 data scientists, engineers and analysts, aligning business objectives, analytical rigour and timely delivery for international clients.
+  \item Architected production-grade Data Science and AI platforms and advanced models for pricing optimisation, demand forecasting, inventory planning and market intelligence.
+  \item Served as the business-technology interface and strategic advisor to senior stakeholders, translating analytical outputs into clear decision support.
+  \item Supported pre-sales through solution design, technical validation and client-facing presentations, helping secure and expand long-term engagements.
 \end{itemize}
-\vspace{1.1mm}
+\vspace{1.2mm}
 
 \job{Quantitative Analyst}{Apr 2019--Oct 2019}{Arfima Trading}{Madrid}
-Designed automated futures trading strategies, statistical and machine learning models, a custom backtesting framework and integrated risk management protocols.
-\vspace{1.5mm}
+Designed and deployed automated futures trading strategies from end-of-session to high-frequency horizons. Built statistical and machine learning models, a custom backtesting framework and integrated risk management protocols.
+\vspace{1.7mm}
 
 \job{Data Scientist}{Jun 2017--Mar 2019}{DataJuicers}{Madrid}
-Delivered forecasting and machine learning solutions across business and industry; led a TensorFlow computer-vision recommendation project recognised by Google.
-\vspace{1.5mm}
+Delivered big-data, time-series forecasting and machine learning solutions across luxury, retail, services and industry. Led a TensorFlow computer-vision recommendation project recognised by Google and contributed quantitative analysis to hedge-fund projects.
+\vspace{1.7mm}
 
-\job{Researcher / Lecturer}{2009--Jun 2017}{Universidad Autónoma de Madrid \& DIPC}{Spain}
-Taught Physics and Informatics Engineering, supervised student research, and worked in Computational Physics, Electrodynamics and Mathematical Methods.
+\job{Researcher / Lecturer}{2009--Jun 2017}{Universidad Aut\'onoma de Madrid \& Donostia International Physics Center}{Spain}
+Taught Physics and Informatics Engineering, supervised research students, and conducted research in Computational Physics, Electrodynamics and Mathematical Methods.
 
-\cvsection{Research \& Recognition}
-\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{accent}}p{10mm}X>{\bfseries\color{accent}}p{11mm}X@{}}
-  21 & peer-reviewed publications & $\sim$50 & international oral presentations \\
-  5 & theses supervised (3 master's + 2 bachelor's) & AI & Science and AI research projects \\
+\newpage
+
+% ---------------------------------------------------------------------------
+% PAGE 2 - Education, capabilities, research and additional credentials
+% ---------------------------------------------------------------------------
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+  {\fontsize{17}{19}\selectfont\bfseries Nuno de Sousa}
+  & {\color{secondary}Data Scientist \& Subject Matter Expert} \\
+  \href{https://nunodsousa.github.io/cv/}{nunodsousa.github.io/cv}
+  & {\color{muted}Based in Oporto, Portugal} \\
 \end{tabularx}
-\vspace{1.5mm}
-\textbf{Program Director, \emph{AI for Marketing}} --- Católica Porto Business School.
+\vspace{1mm}
+{\color{accent}\rule{\textwidth}{0.9pt}}
 
+\cvsection{Education}
+
+\degree{Executive MBA}{Cat\'olica Porto Business School - CPBS}{Oct 2024--Expected Oct 2026}
+\begin{itemize}
+  \item Strategic leadership and decision-making: executive decisions, competitive strategy and business model innovation.
+  \item Corporate finance and risk management: financial analysis, valuation, capital allocation and enterprise risk.
+  \item Operations and organisational performance: operational excellence, performance management and large-scale transformation.
+  \item Executive communication and governance: negotiation, stakeholder management and corporate governance frameworks.
+\end{itemize}
+\vspace{1mm}
+
+\degree{PhD in Theoretical Physics}{Universidad Aut\'onoma de Madrid}{Sep 2010--Oct 2014}
+Condensed Matter Physics and Nanotechnology. Dissertation: \emph{Light scattering in disordered and nonreciprocal media}. Awarded \emph{Sobresaliente Cum Laude}, the maximum classification.
+\vspace{1.6mm}
+
+\degree{Master in Photonics}{Universidad Aut\'onoma de Madrid}{Sep 2009--Jun 2010}
+GPA 8.8/10. Thesis on light-emission statistics in correlated random photonic nanostructures.
+\vspace{1.6mm}
+
+\degree{Licentiate Degree in Physics}{Universidade do Porto}{}
+
+\cvsection{Leadership, Business \& Technical Capabilities}
+\begin{minipage}[t]{0.488\textwidth}
+  \vspace{0pt}
+  \cvsubsection{Leadership \& Management}
+  \textbf{Strategy \& Delivery}\par
+  \color{secondary}Data and AI strategy, solution architecture, initiative prioritisation, delivery governance and business-technology alignment.\color{ink}
+  \vspace{1.5mm}
+
+  \textbf{People Leadership}\par
+  \color{secondary}Multidisciplinary team leadership, cross-functional coordination, technical direction, mentoring and quality ownership.\color{ink}
+  \vspace{1.5mm}
+
+  \textbf{Stakeholders \& Growth}\par
+  \color{secondary}Executive stakeholder communication, strategic advisory, pre-sales, negotiation and client-facing solution design.\color{ink}
+  \vspace{2mm}
+
+  \cvsubsection{Business Applications}
+  Pricing optimisation, demand forecasting, inventory planning, market intelligence and quantitative trading.
+\end{minipage}
+\hfill
+{\color{rulecolour}\vrule width 0.45pt}
+\hfill
+\begin{minipage}[t]{0.488\textwidth}
+  \vspace{0pt}
+  \cvsubsection{Quantitative Modelling}
+  Pricing models, time-series forecasting (ARIMA, ETS, state space and Prophet), Bayesian modelling, simulation, optimisation, survival analysis and customer lifetime value.
+
+  \cvsubsection{Machine Learning \& AI}
+  scikit-learn, XGBoost, TensorFlow, LLM applications, RAG, model evaluation and agentic workflows.
+
+  \cvsubsection{Data \& Production Systems}
+  Python, SQL, pandas, NumPy, statsmodels, Docker, Git, Azure and workflow orchestration with n8n.
+\end{minipage}
+
+\cvsection{Research, Teaching \& Recognition}
+\begin{tabularx}{\textwidth}{@{}>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X@{}}
+  \metric{21}{peer-reviewed publications}
+  & \metric{\textasciitilde50}{international oral presentations}
+  & \metric{5}{theses supervised}
+  & \metric{8}{science research projects} \\
+\end{tabularx}
+\par\vspace{9mm}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X@{\hspace{5mm}}>{\raggedright\arraybackslash}X@{}}
+  \textbullet\ Director of the \emph{AI for Marketing} programme at Cat\'olica Porto Business School.
+  & \textbullet\ Supervised three master's theses and two bachelor's dissertations across Physics and Informatics Engineering. \\[1.2mm]
+  \textbullet\ Led the 2017 Dress Recommendation System, recognised by Google for its application of TensorFlow and computer vision.
+  & \textbullet\ Research spans nanophotonics, magneto-optics, computational physics and light-matter interactions; the full record is available online. \\
+\end{tabularx}
+
+\cvsection{Professional Development \& Languages}
+\begin{minipage}[t]{0.64\textwidth}
+  \vspace{0pt}
+  \textbf{Selected certifications}\par
+  \vspace{0.6mm}
+  \textbf{Python for Financial Analysis and Algorithmic Trading} - Udemy, 2018\par
+  \textbf{Machine Learning Specialization} - University of Washington / Coursera, 2016--2017\par
+  \textbf{Applied Plotting, Charting and Data Representation in Python} - University of Michigan / Coursera, 2017\par
+  \textbf{Inferential Statistics} - Duke University / Coursera, 2017
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \vspace{0pt}
+  \textbf{Languages}\par
+  \vspace{0.6mm}
+  Portuguese - Native\par
+  English - Certified C1+ (Aug 2024)\par
+  Spanish - 12 years living in Spain
 \end{minipage}
 
 \vfill
 {\color{rulecolour}\rule{\textwidth}{0.45pt}}\par
 \vspace{1mm}
 {\color{muted}\fontsize{7.4}{8.4}\selectfont
-Executive CV \enspace|\enspace Full professional and academic record: \href{https://nunodsousa.github.io/cv/}{nunodsousa.github.io/cv/}}
+Full professional and academic record: \href{https://nunodsousa.github.io/cv/}{nunodsousa.github.io/cv/}}
 
 \end{document}
