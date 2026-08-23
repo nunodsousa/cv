@@ -11,8 +11,8 @@ let chatSession: Chat | null = null;
 
 const RESUME_CONTEXT = `
 NAME: Nuno Miguel Santos Teixeira de Sousa (Nuno de Sousa)
-TITLE: Principal Data Scientist, PhD, MBA | Quantitative Modelling, Forecasting & AI
-SUMMARY: Data Science and AI leader with over 10 years of experience developing quantitative solutions for pricing, forecasting and decision support across energy, finance, marketing and industrial sectors. Combines deep technical expertise with a strong understanding of business strategy, having led multidisciplinary teams of more than 10 professionals and delivered complex analytics and AI initiatives for international clients. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together rigorous quantitative thinking, technical leadership and executive-level communication.
+TITLE: Data Scientist & Subject Matter Expert | Quantitative Strategy, Forecasting & AI
+SUMMARY: Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.
 
 CONTACT (some info is hidden for privacy reasons):
 - Emails: nunoxxxxxxxx@gmail.com, nunoxxxxxxxx@simia-tech.com 
@@ -24,13 +24,16 @@ CONTACT (some info is hidden for privacy reasons):
 - Nationality: Portuguese
 
 EMPLOYMENT HISTORY:
-1. Data Scientist | Quantitative Modelling, Forecasting & AI - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
-   - Designs/develops quantitative models for nowcasting and forecasting marine bunker fuel prices across global ports.
-   - Builds advanced statistical and machine learning frameworks to estimate prices in complex, data-sparse markets.
-   - Integrates heterogeneous data sources and economic indicators to generate robust pricing intelligence for strategic decision-making.
+1. Data Scientist | Subject Matter Expert in Quantitative Modelling, Pricing & Forecasting - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
+   - Serves as a subject matter expert at the intersection of data science, pricing strategy and market intelligence, developing quantitative capabilities that improve price transparency and support decision-making in the global marine fuels market.
+   - Defines the analytical approach for nowcasting and forecasting bunker fuel prices across global ports, aligning model development with commercial priorities and market needs.
+   - Transforms fragmented market data, economic indicators and pricing signals into actionable intelligence for commercial planning, risk assessment and strategic decision-making.
+   - Develops robust statistical and machine learning frameworks for complex, data-sparse markets, balancing analytical accuracy with business applicability.
+   - Communicates model outputs, assumptions and market implications in a clear and decision-oriented format for business stakeholders.
+   - Contributes specialist knowledge to the evolution of data products and pricing capabilities, connecting quantitative development with long-term business value.
 
-2. Expert in Data Science & IA - DataJuicers and Simia-Tech (Madrid, Oporto & Remote) [Nov 2019 - Mar 2026]
-   - Defined/implemented end-to-end AI/ML/data science solutions for high-profile clients (utilities, healthcare, chemicals).
+2. Data & AI Lead | Subject Matter Expert - DataJuicers and Simia-Tech (Madrid, Oporto & Remote) [Nov 2019 - Mar 2026]
+   - Defined/implemented end-to-end AI/ML/data science solutions for high-profile clients across utilities, chemicals and energy-related domains.
    - Processed/structured large datasets.
    - Acted as business translator between technical teams and stakeholders.
    - Led cross-functional teams of more than 10 professionals (data scientists, engineers, and analysts).
@@ -65,7 +68,7 @@ SKILLS:
 - Machine Learning & AI: scikit-learn, XGBoost, TensorFlow, LLM applications, RAG, model evaluation, agentic workflows.
 - Data & Production Systems: Python, SQL, pandas, NumPy, statsmodels, Docker, Git, Azure, workflow orchestration (n8n).
 - Business Applications: Pricing optimization, demand forecasting, inventory planning, market intelligence, quantitative trading.
-- Leadership: Technical strategy, team leadership, solution architecture, stakeholder communication, pre-sales.
+- Leadership & Management: Data & AI strategy, solution architecture, prioritization and delivery of analytics initiatives, business–technology alignment, leadership of multidisciplinary teams of more than 10 professionals, cross-functional coordination, technical direction, executive stakeholder communication, strategic advisory, pre-sales, and client-facing solution design.
 - Languages: Portuguese (Native), English (C1+), Spanish (12y in Spain).
 
 SUPERVISION EXPERIENCE:

@@ -241,6 +241,19 @@ const Nav: React.FC<{ active: string; onNavigate: (id: string) => void }> = ({
    ============================================================ */
 const SidebarContent: React.FC = () => {
   const { personal, skills, languages } = CV_DATA;
+  const technicalSkills = skills.filter(
+    (skill) =>
+      skill.category === 'Quantitative Modelling' ||
+      skill.category === 'Machine Learning & AI' ||
+      skill.category === 'Data & Production Systems',
+  );
+  const businessSkills = skills.filter((skill) => skill.category === 'Business Applications');
+  const leadershipSkills = skills.filter(
+    (skill) =>
+      skill.category === 'Strategy & Delivery' ||
+      skill.category === 'People Leadership' ||
+      skill.category === 'Stakeholders & Growth',
+  );
 
   const link = (href: string, icon: React.ReactNode, label: string) => (
     <a
@@ -267,7 +280,7 @@ const SidebarContent: React.FC = () => {
           className="mb-5 h-24 w-24 rounded-full object-cover
                      shadow-[0_1px_3px_rgb(0_0_0/0.08),0_10px_28px_rgb(0_0_0/0.12)]"
         />
-        <h2 className="type-title text-[1.375rem] text-label">Nuno de Sousa, PhD, MBA</h2>
+        <h2 className="type-title text-[1.375rem] text-label">Nuno de Sousa, PhD, Executive MBA Candidate</h2>
         <p className="type-eyebrow type-eyebrow-cased mt-2 text-accent">{personal.title}</p>
       </div>
 
@@ -289,11 +302,38 @@ const SidebarContent: React.FC = () => {
 
       <div className="h-px bg-separator" />
 
-      {/* Skills */}
+      {/* Leadership and management */}
       <div>
-        <h3 className="type-eyebrow mb-4 text-tertiary">Skills</h3>
+        <h3 className="type-eyebrow mb-4 text-tertiary">Leadership &amp; Management</h3>
         <div className="flex flex-col gap-4">
-          {skills.map((skill) => (
+          {leadershipSkills.map((skill) => (
+            <div key={skill.category}>
+              <p className="type-headline text-[0.8125rem] text-label">{skill.category}</p>
+              <p className="type-caption mt-1 text-[0.8125rem] text-secondary">{skill.skills}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="h-px bg-separator" />
+
+      {/* Business applications */}
+      <div>
+        <h3 className="type-eyebrow mb-4 text-tertiary">Business Applications</h3>
+        {businessSkills.map((skill) => (
+          <p key={skill.category} className="type-caption text-[0.8125rem] text-secondary">
+            {skill.skills}
+          </p>
+        ))}
+      </div>
+
+      <div className="h-px bg-separator" />
+
+      {/* Technical skills */}
+      <div>
+        <h3 className="type-eyebrow mb-4 text-tertiary">Technical Skills</h3>
+        <div className="flex flex-col gap-4">
+          {technicalSkills.map((skill) => (
             <div key={skill.category}>
               <p className="type-headline text-[0.8125rem] text-label">{skill.category}</p>
               <p className="type-caption mt-1 text-[0.8125rem] text-secondary">{skill.skills}</p>

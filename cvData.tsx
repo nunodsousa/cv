@@ -288,23 +288,25 @@ export const CV_DATA = {
   personal: {
     name: "Nuno MST de Sousa",
     shortName: "Nuno de Sousa",
-    title: "Principal Data Scientist, PhD, MBA | Quantitative Modelling, Forecasting & AI",
-    summary: "Data Science and AI leader with over 10 years of experience developing quantitative solutions for pricing, forecasting and decision support across energy, finance, marketing and industrial sectors. Combines deep technical expertise with a strong understanding of business strategy, having led multidisciplinary teams of more than 10 professionals and delivered complex analytics and AI initiatives for international clients. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together rigorous quantitative thinking, technical leadership and executive-level communication.",
+    title: "Data Scientist & Subject Matter Expert | Quantitative Strategy, Forecasting & AI",
+    summary: "Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.",
     // Same sentence, with the load-bearing phrases marked. Kept alongside the
     // plain string above, which still feeds the page description and any
     // context that needs unformatted text.
     summaryRich: (
       <>
         <b>Data Science and AI leader</b> with <b>over 10 years of experience</b>{' '}
-        developing <b>quantitative solutions for pricing, forecasting and decision
-        support</b> across energy, finance, marketing and industrial sectors.
-        Combines <b>deep technical expertise</b> with a strong understanding of{' '}
-        <b>business strategy</b>, having led <b>multidisciplinary teams of more
-        than 10 professionals</b> and delivered <b>complex analytics and AI
-        initiatives</b> for <b>international clients</b>. Holds a{' '}
-        <b>PhD in Theoretical Physics</b> and is completing an{' '}
-        <b>Executive MBA</b>, bringing together rigorous quantitative thinking,{' '}
-        <b>technical leadership</b> and <b>executive-level communication</b>.
+        combining <b>quantitative expertise</b> with <b>business strategy</b> and{' '}
+        <b>organizational leadership</b>. Currently works as a <b>Data Scientist
+        and Subject Matter Expert</b>, developing <b>pricing and forecasting
+        solutions</b> for <b>complex, data-sparse markets</b>. Has led{' '}
+        <b>multidisciplinary teams of more than 10 professionals</b> and delivered{' '}
+        <b>strategic analytics and AI initiatives</b> for <b>international
+        clients</b> across energy, finance, chemicals and industrial sectors.
+        Holds a <b>PhD in Theoretical Physics</b> and is completing an{' '}
+        <b>Executive MBA</b>, bringing together analytical rigor,{' '}
+        <b>executive communication</b> and a growing focus on <b>strategy,
+        management and business leadership</b>.
       </>
     ),
     emails: ["(hidden)"],
@@ -328,7 +330,9 @@ export const CV_DATA = {
     { category: "Machine Learning & AI", skills: "scikit-learn, XGBoost, TensorFlow, LLM applications, RAG, model evaluation, agentic workflows" },
     { category: "Data & Production Systems", skills: "Python, SQL, pandas, NumPy, statsmodels, Docker, Git, Azure, workflow orchestration (n8n)" },
     { category: "Business Applications", skills: "Pricing optimization, demand forecasting, inventory planning, market intelligence, quantitative trading" },
-    { category: "Leadership", skills: "Technical strategy, team leadership, solution architecture, stakeholder communication, pre-sales" },
+    { category: "Strategy & Delivery", skills: "Data & AI strategy, solution architecture, prioritization and delivery of analytics initiatives, business–technology alignment" },
+    { category: "People Leadership", skills: "Leadership of multidisciplinary teams of more than 10 professionals, cross-functional coordination, technical direction" },
+    { category: "Stakeholders & Growth", skills: "Executive stakeholder communication, strategic advisory, pre-sales, client-facing solution design" },
   ] as SkillCategory[],
   languages: [
     { name: "Portuguese", level: "Native" },
@@ -338,26 +342,35 @@ export const CV_DATA = {
   experience: [
     {
       id: "0",
-      role: "Data Scientist | Quantitative Modelling, Forecasting & AI",
+      role: "Data Scientist | Subject Matter Expert in Quantitative Modelling, Pricing & Forecasting",
       company: "AuctionConnect (Oporto/Remote)",
       period: "Mar 2026 - Present",
-      description: "Responsible for the design and development of quantitative models for nowcasting and forecasting of marine bunker fuel prices across global ports.",
+      description: "Serves as a subject matter expert at the intersection of data science, pricing strategy and market intelligence, developing quantitative capabilities that improve price transparency and support decision-making in the global marine fuels market.",
       highlights: [
         <span>
-          Builds <b>advanced statistical and machine learning frameworks</b> to estimate prices in <b>complex, data-sparse markets</b>.
+          Defines the <b>analytical approach</b> for nowcasting and forecasting bunker fuel prices across global ports, aligning model development with <b>commercial priorities and market needs</b>.
         </span>,
         <span>
-          Integrates <b>heterogeneous data sources and economic indicators</b> to generate robust <b>pricing intelligence</b> for <b>strategic decision-making</b>.
+          Transforms fragmented market data, economic indicators and pricing signals into <b>actionable intelligence</b> for commercial planning, risk assessment and <b>strategic decision-making</b>.
+        </span>,
+        <span>
+          Develops robust statistical and machine learning frameworks for <b>complex, data-sparse markets</b>, balancing analytical accuracy with <b>business applicability</b>.
+        </span>,
+        <span>
+          Communicates model outputs, assumptions and market implications in a clear and <b>decision-oriented format</b> for business stakeholders.
+        </span>,
+        <span>
+          Contributes specialist knowledge to the evolution of data products and pricing capabilities, connecting quantitative development with <b>long-term business value</b>.
         </span>
       ]
     },
     {
       id: "1",
-      role: "Expert in Data Science & AI",
+      role: "Data & AI Lead | Subject Matter Expert",
       company: "DataJuicers and Simia-Tech (Madrid, Oporto & Remote)",
       companyUrl: "https://www.datajuicers.com",
       period: "Nov 2019 - Mar 2026",
-      description: "Led multidisciplinary teams of more than 10 professionals delivering and scaling end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as technical lead and strategic advisor, driving data-driven transformation across utilities, healthcare, chemicals, and energy-related domains, while supporting pre-sales, solution architecture, and executive decision-making.",
+      description: "Led multidisciplinary teams of more than 10 professionals delivering and scaling end-to-end AI/ML and advanced analytics solutions for high-profile international clients. Acted as Data & AI lead, subject matter expert and strategic advisor, driving data-driven transformation across utilities, chemicals and energy-related domains, while supporting pre-sales, solution architecture and executive decision-making.",
       highlights: [
         <span>
           Architected and deployed <b>production-grade data science and AI pipelines</b>, transforming <b>large, heterogeneous datasets</b> into reliable <b>analytical and forecasting platforms</b>.
