@@ -288,7 +288,8 @@ export const CV_DATA = {
   personal: {
     name: "Nuno MST de Sousa",
     shortName: "Nuno de Sousa",
-    title: "Data Scientist & Subject Matter Expert | Quantitative Strategy, Forecasting & AI",
+    title: "Data & AI Lead | Subject Matter Expert | Data Scientist",
+    specialisation: "Quantitative Strategy, Pricing, Forecasting & AI",
     summary: "Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.",
     // Same sentence, with the load-bearing phrases marked. Kept alongside the
     // plain string above, which still feeds the page description and any

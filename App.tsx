@@ -281,7 +281,10 @@ const SidebarContent: React.FC = () => {
                      shadow-[0_1px_3px_rgb(0_0_0/0.08),0_10px_28px_rgb(0_0_0/0.12)]"
         />
         <h2 className="type-title text-[1.375rem] text-label">Nuno de Sousa, PhD, Executive MBA Candidate</h2>
-        <p className="type-eyebrow type-eyebrow-cased mt-2 text-accent">{personal.title}</p>
+        <p className="type-eyebrow type-eyebrow-cased mt-2 text-accent">
+          <span className="block">{personal.title}</span>
+          <span className="mt-1 block">{personal.specialisation}</span>
+        </p>
       </div>
 
       {/* Reach */}
@@ -396,7 +399,8 @@ const Hero: React.FC = () => {
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ ...SPRING, delay: 0.05 }}
           >
-            {personal.title}
+            <span className="block">{personal.title}</span>
+            <span className="mt-1 block">{personal.specialisation}</span>
           </motion.p>
 
           <motion.h1
