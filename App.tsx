@@ -382,7 +382,7 @@ const Hero: React.FC = () => {
   return (
     <header
       id="top"
-      className={`mx-auto max-w-4xl px-5 pb-16 sm:px-6 sm:pb-24 ${
+      className={`mx-auto max-w-4xl px-5 pb-6 sm:px-6 sm:pb-8 ${
         // With a banner above, the hero no longer needs to clear the fixed nav
         // on its own — the banner already does it.
         SHOW_PHYSICS_BANNER ? 'pt-12 sm:pt-16' : 'pt-28 sm:pt-40'
