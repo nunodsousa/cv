@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { ArrowLeft, ExternalLink, Printer } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import {
   AI_PROJECTS,
   CERTIFICATIONS,
@@ -75,15 +75,6 @@ const AcademicCV: React.FC = () => {
             <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2.2} />
             Back to CV
           </a>
-          <button
-            type="button"
-            onClick={() => window.print()}
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2
-                       text-[0.875rem] font-medium text-white transition-colors hover:bg-accent-hover"
-          >
-            <Printer className="h-3.5 w-3.5" strokeWidth={2.2} />
-            Download this page
-          </button>
         </div>
 
         {/* Masthead */}

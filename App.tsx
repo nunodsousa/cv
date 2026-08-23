@@ -8,7 +8,6 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import {
   ArrowUpRight,
   Briefcase,
-  Download,
   ExternalLink,
   FileText,
   Github,
@@ -16,7 +15,6 @@ import {
   Linkedin,
   MapPin,
   Mic,
-  Printer,
   Users,
 } from 'lucide-react';
 import AcademicCV from './components/AcademicCV';
@@ -56,25 +54,6 @@ const SECTIONS = [
  * lines that reference it removes every trace.
  */
 const SHOW_PHYSICS_BANNER = true;
-
-/**
- * Printing produces one of two documents, not one page with things missing.
- * The mode is stamped on <body> so the print stylesheet can shape the output,
- * and cleared afterwards so the screen is never left in a print state — the
- * timeout covers browsers that fire afterprint unreliably.
- */
-const printAs = (mode: 'executive' | 'academic') => {
-  document.body.dataset.printMode = mode;
-
-  const clear = () => {
-    delete document.body.dataset.printMode;
-    window.removeEventListener('afterprint', clear);
-  };
-
-  window.addEventListener('afterprint', clear);
-  window.setTimeout(clear, 2000);
-  window.print();
-};
 
 /** Minimal hash routing: the academic CV is the only second page. */
 const useHashRoute = () => {
@@ -216,18 +195,6 @@ const Nav: React.FC<{ active: string; onNavigate: (id: string) => void }> = ({
           ))}
         </div>
 
-        {/* The real PDF, not a browser print: the Europass in latex/, published
-            to public/ and served from the site root. `download` keeps it out of
-            a new tab so the click ends in the user's downloads folder. */}
-        <a
-          href={`${import.meta.env.BASE_URL}Nuno_de_Sousa_CV.pdf`}
-          download="Nuno_de_Sousa_CV.pdf"
-          className="hidden shrink-0 items-center gap-1.5 rounded-full bg-accent px-3.5 py-1.5
-                     text-[0.8125rem] font-medium text-white transition-colors hover:bg-accent-hover sm:flex"
-        >
-          <Download className="h-3.5 w-3.5" strokeWidth={2.2} />
-          Download CV
-        </a>
       </div>
     </nav>
   );
@@ -1040,14 +1007,6 @@ const App: React.FC = () => {
               >
                 <GraduationCap className="h-4 w-4" strokeWidth={2.2} />
                 Google Scholar
-              </Pressable>
-              <Pressable
-                onClick={() => printAs('executive')}
-                className="inline-flex items-center gap-2 rounded-full bg-fill px-5 py-2.5
-                           text-[0.9375rem] font-medium text-label transition-colors hover:bg-separator/50"
-              >
-                <Printer className="h-4 w-4" strokeWidth={2.2} />
-                Download Executive CV
               </Pressable>
               <a
                 href="#academic"
