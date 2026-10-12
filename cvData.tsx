@@ -518,6 +518,6 @@ export const CV_DATA = {
     { text: "Supervision of three master's theses and two bachelor's dissertations.", type: 'supervision', icon: Users },
     { text: "Research projects in Science and Artificial Intelligence.", type: 'projects', icon: Briefcase },
     { text: "Courses and Certifications.", type: 'certifications', icon: GraduationCap },
-    { text: <span>Director of the program <em>AI for Marketing</em> at Católica Porto Business School.</span>, type: null, icon: GraduationCap, url: 'https://catolicabs.porto.ucp.pt/executive-immersive-weeks/ai-marketing' }
+    { text: <span>Co-director of the program <em>AI for Marketing</em> at Católica Porto Business School.</span>, type: null, icon: GraduationCap, url: 'https://catolicabs.porto.ucp.pt/executive-immersive-weeks/ai-marketing' }
   ]
 };

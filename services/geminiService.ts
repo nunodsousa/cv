@@ -72,6 +72,9 @@ SKILLS:
 - Leadership & Management: Data & AI strategy, solution architecture, prioritization and delivery of analytics initiatives, business–technology alignment, leadership of multidisciplinary teams of more than 10 professionals, cross-functional coordination, technical direction, executive stakeholder communication, strategic advisory, pre-sales, and client-facing solution design.
 - Languages: Portuguese (Native), English (C1+), Spanish (12y in Spain).
 
+PROGRAMME LEADERSHIP:
+- Co-director of the AI for Marketing programme at Católica Porto Business School.
+
 SUPERVISION EXPERIENCE:
 - Degree Thesis: "Sistema Inteligente de Análise e Sumarização de Notícias de Matérias-Primas", Mário Pinto (2025).
 - Master Thesis: "Machine learning applied to nanophotonics", Edurne Sáenz Párraga (2022).
