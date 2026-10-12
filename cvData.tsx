@@ -290,7 +290,7 @@ export const CV_DATA = {
     shortName: "Nuno de Sousa",
     title: "Data & AI Lead | Subject Matter Expert | Data Scientist",
     specialisation: "Quantitative Strategy, Pricing, Forecasting & AI",
-    summary: "Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.",
+    summary: "Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.",
     // Same sentence, with the load-bearing phrases marked. Kept alongside the
     // plain string above, which still feeds the page description and any
     // context that needs unformatted text.
@@ -304,7 +304,7 @@ export const CV_DATA = {
         <b>multidisciplinary teams of more than 10 professionals</b> and delivered{' '}
         <b>strategic analytics and AI initiatives</b> for <b>international
         clients</b> across energy, finance, chemicals and industrial sectors.
-        Holds a <b>PhD in Theoretical Physics</b> and is completing an{' '}
+        Holds a <b>PhD in Theoretical Physics</b> and an{' '}
         <b>Executive MBA</b>, bringing together analytical rigor,{' '}
         <b>executive communication</b> and a growing focus on <b>strategy,
         management and business leadership</b>.
@@ -465,7 +465,7 @@ export const CV_DATA = {
       degree: "Executive MBA",
       institution: "Católica Porto Business School - CPBS",
       institutionUrl: "https://catolicabs.porto.ucp.pt",
-      period: "Oct 2024 - Expected Oct 2026",
+      period: "Oct 2024 - Oct 2026",
       details: [
         "Strategic Leadership and Decision-Making: Executive decision-making, competitive strategy formulation, and business model innovation in complex environments.",
         "Corporate Finance and Risk Management: Financial analysis, valuation, capital allocation, and enterprise risk management.",

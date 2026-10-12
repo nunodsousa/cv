@@ -247,7 +247,7 @@ const SidebarContent: React.FC = () => {
           className="mb-5 h-24 w-24 rounded-full object-cover
                      shadow-[0_1px_3px_rgb(0_0_0/0.08),0_10px_28px_rgb(0_0_0/0.12)]"
         />
-        <h2 className="type-title text-[1.375rem] text-label">Nuno de Sousa, PhD, Executive MBA Candidate</h2>
+        <h2 className="type-title text-[1.375rem] text-label">Nuno de Sousa, PhD, Executive MBA</h2>
         <p className="type-eyebrow type-eyebrow-cased mt-2 text-accent">
           <span className="block">{personal.title}</span>
           <span className="mt-1 block">{personal.specialisation}</span>

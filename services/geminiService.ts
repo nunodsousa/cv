@@ -13,7 +13,7 @@ const RESUME_CONTEXT = `
 NAME: Nuno Miguel Santos Teixeira de Sousa (Nuno de Sousa)
 TITLE: Data & AI Lead | Subject Matter Expert | Data Scientist
 FOCUS: Quantitative Strategy, Pricing, Forecasting & AI
-SUMMARY: Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and is completing an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.
+SUMMARY: Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.
 
 CONTACT (some info is hidden for privacy reasons):
 - Emails: nunoxxxxxxxx@gmail.com, nunoxxxxxxxx@simia-tech.com 
@@ -57,7 +57,7 @@ EMPLOYMENT HISTORY:
    - Research in Computational Physics, Electrodynamics, Mathematical Methods.
 
 EDUCATION:
-- MBA (Católica Porto Business School - CPBS) [Oct 2024 - Expected Oct 2026]
+- Executive MBA (Católica Porto Business School - CPBS) [Oct 2024 - Oct 2026]
 - PhD in Theoretical Physics (Universidad Autónoma de Madrid) [Sep 2010 - Oct 2014]. Cum Laude.
   - Thesis: 'Light scattering in disordered and nonreciprocal media'.
   - Link: https://sirena.csic.es/wp-content/uploads/2024/07/Tesis-Nuno.pdf
