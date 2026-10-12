@@ -371,7 +371,7 @@ const Hero: React.FC = () => {
         <div className="hero-credentials">
           <span>PhD in Theoretical Physics</span>
           <span>Executive MBA</span>
-          <span>{PUBLICATIONS.length} publications</span>
+          <span>15+ years of experience</span>
         </div>
         <div className="hero-actions print:hidden">
           <a href="#experience" className="hero-action-primary">
