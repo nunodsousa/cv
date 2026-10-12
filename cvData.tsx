@@ -10,6 +10,12 @@ import { Job, Education, SkillCategory } from './types';
 // Publications Data
 export const PUBLICATIONS = [
   {
+    id: 22,
+    text: 'A. P. V. Oliveira, S. C. Silva, N. de Sousa, "Simplicity over sophistication? Rule-based chatbots lead to higher return rates than LLMs in retail", The International Review of Retail, Distribution and Consumer Research (2026).',
+    impact: 'Journal article',
+    url: 'https://doi.org/10.1080/09593969.2026.2740584'
+  },
+  {
     id: 21,
     text: 'SC Silva, GT Elena, N de Sousa, "Dark Patterns: Reclaiming Autonomy in Online Shopping in the Age of AI", Encyclopedia of Artificial Intelligence in Marketing, 1-13 (2026).',
     impact: 'Encyclopedia entry',
@@ -507,7 +513,7 @@ export const CV_DATA = {
     }
   ] as Education[],
   achievements: [
-    { text: "Author or co-author of 21 peer-reviewed publications.", type: 'publications', icon: FileText },
+    { text: `Author or co-author of ${PUBLICATIONS.length} peer-reviewed publications.`, type: 'publications', icon: FileText },
     { text: "Delivered approx. 50 oral presentations at international conferences.", type: 'presentations', icon: Mic },
     { text: "Supervision of three master's theses and two bachelor's dissertations.", type: 'supervision', icon: Users },
     { text: "Research projects in Science and Artificial Intelligence.", type: 'projects', icon: Briefcase },

@@ -79,7 +79,9 @@ SUPERVISION EXPERIENCE:
 - Master Thesis: "Light scattering in diluted lattices under percolation", Cristina Sanz Fernández (2016).
 - Master Thesis: "Dynamics of a dimer in light", Jorge Olmos Trigo (2016).
 
-PUBLICATIONS (Selected):
+PUBLICATIONS (22 total; selected below):
+22. A. P. V. Oliveira, S. C. Silva, N. de Sousa, "Simplicity over sophistication? Rule-based chatbots lead to higher return rates than LLMs in retail", The International Review of Retail, Distribution and Consumer Research (2026). Published online: 29 September 2026. DOI: https://doi.org/10.1080/09593969.2026.2740584
+21. SC Silva, GT Elena, N de Sousa, "Dark Patterns: Reclaiming Autonomy in Online Shopping in the Age of AI", Encyclopedia of Artificial Intelligence in Marketing, 1-13 (2026). https://link.springer.com/rwe/10.1007/978-3-031-75316-9_108-1
 20. Diego R Abujetas, N de Sousa... "Active angular tuning and switching of Brewster quasi bound states..." (2022). Impact: 8.449
 19. Alexey Kimel... Nuno De Sousa... "The 2022 magneto-optics roadmap", J. Phys D (2022). Impact: 3.1
 18. DR Abujetas, N de Sousa... "Active angular tuning..." Nanophotonics (2021). Impact: 8.449
