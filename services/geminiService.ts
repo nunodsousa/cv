@@ -13,7 +13,7 @@ const RESUME_CONTEXT = `
 NAME: Nuno Miguel Santos Teixeira de Sousa (Nuno de Sousa)
 TITLE: Subject Matter Expert in Quantitative Modelling, Pricing & Forecasting | Data Scientist
 FOCUS: Quantitative Strategy, Pricing, Forecasting & AI
-SUMMARY: Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.
+SUMMARY: Data Science and AI leader with over 15 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.
 
 CONTACT (some info is hidden for privacy reasons):
 - Emails: nunoxxxxxxxx@gmail.com, nunoxxxxxxxx@simia-tech.com 
@@ -117,7 +117,7 @@ export const initializeChat = (): Chat => {
       - Be professional, polite, and concise.
       - If asked about contact info, provide the full details (emails, phones, etc.).
       - If asked about publications, you can list specific high-impact papers or summarize his research topics (Magneto-optics, Nanophotonics, etc.).
-      - Highlight his PhD in Physics and 10+ years of experience.
+      - Highlight his PhD in Physics and 15+ years of experience.
       `,
     },
   });

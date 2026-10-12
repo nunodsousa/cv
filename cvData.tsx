@@ -296,13 +296,13 @@ export const CV_DATA = {
     shortName: "Nuno de Sousa",
     title: "Subject Matter Expert in Quantitative Modelling, Pricing & Forecasting | Data Scientist",
     specialisation: "Quantitative Strategy, Pricing, Forecasting & AI",
-    summary: "Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.",
+    summary: "Data Science and AI leader with over 15 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.",
     // Same sentence, with the load-bearing phrases marked. Kept alongside the
     // plain string above, which still feeds the page description and any
     // context that needs unformatted text.
     summaryRich: (
       <>
-        <b>Data Science and AI leader</b> with <b>over 10 years of experience</b>{' '}
+        <b>Data Science and AI leader</b> with <b>over 15 years of experience</b>{' '}
         combining <b>quantitative expertise</b> with <b>business strategy</b> and{' '}
         <b>organizational leadership</b>. Currently works as a <b>Data Scientist
         and Subject Matter Expert</b>, developing <b>pricing and forecasting
