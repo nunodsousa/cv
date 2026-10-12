@@ -11,7 +11,7 @@ let chatSession: Chat | null = null;
 
 const RESUME_CONTEXT = `
 NAME: Nuno Miguel Santos Teixeira de Sousa (Nuno de Sousa)
-TITLE: Data & AI Lead | Subject Matter Expert | Data Scientist
+TITLE: Subject Matter Expert in Quantitative Modelling, Pricing & Forecasting | Data Scientist
 FOCUS: Quantitative Strategy, Pricing, Forecasting & AI
 SUMMARY: Data Science and AI leader with over 10 years of experience combining quantitative expertise with business strategy and organizational leadership. Currently works as a Data Scientist and Subject Matter Expert, developing pricing and forecasting solutions for complex, data-sparse markets. Has led multidisciplinary teams of more than 10 professionals and delivered strategic analytics and AI initiatives for international clients across energy, finance, chemicals and industrial sectors. Holds a PhD in Theoretical Physics and an Executive MBA, bringing together analytical rigor, executive communication and a growing focus on strategy, management and business leadership.
 
@@ -25,7 +25,7 @@ CONTACT (some info is hidden for privacy reasons):
 - Nationality: Portuguese
 
 EMPLOYMENT HISTORY:
-1. Data Scientist | Subject Matter Expert in Quantitative Modelling, Pricing & Forecasting - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
+1. Subject Matter Expert in Quantitative Modelling, Pricing & Forecasting | Data Scientist - AuctionConnect (Oporto/Remote) [Mar 2026 - Present]
    - Serves as a subject matter expert at the intersection of data science, pricing strategy and market intelligence, developing quantitative capabilities that improve price transparency and support decision-making in the global marine fuels market.
    - Defines the analytical approach for nowcasting and forecasting bunker fuel prices across global ports, aligning model development with commercial priorities and market needs.
    - Transforms fragmented market data, economic indicators and pricing signals into actionable intelligence for commercial planning, risk assessment and strategic decision-making.

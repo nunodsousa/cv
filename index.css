@@ -1,0 +1,133 @@
+.portfolio-nav { background: rgba(8, 15, 30, .90); }
+.portfolio-nav .on-material { color: #b8c7da; }
+.portfolio-nav > div > button.on-material,
+.portfolio-nav [aria-current="location"] .on-material { color: #f1f6ff; }
+.portfolio-nav .bg-fill { background: #23324a; }
+/* The opening is an optical field; the CV below remains a quiet reading surface. */
+.portfolio-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 580px;
+  padding: 126px max(28px, calc((100vw - 1240px) / 2)) 100px;
+  color: #edf4ff;
+  background: #080f1e;
+}
+.physics-field {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(ellipse at 75% 60%, #152846 0%, #080f1e 68%);
+}
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #080f1e 6%, rgba(8, 15, 30, .92) 28%, rgba(8, 15, 30, .3) 60%, transparent 100%);
+}
+.hero-content { position: relative; max-width: 660px; }
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #8bcfe6;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.hero-line { width: 28px; height: 1px; flex-shrink: 0; background: #8bcfe6; }
+.hero-role { margin-top: 20px; font-size: clamp(16px, 2vw, 20px); color: #d6e2f2; }
+.hero-description { margin-top: 17px; color: #9aabc3; font-size: 15px; line-height: 1.65; }
+.hero-credentials { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
+.hero-credentials span {
+  border: 1px solid rgba(156, 187, 221, .2);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #c4d3e7;
+  background: rgba(8, 15, 30, .45);
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 17px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color .2s, border-color .2s;
+}
+.hero-action-primary { background: #dceeff; color: #10233d; }
+.hero-action-primary:hover { background: #fff; }
+.hero-action-secondary { border: 1px solid #34455e; color: #dce7f7; background: rgba(8, 15, 30, .5); }
+.hero-action-secondary:hover { border-color: #81aacb; background: #17263d; }
+.hero-index {
+  position: absolute;
+  bottom: 27px;
+  left: max(28px, calc((100vw - 1240px) / 2));
+  display: flex;
+  gap: 24px;
+  color: #647c9b;
+  font-size: 10px;
+  letter-spacing: .025em;
+}
+.physics-caption {
+  position: absolute;
+  bottom: 20px;
+  right: max(28px, calc((100vw - 1240px) / 2));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  color: #8ca5bf;
+}
+.physics-toggle {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #34455e;
+  border-radius: 50%;
+  color: #bbd5ed;
+  background: #0e1c30;
+  transition: background-color .2s;
+}
+.physics-toggle:hover { background: #243d5a; }
+.latest-publication {
+  border: 1px solid rgb(var(--accent) / .2);
+  background: linear-gradient(120deg, rgb(var(--accent) / .065), rgb(var(--grouped)) 80%);
+  transition: border-color .2s;
+}
+.latest-publication:hover { border-color: rgb(var(--accent) / .5); }
+@media (min-width: 1600px) {
+  .portfolio-hero { min-height: 620px; padding-top: 145px; }
+}
+@media (max-width: 700px) {
+  .portfolio-hero { min-height: 620px; padding: 104px 24px 110px; }
+  .hero-content { max-width: 100%; }
+  .hero-eyebrow { gap: 8px; font-size: 8px; letter-spacing: .10em; }
+  .hero-line { width: 16px; }
+  .hero-shade {
+    background: linear-gradient(180deg, #080f1e 8%, rgba(8, 15, 30, .88) 38%, rgba(8, 15, 30, .45) 72%, rgba(8, 15, 30, .8));
+  }
+  .hero-role { font-size: 16px; }
+  .hero-description { font-size: 14px; }
+  .hero-credentials span { font-size: 10px; padding: 6px 8px; }
+  .hero-actions { gap: 8px; }
+  .hero-actions a { font-size: 12px; padding: 11px 13px; gap: 8px; }
+  .hero-index { left: 24px; bottom: 32px; }
+  .hero-index span:last-child { display: none; }
+  .physics-caption { right: 24px; bottom: 22px; }
+  .physics-caption span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .physics-toggle { display: none; }
+}
+@media print {
+  .portfolio-hero { min-height: 0; padding: 0 0 20px; color: #141416; background: white; }
+  .hero-shade, .physics-field, .hero-index { display: none; }
+  .hero-content h1, .hero-role, .hero-description, .hero-eyebrow { color: #141416; }
+  .hero-credentials span { color: #141416; background: white; border-color: #ccc; }
+}

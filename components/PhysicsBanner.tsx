@@ -1,221 +1,173 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- *
- * Light scattering in a disordered medium — the subject of the thesis this
- * CV describes, drawn honestly rather than decoratively.
- *
- * A set of point scatterers is illuminated by a monochromatic source. Each
- * one re-radiates a cylindrical wave, and what you see is their superposition:
- *
- *     ψ(r, t) = Σ  a_j · cos(k·r_j − ωt) ,   a_j ∝ 1/√r_j
- *
- * The 1/√r falloff is the 2D (cylindrical) one — energy spreading over a
- * circumference rather than a sphere.
- *
- * The whole thing is cheap to animate because the geometry never moves. Only
- * the phase advances, so the time dependence factors out exactly:
- *
- *     ψ(r, t) = A(r)·cos(ωt) + B(r)·sin(ωt)
- *     A = Σ a_j cos(k·r_j),  B = Σ a_j sin(k·r_j)
- *
- * A and B are computed once per resize. Each frame is then two multiplies and
- * an add per pixel — no trigonometry in the animation loop at all.
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Pause, Play } from 'lucide-react';
 
-/** Compute the field at 1/3 resolution and let the GPU upscale it. The
- *  bilinear smoothing costs nothing and reads as a soft optical glow. */
-const SCALE = 3;
-
-// Few scatterers and a long wavelength on purpose: tight fringes read as
-// visual noise, while broad ones read as wave optics.
-const SCATTERERS = 6;
-const WAVELENGTH = 32; // px, in low-resolution units
-const OMEGA = 1.5; // rad/s — one slow, calm cycle
-
-/** Deterministic PRNG, so the speckle pattern is the same on every visit. */
-function makeRandom(seed: number) {
-  let state = seed >>> 0;
-  return () => {
-    state = (state * 1664525 + 1013904223) >>> 0;
-    return state / 4294967296;
-  };
-}
-
+/** A projected interference surface inspired by two cylindrical wave sources.
+ * This is a visual illustration, not a quantitative simulation. */
 const PhysicsBanner: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const phaseRef = useRef(0.8);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return;
+    const container = canvas?.parentElement;
+    const ctx = canvas?.getContext('2d');
+    if (!canvas || !container || !ctx) return;
 
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let width = 0;
     let height = 0;
-    let fieldA = new Float32Array(0);
-    let fieldB = new Float32Array(0);
-    let envelopeMax = 1;
-    let image: ImageData | null = null;
-    let rafId = 0;
-    let running = false;
+    let raf = 0;
+    let visible = true;
+    let lastFrame = 0;
+    let phase = phaseRef.current;
+    let previousTime = 0;
+    let points: Array<{ x: number; z: number; a: number; b: number }> = [];
+    let columns = 0;
+    let rows = 0;
 
-    /** Accent colour, read from the same CSS variables the rest of the page uses. */
-    const readAccent = (): [number, number, number] => {
-      const raw = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-      const parts = raw.split(/[\s,]+/).map(Number).filter((n) => !Number.isNaN(n));
-      return parts.length === 3 ? [parts[0], parts[1], parts[2]] : [0, 113, 227];
-    };
-
-    /** Precompute the standing pattern: everything that doesn't depend on t. */
-    const build = () => {
-      const parent = canvas.parentElement;
-      if (!parent) return;
-
-      width = Math.max(1, Math.floor(parent.offsetWidth / SCALE));
-      height = Math.max(1, Math.floor(parent.offsetHeight / SCALE));
-
-      canvas.width = width;
-      canvas.height = height;
-
-      const random = makeRandom(20260803);
-      const k = (2 * Math.PI) / WAVELENGTH;
-
-      // Scatterers sit slightly below the strip and spread across it, so the
-      // wavefronts arc upward into the banner rather than radiating from its centre.
-      const scatterers: Array<{ x: number; y: number }> = [];
-      for (let j = 0; j < SCATTERERS; j++) {
-        scatterers.push({
-          x: width * ((j + 0.5) / SCATTERERS + (random() - 0.5) * 0.2),
-          y: height * (0.95 + random() * 0.7),
-        });
-      }
-
-      fieldA = new Float32Array(width * height);
-      fieldB = new Float32Array(width * height);
-      envelopeMax = 1e-6;
-
-      for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
-          let a = 0;
-          let b = 0;
-          for (let j = 0; j < scatterers.length; j++) {
-            const dx = x - scatterers[j].x;
-            const dy = y - scatterers[j].y;
-            const r = Math.sqrt(dx * dx + dy * dy);
-            const amp = 1 / Math.sqrt(r + 8); // cylindrical falloff, softened at the core
-            const phase = k * r;
-            a += amp * Math.cos(phase);
-            b += amp * Math.sin(phase);
-          }
-          const i = y * width + x;
-          fieldA[i] = a;
-          fieldB[i] = b;
-          const envelope = Math.hypot(a, b);
-          if (envelope > envelopeMax) envelopeMax = envelope;
-        }
-      }
-
-      image = ctx.createImageData(width, height);
-    };
-
-    /** One frame: ψ = A·cos(ωt) + B·sin(ωt), mapped to opacity. */
-    const draw = (timeMs: number) => {
-      if (!image) return;
-      const [r, g, b] = readAccent();
-      const phase = (timeMs / 1000) * OMEGA;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      const mobile = width < 700;
+      const centerX = width * (mobile ? 0.64 : 0.75);
+      const centerY = height * (mobile ? 0.70 : 0.58);
+      const spread = width * (mobile ? 0.039 : 0.021);
+      const depth = height * 0.022;
+      const amplitude = height * 0.075;
       const cos = Math.cos(phase);
       const sin = Math.sin(phase);
-      // Dark backgrounds need a brighter trace to read at the same weight.
-      const gain = darkQuery.matches ? 0.5 : 0.4;
-      const data = image.data;
+      const projected = points.map(({ x, z, a, b }) => {
+        const wave = a * cos + b * sin;
+        return {
+          x: centerX + (x - z * 0.45) * spread,
+          y: centerY + (z + x * 0.16) * depth - wave * amplitude,
+          wave,
+        };
+      });
 
-      for (let i = 0; i < fieldA.length; i++) {
-        const psi = fieldA[i] * cos + fieldB[i] * sin;
-        // |ψ| gives crest-and-trough fringes; the exponent softens the mid-tones
-        // so the pattern stays quiet instead of banding.
-        const t = Math.abs(psi) / envelopeMax;
-        const alpha = Math.pow(t, 1.6) * gain;
-        const o = i * 4;
-        data[o] = r;
-        data[o + 1] = g;
-        data[o + 2] = b;
-        data[o + 3] = alpha * 255;
+      // Depth-weighted traces keep the surface legible without a solid fill.
+      ctx.lineWidth = mobile ? 0.65 : 0.85;
+      for (let row = 0; row < rows; row++) {
+        const alpha = 0.12 + (row / rows) * 0.42;
+        ctx.strokeStyle = `rgba(111, 212, 239, ${alpha})`;
+        ctx.beginPath();
+        for (let col = 0; col < columns; col++) {
+          const point = projected[row * columns + col];
+          if (col === 0) ctx.moveTo(point.x, point.y);
+          else ctx.lineTo(point.x, point.y);
+        }
+        ctx.stroke();
+      }
+      for (let col = 0; col < columns; col++) {
+        ctx.strokeStyle = 'rgba(143, 148, 255, 0.22)';
+        ctx.beginPath();
+        for (let row = 0; row < rows; row++) {
+          const point = projected[row * columns + col];
+          if (row === 0) ctx.moveTo(point.x, point.y);
+          else ctx.lineTo(point.x, point.y);
+        }
+        ctx.stroke();
       }
 
-      ctx.putImageData(image, 0, 0);
-    };
-
-    const loop = (t: number) => {
-      draw(t);
-      if (running) rafId = requestAnimationFrame(loop);
-    };
-
-    const start = () => {
-      cancelAnimationFrame(rafId);
-      if (motionQuery.matches) {
-        // Reduced motion keeps the physics, drops the movement: one still frame.
-        running = false;
-        draw(0);
-      } else {
-        running = true;
-        rafId = requestAnimationFrame(loop);
+      for (let i = 0; i < projected.length; i += 23) {
+        const point = projected[i];
+        if (point.wave < 0.25) continue;
+        ctx.fillStyle = 'rgba(178, 239, 255, 0.8)';
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 1.25, 0, Math.PI * 2);
+        ctx.fill();
       }
     };
 
-    const rebuild = () => {
-      build();
-      start();
-    };
-
-    rebuild();
-
-    const observer = new ResizeObserver(rebuild);
-    if (canvas.parentElement) observer.observe(canvas.parentElement);
-    motionQuery.addEventListener('change', start);
-    darkQuery.addEventListener('change', start);
-
-    // Nothing to compute while the tab is in the background.
-    const onVisibility = () => {
-      if (document.hidden) {
-        running = false;
-        cancelAnimationFrame(rafId);
-      } else {
-        start();
+    const shouldAnimate = () => !paused && !motion.matches && visible && !document.hidden;
+    const frame = (time: number) => {
+      if (!shouldAnimate()) return;
+      if (time - lastFrame >= 1000 / 30) {
+        if (previousTime) phase += Math.min((time - previousTime) / 1000, 0.1) * 0.65;
+        phaseRef.current = phase;
+        previousTime = time;
+        lastFrame = time;
+        draw();
       }
+      raf = requestAnimationFrame(frame);
     };
-    document.addEventListener('visibilitychange', onVisibility);
+    const sync = () => {
+      cancelAnimationFrame(raf);
+      previousTime = 0;
+      draw();
+      if (shouldAnimate()) raf = requestAnimationFrame(frame);
+    };
+    const resize = () => {
+      width = container.clientWidth;
+      height = container.clientHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      columns = width < 700 ? 49 : 73;
+      rows = width < 700 ? 29 : 37;
+      points = [];
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < columns; col++) {
+          const x = (col / (columns - 1) - 0.5) * 36;
+          const z = (row / (rows - 1) - 0.5) * 22;
+          let a = 0;
+          let b = 0;
+          for (const sourceX of [-5, 5]) {
+            const distance = Math.hypot(x - sourceX, z);
+            const envelope = 1 / Math.sqrt(1 + distance * 0.23);
+            a += Math.cos(distance * 1.1) * envelope;
+            b += Math.sin(distance * 1.1) * envelope;
+          }
+          points.push({ x, z, a, b });
+        }
+      }
+      sync();
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(container);
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    });
+    intersectionObserver.observe(container);
+    motion.addEventListener('change', sync);
+    document.addEventListener('visibilitychange', sync);
+    resize();
 
     return () => {
-      running = false;
-      cancelAnimationFrame(rafId);
-      observer.disconnect();
-      motionQuery.removeEventListener('change', start);
-      darkQuery.removeEventListener('change', start);
-      document.removeEventListener('visibilitychange', onVisibility);
+      cancelAnimationFrame(raf);
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      motion.removeEventListener('change', sync);
+      document.removeEventListener('visibilitychange', sync);
     };
-  }, []);
+  }, [paused]);
 
   return (
-    <div
-      className="relative h-40 w-full overflow-hidden bg-grouped sm:h-52 lg:h-60 print:hidden"
-      aria-hidden="true"
-    >
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 h-full w-full"
-        // The field dissolves into the page instead of ending on a hard edge.
-        style={{
-          maskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
-        }}
-      />
-    </div>
+    <>
+      <div className="physics-field" aria-hidden="true">
+        <canvas ref={canvasRef} className="h-full w-full" />
+      </div>
+      <div className="physics-caption print:hidden">
+        <span>Inspired by wave interference</span>
+        <button
+          type="button"
+          onClick={() => setPaused(value => !value)}
+          aria-label={paused ? 'Resume physics animation' : 'Pause physics animation'}
+          aria-pressed={paused}
+          className="physics-toggle"
+        >
+          {paused ? <Play size={13} /> : <Pause size={13} />}
+        </button>
+      </div>
+    </>
   );
 };
 

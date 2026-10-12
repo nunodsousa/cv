@@ -47,14 +47,6 @@ const SECTIONS = [
   { id: 'research', label: 'Research' },
 ] as const;
 
-/**
- * The physics banner is a single switch. Flip this to false and the page
- * returns exactly to its pre-banner state — the hero reclaims its full top
- * spacing automatically. Deleting components/PhysicsBanner.tsx and the two
- * lines that reference it removes every trace.
- */
-const SHOW_PHYSICS_BANNER = true;
-
 /** Minimal hash routing: the academic CV is the only second page. */
 const useHashRoute = () => {
   const [hash, setHash] = useState(() =>
@@ -154,7 +146,7 @@ const Nav: React.FC<{ active: string; onNavigate: (id: string) => void }> = ({
   const borderOpacity = useTransform(scrollY, [0, 60], [0, 1]);
 
   return (
-    <nav className="material-chrome fixed inset-x-0 top-0 z-50 print:hidden">
+    <nav className="portfolio-nav material-chrome fixed inset-x-0 top-0 z-50 print:hidden">
       <motion.div
         className="absolute inset-x-0 bottom-0 h-px bg-separator"
         style={{ opacity: borderOpacity }}
@@ -172,6 +164,7 @@ const Nav: React.FC<{ active: string; onNavigate: (id: string) => void }> = ({
           {SECTIONS.map((section) => (
             <button
               key={section.id}
+              aria-current={active === section.id ? 'location' : undefined}
               onClick={() => onNavigate(section.id)}
               className="relative shrink-0 rounded-full px-3 py-1.5 text-[0.8125rem] transition-colors duration-150"
             >
@@ -247,7 +240,8 @@ const SidebarContent: React.FC = () => {
           className="mb-5 h-24 w-24 rounded-full object-cover
                      shadow-[0_1px_3px_rgb(0_0_0/0.08),0_10px_28px_rgb(0_0_0/0.12)]"
         />
-        <h2 className="type-title text-[1.375rem] text-label">Nuno de Sousa, PhD, Executive MBA</h2>
+        <h2 className="type-title text-[1.375rem] text-label">{personal.shortName}</h2>
+        <p className="type-caption mt-2 text-[0.8125rem] text-secondary">PhD · Executive MBA</p>
         <p className="type-eyebrow type-eyebrow-cased mt-2 text-accent">
           <span className="block">{personal.title}</span>
           <span className="mt-1 block">{personal.specialisation}</span>
@@ -347,97 +341,50 @@ const Sidebar: React.FC = () => (
    ============================================================ */
 const Hero: React.FC = () => {
   const { personal } = CV_DATA;
-  const reduceMotion = useReducedMotion();
 
   return (
-    <header
-      id="top"
-      className={`mx-auto max-w-4xl px-5 pb-6 sm:px-6 sm:pb-8 ${
-        // With a banner above, the hero no longer needs to clear the fixed nav
-        // on its own — the banner already does it.
-        SHOW_PHYSICS_BANNER ? 'pt-12 sm:pt-16' : 'pt-28 sm:pt-40'
-      }`}
-    >
-      <div className="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between sm:gap-12">
-        <div className="min-w-0 flex-1">
-          <motion.p
-            className="type-eyebrow type-eyebrow-cased mb-5 text-accent"
-            initial={reduceMotion ? undefined : { opacity: 0, y: 10 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ ...SPRING, delay: 0.05 }}
-          >
-            <span className="block">{personal.title}</span>
-            <span className="mt-1 block">{personal.specialisation}</span>
-          </motion.p>
-
-          <motion.h1
-            className="type-display text-[clamp(2.5rem,7vw,4.25rem)] text-label"
-            initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ ...SPRING, delay: 0.1 }}
-          >
-            {personal.shortName}
-          </motion.h1>
-
-          {/* Hidden once the sidebar is present — it carries the same links
-              a few centimetres to the left, and saying it twice side by side
-              reads as an oversight. */}
-          <motion.div
-            className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.9375rem] text-secondary lg:hidden"
-            initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ ...SPRING, delay: 0.16 }}
-          >
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin className="h-4 w-4 text-tertiary" strokeWidth={2} />
-              Based in {personal.location}
-            </span>
-            <a
-              href={personal.links.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-accent"
-            >
-              <Linkedin className="h-4 w-4" strokeWidth={2} />
-              LinkedIn
-            </a>
-            <a
-              href={personal.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-accent"
-            >
-              <Github className="h-4 w-4" strokeWidth={2} />
-              GitHub
-            </a>
-            <a
-              href={personal.links.orcid}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-accent"
-            >
-              <ExternalLink className="h-4 w-4" strokeWidth={2} />
-              ORCID
-            </a>
-          </motion.div>
+    <header id="top" className="portfolio-hero">
+      <PhysicsBanner />
+      <div className="hero-shade" aria-hidden="true" />
+      <div className="hero-content">
+        <div className="hero-eyebrow">
+          <span className="hero-line" />
+          Quantitative modelling · Pricing · Forecasting
         </div>
-
-        {/* On wide screens the portrait lives in the sidebar, so it would only
-            be repeating itself here. */}
-        <motion.div
-          className="shrink-0 lg:hidden"
-          initial={reduceMotion ? undefined : { opacity: 0, scale: 0.94 }}
-          animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-          transition={{ ...SPRING, delay: 0.06 }}
-        >
+        <div className="mt-7 flex items-center gap-4">
           <img
             src={`${import.meta.env.BASE_URL}photos/nuno_2026.jpg`}
             alt={personal.shortName}
-            width={128}
-            height={128}
-            className="h-24 w-24 rounded-full object-cover shadow-[0_1px_3px_rgb(0_0_0/0.08),0_12px_32px_rgb(0_0_0/0.12)] sm:h-32 sm:w-32"
+            width={64}
+            height={64}
+            className="h-14 w-14 rounded-full object-cover ring-1 ring-white/25 lg:hidden"
           />
-        </motion.div>
+          <h1 className="type-display text-[clamp(2.5rem,6vw,5rem)] text-white">
+            {personal.shortName}
+          </h1>
+        </div>
+        <p className="hero-role">Subject Matter Expert &amp; Data Scientist</p>
+        <p className="hero-description">
+          Turning complex market data into clearer decisions.
+          <span className="block">Physics, business strategy and applied AI.</span>
+        </p>
+        <div className="hero-credentials">
+          <span>PhD in Theoretical Physics</span>
+          <span>Executive MBA</span>
+          <span>{PUBLICATIONS.length} publications</span>
+        </div>
+        <div className="hero-actions print:hidden">
+          <a href="#experience" className="hero-action-primary">
+            Explore experience <ArrowUpRight size={16} />
+          </a>
+          <a href="#academic" className="hero-action-secondary">
+            Full academic CV <ArrowUpRight size={16} />
+          </a>
+        </div>
+      </div>
+      <div className="hero-index" aria-hidden="true">
+        <span>01 / Wave interference</span>
+        <span>From physics to market intelligence</span>
       </div>
     </header>
   );
@@ -494,7 +441,7 @@ const App: React.FC = () => {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [hash]);
 
   const navigate = useCallback(
     (id: string) => {
@@ -738,14 +685,12 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-canvas">
       <Nav active={activeSection} onNavigate={navigate} />
 
-      {SHOW_PHYSICS_BANNER && <PhysicsBanner />}
+      <Hero />
 
       <div className="mx-auto flex max-w-[88rem]">
         <Sidebar />
 
         <div className="min-w-0 flex-1">
-          <Hero />
-
           <main>
         {/* ---------- PROFILE ---------- */}
         <Section id="profile" title="Profile">
@@ -754,7 +699,7 @@ const App: React.FC = () => {
               {/* The emphasised phrases carry the claim; the rest is connective
                   tissue. Weight alone does the work — no highlight box needed. */}
               <p
-                className="type-body max-w-measure text-justify hyphens-auto text-[1.0625rem]
+                className="type-body max-w-measure text-left text-[1.0625rem]
                            text-secondary sm:text-[1.125rem]
                            [&_b]:font-semibold [&_b]:text-label"
               >
@@ -915,6 +860,29 @@ const App: React.FC = () => {
 
         {/* ---------- RESEARCH & RECOGNITION ---------- */}
         <Section id="research" title="Research &amp; recognition">
+          <Reveal>
+            <a
+              href={PUBLICATIONS[0].url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="latest-publication group mb-5 block rounded-card p-6 sm:p-8"
+            >
+              <div className="mb-4 flex items-center justify-between gap-4">
+                <span className="type-eyebrow text-accent">Latest publication · 2026</span>
+                <ArrowUpRight size={20} className="shrink-0 text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </div>
+              <h3 className="type-title max-w-measure text-[clamp(1.25rem,3vw,1.65rem)] text-label">
+                Simplicity over sophistication?
+              </h3>
+              <p className="type-body mt-2 max-w-measure text-[1rem] text-secondary">
+                Rule-based chatbots lead to higher return rates than LLMs in retail.
+              </p>
+              <p className="type-caption mt-5 text-[0.8125rem] text-tertiary">
+                A. P. V. Oliveira · S. C. Silva · N. de Sousa
+                <span className="mt-1 block">The International Review of Retail, Distribution and Consumer Research</span>
+              </p>
+            </a>
+          </Reveal>
           <div className="grid gap-3 sm:grid-cols-2">
             {CV_DATA.achievements.map((achievement, i) => {
               const Icon = achievement.icon;
