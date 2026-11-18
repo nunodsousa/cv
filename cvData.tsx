@@ -243,7 +243,7 @@ export const CERTIFICATIONS = [
     id: 8,
     date: "11/2026",
     title: "Strategic Business Simulation",
-    organization: "Esade Business School, Barcelona — Executive MBA programme, Católica Porto Business School",
+    organization: "Esade Business School, Barcelona — programme designed for Católica Porto Business School",
     duration: "32 contact hours, 9–13 November 2026",
     url: "https://credentials.esade.edu/landing/6aedc78a182f190dfa975277"
   },
@@ -484,9 +484,20 @@ export const CV_DATA = {
         "Strategic Leadership and Decision-Making: Executive decision-making, competitive strategy formulation, and business model innovation in complex environments.",
         "Corporate Finance and Risk Management: Financial analysis, valuation, capital allocation, and enterprise risk management.",
         "Operations and Organizational Performance: Operational excellence, performance management, and large-scale change and transformation initiatives.",
-        "Executive Communication and Governance: High-level communication, negotiation, stakeholder management, and corporate governance frameworks.",
-        "International module at Esade Business School, Barcelona: Strategic Business Simulation (32 hours, Nov 2026)."
+        "Executive Communication and Governance: High-level communication, negotiation, stakeholder management, and corporate governance frameworks."
       ]
+    },
+    {
+      id: "esade",
+      degree: "Strategic Business Simulation",
+      institution: "Esade Business School, Barcelona",
+      institutionUrl: "https://www.esade.edu",
+      period: "Nov 2026",
+      details: [
+        "Executive education programme designed for Católica Porto Business School (32 contact hours)."
+      ],
+      link: "https://credentials.esade.edu/landing/6aedc78a182f190dfa975277",
+      linkLabel: "Verify credential"
     },
     {
       id: "phd",

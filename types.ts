@@ -22,6 +22,7 @@ export interface Education {
   period: string;
   details: string[];
   link?: string;
+  linkLabel?: string;
 }
 
 export interface SkillCategory {

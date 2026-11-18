@@ -824,7 +824,7 @@ const App: React.FC = () => {
                       rel="noopener noreferrer"
                       className="mt-4 inline-flex items-center gap-1 text-[0.875rem] font-medium text-accent hover:underline"
                     >
-                      Read the dissertation
+                      {edu.linkLabel ?? 'Read the dissertation'}
                       <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
                     </a>
                   )}
