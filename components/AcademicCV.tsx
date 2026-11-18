@@ -217,10 +217,23 @@ const AcademicCV: React.FC = () => {
                 {cert.topics && (
                   <p className="type-body mt-1 text-[0.8125rem] text-secondary">{cert.topics}</p>
                 )}
+                {cert.duration && (
+                  <p className="type-caption mt-1 text-[0.8125rem] text-secondary">{cert.duration}</p>
+                )}
                 {cert.license && (
                   <p className="type-caption mt-1 text-[0.75rem] text-tertiary">
                     Licence {cert.license}
                   </p>
+                )}
+                {cert.url && (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-flex items-center gap-1 text-[0.8125rem] text-accent"
+                  >
+                    Verify credential <ExternalLink className="h-3 w-3" />
+                  </a>
                 )}
               </Entry>
             ))}

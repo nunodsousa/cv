@@ -665,6 +665,17 @@ const App: React.FC = () => {
                           License {cert.license}
                         </p>
                       )}
+                      {cert.url && (
+                        <a
+                          href={cert.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 inline-flex items-center gap-0.5 text-[0.8125rem] text-accent"
+                        >
+                          Verify credential
+                          <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                        </a>
+                      )}
                     </>,
                   )}
                 </React.Fragment>
